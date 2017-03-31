@@ -1,0 +1,24 @@
+// Alerts
+
+@mixin alert-variant($background, $border, $text-color) {
+  background-color: $background;
+  border-color: $border;
+  color: $text-color;
+
+  hr {
+    border-top-color: darken($border, 5%);
+  }
+  .alert-link {
+    color: darken($text-color, 10%);
+  }
+  .close {
+    color: $text-color;
+    @include opacity(.8);
+
+    &:hover,
+    &:focus {
+      color: $text-color;
+      @include opacity(1);
+    }
+  }
+}

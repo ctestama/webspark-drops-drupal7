@@ -1,0 +1,54 @@
+//
+// Event Share
+// --------------------------------------------------
+$event-share-size: 50px;
+$event-share-size-mobile: 35px;
+.event-share {
+  overflow: hidden;
+  span {
+    height: $event-share-size - 10;
+    line-height: $event-share-size - 10;
+    float: left;
+    display: block;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  a {
+    font-size: 24px;
+    background-color: $brand-graydark;
+    color: $white;
+
+    width: $event-share-size - 10;
+    height: $event-share-size - 10;
+    line-height: $event-share-size - 10;
+
+    text-align: center;
+    float: left;
+    border: none;
+    display: inline-block;
+    &:hover {
+      background-color: lighten($brand-graydark,15);
+      color: $white;
+      border: none;
+    }
+  }
+}
+@media (min-width: $screen-xs-max) {
+.event-share {
+  span {
+    height: $event-share-size;
+    line-height: $event-share-size;
+  }
+  a {
+    width: $event-share-size;
+    height: $event-share-size;
+    line-height: $event-share-size;
+  }
+
+}
+}
+@media (min-width: $screen-sm-max) {
+.event-share {
+  float: right;
+}
+}

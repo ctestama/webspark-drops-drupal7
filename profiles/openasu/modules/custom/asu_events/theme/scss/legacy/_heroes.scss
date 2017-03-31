@@ -1,0 +1,106 @@
+//
+// Heroes
+// --------------------------------------------------
+
+$hero-alt-color:				#fff;
+$hero-alt-bg-color:			#353535;
+
+.hero {
+	background-color: #f1f1f1;
+	padding: 30px 0 60px 0;
+
+	h2, .h2 {
+		font-size: 38px;
+		letter-spacing: -1px;
+		word-wrap: break-word;
+	}
+	img {
+		border: 1px solid #dcdcdc;
+	}
+}
+
+.hero-bg-img {
+	background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+	h2, .h2 {
+		margin-bottom: 10px;
+		color: $hero-alt-color;
+		font-size: 50px;
+		line-height: 1;
+		font-weight: 900;
+		text-shadow: 0 0 5px rgba(0,0,0,.5);
+	}
+	p {
+		max-width: 900px;
+		color: $hero-alt-color;
+		font-size: 24px;
+		font-weight: 900;
+		text-shadow: 0 0 5px rgba(0,0,0,.5);
+	}
+	.cite {
+		margin-bottom: 1.3em;
+		color: $hero-alt-color;
+		font-weight: bold;
+	}
+
+	&.hero-programs {
+		background-image: url(../img/hero-background-1.jpg);
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/hero-background-1.jpg', sizingMethod='scale');
+		-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/hero-background-1.jpg', sizingMethod='scale')";
+	}
+	&.hero-action-call {
+		background-image: url(../img/hero-background-1.jpg);
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/hero-background-1.jpg', sizingMethod='scale');
+		-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/hero-background-1.jpg', sizingMethod='scale')";
+	}
+	&.hero-degrees {
+		padding: 110px 0 20px 0;
+		background-image: url(../img/hero-background-2.jpg);
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/hero-background-2.jpg', sizingMethod='scale');
+		-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/hero-background-2.jpg', sizingMethod='scale')";
+	}
+}
+
+.hero-text-only {
+	text-align: center;
+
+	p {
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+.hero-text-only-dark {
+	background-color: $hero-alt-bg-color;
+	text-align: center;
+
+	h2 {
+		color: $hero-alt-color;
+	}
+	p {
+		color: $hero-alt-color;
+	}
+}
+
+@media (min-width: $screen-sm-min) {
+	.hero {
+		padding-top: 90px;
+
+		h2, .h2 {
+			font-size: 48px;
+		}
+	}
+	.hero-bg-img {
+
+		h2, .h2 {
+			font-size: 60px;
+		}
+	}
+
+}

@@ -1,0 +1,19 @@
+//
+// Page Title
+// --------------------------------------------------
+
+.page-title {
+	padding: 20px 0;
+	background-color: $brand-tan;
+	font-size: $font-size-large + 8;
+	color: $white;
+}
+
+// Responsive Layout
+// Mobile
+@media (max-width: $screen-sm-min -1) {
+	.page-title {
+		padding: 10px 0;
+		font-size: $font-size-large;
+	}
+}

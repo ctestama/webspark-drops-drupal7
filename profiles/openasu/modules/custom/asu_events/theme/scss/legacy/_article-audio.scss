@@ -1,0 +1,74 @@
+//
+// Audio Player for Articles
+// --------------------------------------------------
+
+.article-audio {
+	margin-bottom: 2em;
+	.audio-player {
+		background: $brand-tan;
+	}
+	.play-pause, .volume {
+		border: none;
+		display: inline-block;
+		color: $white;
+		text-align: center;
+		width: 100%;
+		max-width: 60px;
+		height: 60px;
+		line-height: 60px;
+		&:hover {
+			background: darken($brand-tan,5);
+		}
+	}
+	.play-pause {
+		border-right: 1px solid darken($brand-tan,5);
+	}
+	.volume {
+		border-left: 1px solid darken($brand-tan,5);
+	}
+	.audio-progress {
+		position: relative;
+		margin-top: 20px;
+		margin-right: 50px;
+		background: $white;
+		color: $white;
+		&:before {
+			content: '';
+			background: $brand-graydark;
+			position: absolute;
+			top: 0; bottom: 0;
+			left: 0; 
+			right: 58%; //progress
+		}
+		span {
+			background: $brand-graydark;
+			position: absolute;
+			top: -28px;
+			padding: 0 .5em;
+			right: 58%; //progress
+			text-align: center;
+			width: 50px;
+			margin-right: -23px;
+			&:after {
+				content: '';
+				position: absolute;
+				width: 0; height: 0;
+
+				border-left: 4px solid transparent;
+				border-right: 4px solid transparent;
+				margin-left: -2px;
+
+				border-top: 4px solid $brand-graydark;
+				bottom: -4px;
+				left: 50%;
+			}
+		}
+		em {
+			position: absolute;
+			width: 50px;
+			right: -50px;
+			text-align: center;
+			font-style: normal;
+		}
+	}
+}

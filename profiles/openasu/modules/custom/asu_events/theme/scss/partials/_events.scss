@@ -1,0 +1,1185 @@
+// FRONT PAGE
+
+// FEATURED EVENT (LISTING PAGE)
+.featured-event {
+    @include respond-to-min(medium) {
+        margin-bottom: 10px;
+    }
+
+    .featured-bottom {
+        @include respond-to-min(medium) {
+            margin-right: 30px;
+        }
+    }
+    .featured-left {
+        flex-shrink: 0;
+
+        @include respond-to-min(medium) {
+            margin-right: 30px;
+        }
+
+
+        a {
+            border: none;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+
+            @include respond-to-min(medium) {
+                width: 553px;
+                height: 311px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .featured-bottom {
+        h3 {
+            margin: 0;
+
+            a {
+                color: $black-two;
+                border: none;
+                font-size: 36px;
+                line-height: 1.4;
+                border-bottom: 1px dotted transparent;
+
+                &:hover {
+                    color: #a30046;
+                    border-bottom-color: #a30046;
+                }
+            }
+        }
+
+        .time-date {
+            @include respond-to-max(small) {
+                margin-bottom: 20px;
+            }
+        }
+
+        .asu-event-date {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 0;
+
+        }
+
+        .event-location {
+            color: #828282;
+            font-weight: 400;
+        }
+    }
+}
+
+// 2X2 EVENTS LANDING
+.asu-events-highlighted-block.row {
+    @include respond-to-min(medium) {
+        display: flex;
+    }
+
+
+    article {
+        display: flex;
+        flex-direction: column;
+
+        .featured-bottom {
+            width: 100%;
+        }
+
+        &:first-child {
+            @include respond-to-min(medium) {
+                margin-right: 30px;
+            }
+        }
+
+        @include respond-to-min(medium) {
+            width: 50%;
+
+            @at-root .single-event.asu-events-highlighted-block.row article {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+
+                .featured-left {
+                    width: 552px;
+                    flex-shrink: 0;
+                    margin-right: 28px;
+                }
+
+                img {
+                    width: 552px;
+                    height: 311px;
+                    object-fit: cover;
+                }
+            }
+        }
+
+
+        img {
+            @include respond-to-min(medium) {
+                width: 100%;
+                height: 201px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.asuevents-featured-teaser {
+    width: 552px;
+    width: 100%;
+    height: 311px;
+    object-fit: cover;
+
+    .three-events &, .sidebar-view & {
+        object-fit: cover;
+
+        @include respond-to-min(large) {
+            width: 357px;
+            height: 201px;
+        }
+    }
+}
+
+.pane-asu-events-block {
+    .pane-title.pane-title {
+        margin-bottom: 25px !important;
+        padding-bottom: 25px;
+        position: relative;
+        display: flex;
+
+        &:after {
+            content: "";
+            width: 98%;
+            height: 1px;
+            background: $white-two;
+            position: absolute;
+            left: 14px;
+            bottom: 10px;
+        }
+
+        > .asu-events-list-wrapper {
+            margin-left: auto;
+            margin-top: -5px;
+        }
+    }
+
+    .asu-list-link {
+        font-size: 16px;
+        border: none;
+        margin-left: auto;
+
+        &:before {
+            margin-right: 10px;
+            font-size: 22px;
+            content: "\f073";
+            color: $black-two;
+            font-family: FontAwesome;
+        }
+    }
+
+    // FEATURED
+    .node-asu-event {
+        &.featured {
+            img {
+                width: 552px;
+                height: 311px;
+                object-fit: cover;
+            }
+
+            p {
+                margin-top: 10px;
+            }
+
+            h3 {
+                margin-top: 10px;
+                margin-bottom: 5px;
+
+                a {
+                    color: $black-two;
+                    border: none;
+                    font-size: 24px;
+
+                    .front & {
+                        font-size: 36px;
+                        line-height: 1.4;
+
+                        &:hover {
+                            color: #a30046;
+                            border-bottom: 1px dotted #a30046;
+                        }
+                    }
+                }
+            }
+
+            .event-location {
+                /*                 display: flex; */
+                display: block;
+                clear: both;
+                color: #828282;
+                font-weight: 400;
+
+                .front & {
+                    color: $black-two;
+                }
+
+                @at-root .two-events.asu-events-highlighted-block.row .event-location {
+                    color: $black-two;
+                }
+
+                span {
+                    padding-right: 4px;
+                    position: relative;
+                    flex: auto 0 0;
+                    color: #828282;
+                    width: 50%;
+
+                    &:first-child {
+                        padding-right: 8px;
+
+                        &:after {
+                            content: " | ";
+                            position: absolute;
+                            right: -2px;
+                            top: 0;
+                            margin-right: 4px;
+                        }
+                    }
+                }
+            }
+
+            .asu-event-date {
+                font-weight: 500;
+                display: block;
+
+                @include respond-to-min(medium) {
+                    font-size: 18px;
+                }
+
+
+                > span {
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+}
+
+.asu-events-full-block, .asu-events-full-blockrow {
+    .asuevents-featured-teaser {
+        width: 552px;
+        height: 311px;
+        object-fit: cover;
+        margin: 0;
+
+        @include respond-to-max(small) {
+            margin: 0 auto;
+        }
+    }
+
+    .asu-block-left {
+        h3 {
+            margin-bottom: 5px;
+        }
+
+        .featured {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 20px;
+        }
+
+        .asu-event-date {
+            display: flex;
+            font-size: 18px;
+            font-weight: 400;
+
+            span {
+                padding-right: 4px;
+            }
+        }
+    }
+
+    .asu-block-right {
+        height: auto;
+
+        @include respond-to-min(medium) {
+            max-width: 50%;
+        }
+
+
+        article {
+            &:first-child {
+                img {
+                    width: 147px;
+                    height: 147px;
+                    object-fit: cover;
+                }
+            }
+
+            > .content {
+                margin-right: 20px;
+            }
+
+            &:not(:last-child) {
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+                margin-left: 0;
+
+                @include respond-to-max(medium) {
+                    padding-top: 0;
+                }
+            }
+
+            @include respond-to-max(small) {
+                display: block;
+            }
+
+
+            .content {
+                @include respond-to-max(large) {
+                    margin: 0 !important;
+                }
+            }
+
+            > div {
+                flex: 1 0 0;
+
+                &:last-child {
+                    min-width: 280px;
+                }
+            }
+        }
+
+        .time-date {
+            display: flex;
+            width: 260px;
+
+            @include respond-to-max(small) {
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+
+            img[src*="asu-logo-sq"] {
+                width: 147px;
+                height: 147px;
+                object-fit: cover;
+            }
+        }
+
+        .asu-events-small-teaser-img {
+            width: 147px;
+            height: 147px;
+            object-fit: cover;
+        }
+
+        .asu-event-date {
+            text-transform: uppercase;
+            background: $black-two;
+            flex: 1 0 0;
+            color: white;
+            padding: 4px;
+            width: 114px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: normal;
+        }
+
+        .week-day-start {
+            font-size: 18px;
+        }
+
+        .month-start {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .day-start {
+            font-size: 40px;
+            font-weight: 500;
+        }
+
+        .time-start, .time-end {
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .time-start {
+            margin-bottom: -8px;
+        }
+
+        .time-end {
+            margin-top: -5px;
+        }
+
+        .event-location {
+            font-size: 13px;
+            font-weight: 400;
+            margin-top: 10px;
+            color: #767676;
+
+            > .field, span {
+                display: inline-block;
+            }
+
+            .front & {
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    h3 {
+        line-height: 1;
+        margin: 0;
+    }
+
+    a {
+        border: none;
+        color: $black-two;
+        font-size: 18px;
+    }
+}
+
+// LISTINGS
+.asu-events-listing-wrapper {
+    margin-top: 20px;
+
+    [id="calendar"] {
+        margin-bottom: 100px;
+
+        .fc-toolbar {
+            background: $black-two;
+            padding: 10px 15px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+
+            @include respond-to-max(medium) {
+                flex-direction: column;
+                height: auto;
+            }
+        }
+
+        .fc-day-header {
+            font-size: 23px;
+            font-weight: 400;
+        }
+
+        .fc-clear {
+            display: none;
+        }
+
+        .fc-right {
+            @include respond-to-min(medium) {
+                margin-left: auto;
+            }
+        }
+
+        .fc-event .fc-content, .fc-unthemed tbody {
+            border: none;
+        }
+
+        .fc-content, .fc-day-grid-event {
+            border: none;
+            background: #cdcdcd;
+            color: $black-two;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .fc-title {
+            color: $black-two;
+            padding-left: 3px;
+            padding-right: 3px;
+            font-weight: 500;
+        }
+
+        h2 {
+            color: white;
+            font-size: 24px;
+        }
+    }
+
+    .featured-left {
+        padding-left: 0;
+
+        @include respond-to-max(small) {
+            padding-right: 0;
+            margin: 0 auto 40px;
+        }
+    }
+
+    .featured-right {
+        h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+
+            a {
+                border: none;
+                color: $black-two;
+                border-bottom: 1px dotted transparent;
+
+                &:hover {
+                    color: #a30046;
+                    border-bottom-color: #a30046;
+                }
+            }
+        }
+    }
+
+    .asu-event-date {
+        font-size: 18px;
+        font-weight: 500;
+        color: $black-two;
+    }
+
+    .asu-events-small-teaser-img {
+        width: 357px;
+        height: 201px;
+        object-fit: cover;
+
+        @include respond-to-max(small) {
+            display: block;
+        }
+    }
+
+    .event-location-info {
+        color: #828282;
+        margin-top: 4px;
+
+        .location, .campus {
+            .field-item {
+                font-weight: 400;
+            }
+
+            * {
+                display: inline;
+            }
+        }
+    }
+
+    article {
+        margin-bottom: 50px;
+        border-bottom: 1px solid $white-two;
+        padding-bottom: 50px;
+    }
+
+    img[src*="asu-logo-sq"] {
+        width: 357px;
+        height: 201px;
+        object-fit: cover;
+    }
+}
+
+a[class*="load-more-btn"] {
+    display: block;
+    line-height: 52px;
+    text-align: center;
+    color: white;
+    width: 346px;
+    background: #a30046;
+    font-size: 20px;
+    border-radius: 4px;
+    margin: 100px auto;
+
+    &:hover, &:focus {
+        color: white;
+        background: #d23153;
+    }
+
+    @include respond-to-max(xsmall) {
+        max-width: 100%;
+    }
+}
+
+// DETAIL
+.asuevents-cta-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    @include respond-to-min(medium) {
+        min-height: 474px;
+    }
+
+
+    .asuevents-ctas {
+        .date-display-single {
+            display: none;
+        }
+
+        .addtocal, [class*="asuevent-ticketing-url"] {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 41px;
+            text-align: center;
+            line-height: 1;
+            font-weight: 500;
+            margin: 0 0 20px;
+            background: #dbdbdb;
+            border: 0;
+            border-radius: 4px;
+            width: 100%;
+            position: relative;
+            transition: all .25s;
+
+            &:hover {
+                background: #f2f2f2;
+            }
+
+            &:before {
+                content: "\f073";
+                font-family: 'FontAwesome';
+                position: absolute;
+                left: 20%;
+                top: 10px;
+                font-size: 20px;
+            }
+
+            a {
+                color: $black-two;
+                border: none;
+            }
+        }
+
+        [class*="asuevent-ticketing-url"] {
+            height: 80px;
+            font-size: 24px;
+            font-weight: 300;
+            background: #a30046;
+            margin-bottom: 10px;
+            padding-left: 0;
+
+            &:hover {
+                background: #d23153;
+                cursor: pointer;
+            }
+
+            a {
+                color: white;
+            }
+
+            &:before {
+                content: none;
+            }
+        }
+
+        // GIGYA
+        [id="asu-social-share-gigya-share"] {
+            .asu-social-share-title {
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 5px;
+            }
+
+            .share-wrapper {
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            a {
+                flex-grow: 1;
+                background: $black-two;
+                color: white;
+                font-size: 30px;
+                text-align: center;
+            }
+        }
+    }
+
+    .contact-info {
+        margin-top: 50px;
+        font-size: 18px;
+        font-weight: 500;
+
+        a {
+            border: none;
+            font-weight: 500;
+        }
+    }
+
+    [class*="asuevent-phone"] {
+        font-weight: 500;
+    }
+
+    .contact-title {
+        font-weight: 700;
+    }
+
+    [class*="contact-name"] {
+        font-weight: 800;
+    }
+}
+
+.asuevents-header-wrapper {
+    margin-top: 100px;
+    max-width: 843px;
+
+    @include respond-to-min(medium) {
+        display: flex;
+    }
+
+
+    .event-hdr-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        [class*="desc"] {
+            font-style: italic;
+            margin-bottom: 15px;
+
+            @include respond-to-min(medium) {
+                margin-left: 30px;
+            }
+        }
+
+        [title="Other Dates"] {
+            max-width: 0;
+            white-space: nowrap;
+
+            @include respond-to-min(medium) {
+                margin-left: 30px;
+            }
+        }
+    }
+
+    h1 {
+        @include respond-to-min(medium) {
+            margin: 0 0 0 30px;
+        }
+
+
+        a {
+            font-size: 48px;
+            border: none;
+            color: $black-two;
+        }
+    }
+
+    .asu-events-date-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 130px;
+        height: 178px;
+        background: $black-two;
+        color: white;
+        text-transform: uppercase;
+        flex-shrink: 0;
+    }
+
+    .next-event {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .week-day-start {
+        letter-spacing: 2px;
+    }
+
+    .month-start {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .day-start {
+        font-size: 40px;
+        font-weight: 700;
+    }
+
+    .time {
+        display: flex;
+        align-items: center;
+    }
+
+    [class^="time-"] {
+        text-align: center;
+        line-height: 1;
+        font-size: 14px;
+    }
+}
+
+.node-type-asu-event {
+    .node-asu-event {
+        margin-bottom: 80px;
+    }
+
+    .asuevent-img-wrapper {
+        @include respond-to-min(medium) {
+            width: 843px;
+            margin-right: 30px;
+        }
+
+
+        img {
+            width: 100%;
+            margin-bottom: 30px;
+
+            @include respond-to-min(medium) {
+                width: 843px;
+                height: 474px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.asu-event-detail {
+    margin-top: 40px;
+    border-top: 1px solid $white-two;
+    padding-top: 40px;
+    font-size: 16px;
+
+    .detail-top {
+        @include respond-to-min(medium) {
+            display: flex;
+        }
+    }
+}
+
+.date-display-start, .date-display-end {
+    display: block;
+}
+
+.upcoming-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: $black-two;
+    color: white;
+    padding: 10px 15px;
+    font-size: 36px;
+    line-height: 1;
+    font-weight: 400;
+
+    .page-asu-museum-events & {
+        display: flex;
+
+        > span {
+            &:first-child {
+                margin-right: 15px;
+                font-weight: 700;
+                font-size: 27px;
+            }
+
+            &:last-child {
+                display: flex;
+                flex-direction: column;
+
+                span {
+                    text-transform: uppercase;
+
+                    &:first-child {
+                        font-size: 14px;
+                    }
+
+                    &:last-child {
+                        font-weight: 900;
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.asu-events-map-wrapper {
+    margin-top: 40px;
+
+    .field-name-field-event-location {
+        a {
+            color: white;
+            font-size: 24px;
+            border: none;
+        }
+    }
+}
+
+.asu-event-map-header {
+    display: block;
+    background: $black-two;
+    color: white;
+    font-size: 36px;
+    padding: 15px 15px;
+    line-height: 1.4;
+}
+
+[id="asu_map"] {
+    height: 328px !important;
+    margin-top: -24px;
+}
+
+.asuevents-ctas.asuevents-ctas {
+    .flyer {
+        @extend .addtocal;
+
+        padding-left: 0;
+        color: $black-two;
+
+        &:before {
+            content: none;
+        }
+    }
+
+    .file {
+        a {
+            @extend .addtocal;
+
+            color: $black-two;
+            padding-left: 0;
+
+            &:before {
+                content: none;
+            }
+        }
+
+        .file-icon, .file-size {
+            display: none;
+        }
+    }
+}
+
+// LISTING COMPACT VIEW
+.compact-view {
+    .upcoming-title {
+        margin-bottom: 30px;
+    }
+
+    article {
+        margin-bottom: 50px;
+        padding-bottom: 50px;
+        border-bottom: 1px solid $white-two;
+
+        @include respond-to-min(medium) {
+            display: flex;
+        }
+
+
+        .content {
+            margin-right: 30px;
+        }
+    }
+
+    .time-date {
+        display: flex;
+        align-items: center;
+
+        @include respond-to-max(small) {
+            margin-bottom: 20px;
+        }
+    }
+
+    .asu-events-small-teaser-img, .asu-event-img {
+        width: 147px;
+        height: 147px;
+        object-fit: cover;
+        display: flex;
+        align-items: center;
+
+        img {
+            flex: 1 0 0;
+        }
+    }
+
+    .asu-event-date {
+        text-transform: uppercase;
+        background: $black-two;
+        flex: auto 0 0;
+        color: white;
+        padding: 4px;
+        width: 114px;
+        height: 147px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        line-height: normal;
+    }
+
+    .week-day-start {
+        font-size: 18px;
+    }
+
+    .month-start {
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .day-start {
+        font-size: 40px;
+        font-weight: 500;
+    }
+
+    .time-start, .time-end {
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .time-start {
+        margin-bottom: -8px;
+    }
+
+    .time-end {
+        margin-top: -5px;
+    }
+
+    .event-location {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 400;
+        color: #828282;
+
+        @include respond-to-min(medium) {
+            display: flex;
+        }
+
+
+        > span {
+            margin: 0 4px;
+            display: none;
+
+            @include respond-to-min(medium) {
+                display: block;
+            }
+        }
+    }
+
+    .event-details a {
+        border: none;
+        color: $black-two;
+        line-height: 1.4;
+    }
+}
+
+.asu-events-toggle-wrapper {
+    display: flex;
+    align-items: center;
+
+    a {
+        display: block;
+        border: none;
+
+        &:first-child {
+            margin-left: auto;
+            margin-right: 20px;
+        }
+    }
+}
+
+.asu-list-toggle {
+    &:before {
+        color: #d8d8d8;
+        content: "\f03a";
+        font-family: 'FontAwesome';
+        font-size: 22px;
+    }
+
+    &.active {
+        &:before {
+            color: $black-two;
+        }
+    }
+}
+
+.asu-calendar-toggle {
+    &:before {
+        color: #d8d8d8;
+        content: "\f073";
+        font-family: 'FontAwesome';
+        font-size: 22px;
+    }
+
+    &.active {
+        &:before {
+            color: $black-two;
+        }
+    }
+}
+
+h1.featured-event-title {
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+.img-link {
+    border: none;
+
+    &:hover {
+        border: none;
+    }
+}
+
+// SEARCH BLOCK
+.pane-asu-events-search-block {
+    background: $brand-gold;
+}
+
+[id="ASUNavMenu"] {
+    z-index: 1500;
+}
+
+#events-search-options {
+    .column {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .btn-secondary {
+        margin-bottom: 5px !important;
+    }
+}
+
+#messages {
+    display: none;
+}
+
+[id="page-footer"] p {
+    max-width: none;
+}
+
+.page-asu-museum-events section:nth-child(2) {
+    margin-top: 60px;
+}
+
+.buzz-articles-block-title {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid #d7d7d7;
+    padding-bottom: 8px;
+    margin-top: 100px;
+    font-size: 22px;
+
+    @include respond-to-min(large) {
+        margin-top: 200px;
+    }
+}
+
+[class*="field-event-buzz"] {
+    a {
+        color: black;
+        border: none;
+        font-weight: 700;
+        display: block;
+        margin: 30px 0;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #d7d7d7;
+    }
+
+    .field-item:last-child a {
+        border: none;
+    }
+}
+
+// #messages {
+//     display: none;
+// }

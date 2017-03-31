@@ -1,0 +1,58 @@
+//
+// Calendar Date Widget
+// --------------------------------------------------
+
+.calendar-group {
+  @include clearfix;
+}
+
+.calendar-date {
+  width: 125px;
+  display: block;
+  float: left;
+  padding: 10px;
+  margin: 0 30px $line-height-computed 0;
+  color: #4f5557;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #fafafa;
+  border: 1px solid #a1a1a1;
+  border-radius: $border-radius-base;
+  cursor: default;
+  @include clearfix;
+
+  &:hover {
+    border: 1px solid $brand-maroon;
+    @include box-shadow(0 0 10px rgba(0,0,0,.2));
+  }
+  &.last {
+    margin-right: 0;
+  }
+  & + .popover {
+    white-space: nowrap;
+  }
+
+  .weekday {
+    float: left;
+    padding: 3px 7px;
+    margin-bottom: 5px;
+    font-size: 11px;
+    line-height: 1;
+    background-color: #fff;
+    border: 1px solid #afa593;
+    border-radius: $border-radius-base;
+  }
+  .month {
+    float: left;
+    padding: 3px 7px;
+    font-size: 13px;
+    line-height: 1;
+  }
+  .date {
+    width: 60px;
+    float: right;
+    font-size: 50px;
+    line-height: .9;
+    font-weight: 200;
+  }
+}

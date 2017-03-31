@@ -1,0 +1,353 @@
+//
+// Article in list 
+// --------------------------------------------------
+
+$article-list-item-padding: 20px;
+$article-list-item-color-border-width: 3px;
+$article-title-height: 425px;
+
+@mixin article-type-color($type) {
+    .details {
+		border-color: $type;
+    }
+    .article-list {
+		background-color: $type;
+    }
+    .article-list-btn-wrapper.article-list-selected{
+		background-color:$type;
+    }
+}
+.now-attribution {
+	color: $brand-gold;
+	font-weight: 900;
+	text-align: left;
+	font-size: 50px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid rgba($white,.6);
+	max-width: 500px;
+	em {
+		font-weight: 400;
+	}
+}
+.article-list-item-full {
+	background: $black;
+	position: relative;
+
+    @for $i from 1 through length($principle-type-list) {
+        &.#{nth($principle-type-list, $i)} {
+            @include article-type-color(nth($principle-type-vars-list, $i));
+        }
+    }
+
+	.background-image {
+		position: absolute;
+		top:0; bottom:0;
+		left:0; right:0;
+		opacity: .7;
+
+		background-size: cover;
+		background-position: center center;
+	}
+	.item-header {
+		height: $article-title-height - 100;
+		z-index: 3;
+		position: relative;
+		.container {
+			position: absolute;
+			bottom:0;
+			left:0; right:0;
+		}
+	}
+	.details {
+		position: relative;
+		z-index: 2;
+		@include gradient-vertical($start-color: rgba(0,0,0,.0001), $end-color: rgba(0,0,0,.9));
+		color: $white;
+		p {
+			font-weight: 400;
+		}
+	}
+	.article-list {
+		display: none;
+
+		position: absolute;
+		top: 0; bottom: 0;
+		left: 0; right: 0;
+		z-index: 5;
+		a {
+			color: $white;
+			border-color: transparent;
+			font-size: 1.3em;
+			line-height: 1.1em;
+			font-weight: 200;
+			margin-bottom: 1em;
+			&:hover {
+				border-color: $white;
+			}
+		}
+		.article {
+			display: block;
+			border-bottom: 1px solid $white;
+			padding: 1.5em 2em;
+			height:33.333333%;
+			&:last-child{
+				border:none;
+			}
+		}
+	}
+	.title {
+		border-bottom: none;
+		color: $white;
+		line-height: 1.1em;
+		font-weight: 900;
+		display: block;
+		margin-bottom: .5em;
+		font-size: 30px;
+	}
+	.pre-title {
+		color: $white;
+		line-height: 2.5em;
+		font-size: $font-size-large + 14;
+		font-weight: 400;
+	}
+	.tags {
+		margin-bottom: 1em;
+		display: block;
+		a {
+			margin: 0 3px 3px 0;
+		}
+	}
+	.sub-tag-list {
+		a {
+			margin: 0 3px 3px 0;
+			background: rgba(#fff,.2);
+			color: #fff;
+			&:hover {
+				background: rgba(#fff,.5);
+			}
+		}
+	}
+	.tags-small {
+		display: none;
+		margin-top: 20px;
+		color: $gray-light;
+		font-size: 13px;
+		a {
+			color: $gray-light;
+			font-size: 13px;
+			font-weight: 400;
+		}
+	}
+	.tag-list {
+		a {
+			margin: 0 3px 3px 0;
+		}
+	}
+	.media-header {
+		font-size: 24px;
+		color: $white;
+		margin-bottom: 10px;
+		font-weight: 400;
+	}
+	&.hide-tag {
+		.principle-tag{
+			display:none;
+		}
+	}
+	&.multiple {
+		height: 500px;
+		overflow:hidden;
+		.background-image {
+			&:before {
+				content: '';
+				@include gradient-vertical($start-color: rgba(0,0,0,.0001), $end-color: rgba(0,0,0,.9));
+				position: absolute;
+				top: 45%; bottom: 0;
+				left: 0; right: 0;
+				z-index: 2;
+			}
+		}
+		.item-header {
+			top: 0; bottom: 59px;
+			left: 0; right: 0;
+			position: absolute;
+			height: auto;
+			width:100%;
+		}
+		.article-list{
+			bottom:59px;
+			display:block;
+			right:-100%;
+			left:auto;
+			width:100%;
+			.row, .container{
+				height:100%;
+			}
+		}
+		.principle-tag-ctr {
+			display: none;
+		}
+		.title {
+			font-size: 30px;
+			line-height: 35px;
+		}
+		.tags {
+			a {
+				margin: 0 3px 3px 0;
+				background: rgba(#fff,.2);
+				color: #fff;
+				&:hover {
+					background: rgba(#fff,.5);
+				}
+			}
+		}
+		.article-list-btn-wrapper{
+			position:absolute;
+			bottom:0;
+			left:0;
+			padding:18px 0;
+			background-color:transparent;
+			width:100%;
+			.list-btn{
+				display:inline-block;
+				width:14px;
+				height:14px;
+				border:1px solid #fff;
+				-webkit-border-radius:7px;
+				-moz-border-radius:7px;
+				border-radius:7px;
+				background-color:transparent;
+				margin-right:10px;
+				&.selected{
+					background-color:#fff;
+				}
+			}
+		}
+	}
+}
+
+// Tablets and up
+@media (min-width: $screen-sm-min) {
+
+.article-list-item-full {
+
+    text-align: center;
+	border-bottom: 1px solid $panel-border;
+
+	.item-header {
+		height: $article-title-height;
+	}
+	.sub-tag-list {
+		a {
+			background: $general;
+			color: $brand-tan;
+			&:hover {
+				background: darken($general, 8);
+			}
+		}
+	}
+	.details {
+		border-top-width: $article-list-item-color-border-width;
+		border-top-style: solid;
+		border-top-color: $brand-tan;
+		background: $white;
+		position: relative;
+
+		color: $text-color;
+		p {
+			font-weight: 200;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+	.background-image {
+		&:before {
+			content: '';
+			@include gradient-horizontal($start-color: rgba(0,0,0,.9), $end-color: rgba(0,0,0,.0001));
+
+			position: absolute;
+			top: 0; bottom: 0;
+			left: 0; right: 45%;
+			z-index: 1;
+		}
+	}
+	.title {
+		font-size: 50px;
+	}
+	.media-header {
+		font-size: 36px;
+	}
+	// Layouts
+	&.multiple {
+		height: 575px;
+		.item-header {
+			position: relative;
+			padding-top: 40px;
+			.container {
+				position: relative;
+			}
+		}
+		.title {
+			font-size: 50px;
+			line-height: 63px;
+		}
+		.description {
+			color: $white;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 19px;
+		}
+		.article-list {
+			display: block;
+			background: none;
+			top: auto;
+			margin-bottom: 20px;
+			bottom:0;
+			right:auto;
+			.article {
+				border-bottom: none;
+				padding: 0;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+		.tags-small {
+			display: block;
+		}
+
+	}
+	&.large {
+		.principle-tag-ctr {
+			text-align: center;
+			position: absolute;
+			z-index: 3;
+			bottom: -28px;
+			left: 0; right: 0;
+		}
+		.title {
+			font-size: 60px;
+			line-height: 73px;
+		}
+		.description {
+			padding-top: 40px;
+			font-size: 22px;
+			line-height: 29px;
+		}
+
+	}
+	&.media-hero {
+		text-align: left;
+		height: 550px;
+		.item-header {
+			bottom: 0;
+		}
+		.principle-tag-ctr {
+			text-align: left;
+			position: relative;
+			top: 10px;
+		}
+	}
+
+}
+
+} // End of Tablet & Up

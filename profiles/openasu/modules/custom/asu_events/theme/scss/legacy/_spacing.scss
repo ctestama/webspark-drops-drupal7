@@ -1,0 +1,48 @@
+//
+// Spacing Helpers
+// --------------------------------------------------
+
+// Margin
+.space-top-0  { margin-top:    0                             }
+.space-top-sm { margin-top:    ($line-height-computed / 2)   } // 13px
+.space-top-md { margin-top:    $line-height-computed         } // 26px
+.space-top-lg { margin-top:    ($line-height-computed * 1.5) } // 39px
+.space-top-xl { margin-top:    ($line-height-computed * 2)   } // 52px
+
+.space-bot-0    { margin-bottom: 0                              }
+.space-bot-sm   { margin-bottom: ($line-height-computed / 2)    } // 13px
+.space-bot-md   { margin-bottom: $line-height-computed          } // 26px
+.space-bot-lg   { margin-bottom: ($line-height-computed * 1.5)  } // 39px
+.space-bot-xl   { margin-bottom: ($line-height-computed * 1.75) } // 42px
+.space-bot-xxl  { margin-bottom: ($line-height-computed * 2)    } // 48px
+.space-bot-xxxl { margin-bottom: ($line-height-computed * 2.5)   } // 60px
+.space-bot-form { margin-bottom: 15px }
+
+.mr-20 { margin-right: 20px }
+
+// Padding
+.pad-top-0  { padding-top:    0                              }
+.pad-top-sm { padding-top:    ($line-height-computed / 2)    } // 13px
+.pad-top-md { padding-top:    $line-height-computed          } // 26px
+.pad-top-lg { padding-top:    ($line-height-computed * 1.5)  } // 39px
+.pad-top-xl { padding-top:    ($line-height-computed * 2)    } // 52px
+.pad-bot-0  { padding-bottom: 0                              }
+.pad-bot-sm { padding-bottom: ($line-height-computed / 2)    } // 13px
+.pad-bot-md { padding-bottom: $line-height-computed          } // 26px
+.pad-bot-lg { padding-bottom: ($line-height-computed * 1.5)  } // 39px
+.pad-bot-xl { padding-bottom: ($line-height-computed * 2)    } // 52px
+
+.pad-left-sm { padding-left:    ($line-height-computed / 2)    } // 13px
+.pad-left-md { padding-left:    $line-height-computed          } // 26px
+.pad-left-lg { padding-left:    ($line-height-computed * 1.5)  } // 39px
+
+.pad-zero {
+  padding: 0 !important; //override padding yo
+}
+
+// Tablets and up
+@media (min-width: $screen-sm-min) {
+.space-bot-xl { margin-bottom: ($line-height-computed * 2)   } // 52px
+.space-bot-xxl{ margin-bottom: ($line-height-computed * 4)   } // 96px
+.space-bot-xxxl { margin-bottom: ($line-height-computed * 6)   } // 156px
+}// End of Tablet & Up

@@ -1,0 +1,177 @@
+//
+// Article in list
+// --------------------------------------------------
+
+$hero-visible-height: 550px;
+$hero-overlap: 150px;
+@mixin share-type-color($type){
+	a{
+		background-color:$type;
+		display:block;
+		margin:0 0 -1px;
+		padding:10px;
+		border:none;
+		&:hover{
+			color:lighten($type,40%);
+		}
+		.fa{
+			width:auto;
+			height:auto;
+		}
+	}
+}
+.article-hero {
+	.share-links {
+		padding-bottom: 3em;
+		a {
+			color: $white;
+			border-color: transparent;
+			font-size: 22px;
+			margin-right: 28px;
+			display: inline-block;
+			&:hover {
+				color: $brand-maroon;
+			}
+		}
+	}
+	.image {
+		background-size: cover;
+		background-position: center center;
+		width: 100%;
+		height: 375px;
+		text-align: left;
+		position: relative;
+		padding-top: 3em;
+		z-index: -1;
+
+		.container {
+			position: relative;
+			z-index: 2;
+		}
+		&:after {
+			content: '';
+			background-color: rgba(#000,.3);
+			position: absolute;
+			top: 0; bottom: 0;
+			left: 0; right: 0;
+			z-index: 1;
+		}
+		&.generic {
+			background-color: #463F33;
+			background-size: 80%;
+			background-repeat: no-repeat;
+			&:after {
+				display: none;
+			}
+		}
+	}
+	.title {
+		//border-bottom: none;
+		border-color:transparent;
+		color: $white;
+		line-height: 1.1em;
+		font-weight: 900;
+		//display: block;
+		margin-bottom: .5em;
+
+		font-size: 30px;
+		&:hover{
+			border-color:white;
+		}
+	}
+	.principle-tag {
+		margin-bottom: 1em;
+	}
+	.tags {
+		margin-bottom: 1em;
+		a {
+			margin: 0 3px 3px 0;
+			background: rgba(#fff,.2);
+			color: #fff;
+			&:hover {
+				background: rgba(#fff,.5);
+			}
+		}
+	}
+
+}
+// Responsive Layout
+// Mobile
+@media (max-width: $screen-sm-min -1) {
+
+.article-hero {
+	position: relative;
+	overflow: hidden;
+	.image {
+		position: absolute;
+		top:0; bottom:0;
+		left:0; right:0;
+		height: auto;
+	}
+}
+
+}// End Mobile Only
+
+// Tablets and up
+@media (min-width: $screen-sm-min) {
+
+.article-hero {
+	height: $hero-visible-height;
+	position: relative;
+	.image {
+		height: $hero-visible-height + $hero-overlap;
+		z-index: -1;
+		&:before {
+			content: '';
+			@include gradient-horizontal($start-color: rgba(0,0,0,.9), $end-color: rgba(0,0,0,.0001));
+
+			position: absolute;
+			top: 0; bottom: 0;
+			left: 0; right: 45%;
+			z-index: 1;
+		}
+		&.generic {
+			&:before {
+				display: none;
+			}
+		}
+	}
+	.title {
+		font-size: 60px;
+		line-height: 73px;
+	}
+	.item-content {
+		position: absolute;
+		z-index: 2;
+		bottom: 0;
+		width: 100%;
+		padding-bottom: 40px;
+	}
+}
+
+} // End of Tablet & Up
+
+// Tablet only
+@media (min-width:$screen-sm-min) and (max-width:$screen-md-max) {
+	.article-hero {
+		.share-links {
+			padding-bottom: 1.5em;
+		}
+	}
+} // End tablet only
+
+@media (min-width:$screen-md-min){
+	.article-hero{
+		.float-share-links{
+			position:fixed;
+			top:15%;
+			left:0;
+			padding:0;
+			@for $i from 1 through length($principle-type-list) {
+		        &.#{nth($principle-type-list, $i)} {
+		            @include share-type-color(nth($principle-type-vars-list, $i));
+		        }
+		    }
+		}
+	}
+}

@@ -1,0 +1,80 @@
+//
+// Browse Events Links Full Width 
+// --------------------------------------------------
+
+// Five Equal Column layout
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+@media (min-width: 768px) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+// Browse Events List Full Width
+
+.browse-events {
+  background-color: $transparent;
+  color: $black;
+  h1,
+  h2 {
+    font-weight: 400;
+  }
+  h1 {
+    margin-bottom: 25px;
+    font-size: $font-size-h1 - 12;
+    line-height: 1.2;
+  }
+  h2 {
+    margin: 0;
+    font-size: $font-size-h3;
+  }
+  ul.browse-events-list {
+    padding: 0 12px;
+    list-style-type: none;
+    .event-title {
+
+    }
+    li {
+      padding: 10px;
+      font-size: $font-size-base;
+      border-bottom: 1px solid lighten($gray-light, 40%);
+      i {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: $screen-sm-max) {
+
+  h2 {
+    cursor: pointer;
+  }
+}

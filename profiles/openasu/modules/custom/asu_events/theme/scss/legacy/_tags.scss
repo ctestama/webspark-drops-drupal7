@@ -1,0 +1,95 @@
+//
+// Tags
+// --------------------------------------------------
+
+@mixin tag-type-color($type,$invert) {
+    @if $invert == false{
+        @if $type == $general {
+    	    color: $brand-tan;
+        } @else {
+    	    color: $white;
+        }
+        background: $type;
+
+        &:hover, &:active {
+            background: darken($type, 8);
+        }
+
+        i {
+            @if $type == $general {
+    	        color: $brand-tan;
+            } @else {
+    	        color: $white;
+            }
+        }
+
+        &.disabled {
+            &:hover, &:active {
+                background: $type;
+            }
+        }
+    } @else {
+        @if $type != $general{
+            background-color: transparent;
+            color:$type;
+            
+            &:hover, &:active{
+                color:darken($type,8);
+            }
+            
+            i {
+                color: $type;
+            }
+            
+            &.disabled {
+                &:hover,&:active{
+                    color:$type;
+                    background-color:transparent;
+                }
+            }
+        }
+    }
+}
+
+.tag {
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 0 .5em;
+    display: inline-block;
+    font-size: 18px;
+    line-height: $tag-height;
+
+    @include transition(all .3s ease);
+    border: none;
+    
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+	    border: none;
+    }
+
+    &.disabled {
+        @include opacity(.4);
+        cursor: not-allowed;
+        background-image: none;
+    }
+
+    @for $i from 1 through length($principle-type-list) {
+        &.#{nth($principle-type-list, $i)} {
+            @include tag-type-color(nth($principle-type-vars-list, $i),false);
+        }
+        &.invert.#{nth($principle-type-list,$i)} {
+            @include tag-type-color(nth($principle-type-vars-list,$i),true);
+        }
+    }
+
+    &.small {
+        font-size: 13px;
+        line-height: $tag-height-sm;
+    }
+    &.invert {
+        padding: 0 1em 0 0;
+    }
+
+}
+

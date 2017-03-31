@@ -1,0 +1,10 @@
+<?php
+/**
+ * Module file to customize feed imports
+ */
+
+function asu_feed_importer_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'feeds_tamper' && $plugin_type == 'plugins') {
+    return 'plugins/';
+  }
+}

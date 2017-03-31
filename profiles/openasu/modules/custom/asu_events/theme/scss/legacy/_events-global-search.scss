@@ -1,0 +1,244 @@
+//
+// Event Global Search Bar
+// --------------------------------------------------
+
+$global-search-main: $brand-gold;
+$global-search-height: 93px;
+$global-search-top-padding: 20px;
+
+.events-global-search-ctr {
+  height: $global-search-height - 14px;
+}
+.events-global-search {
+  height: $global-search-height - 14px;
+  background: $global-search-main;
+  padding: $global-search-top-padding 0;
+  &.affix-top {
+    position: relative;
+    z-index: $zindex-navbar - 1;
+  }
+  &.affix {
+    z-index: $zindex-navbar-fixed;
+    left:0; right:0;
+    top:0;
+  }
+  .search-icon {
+    display: none;
+  }
+  .search-box {
+    position: relative;
+    z-index: $zindex-navbar-fixed;
+    .form-group {
+      margin-bottom: 0;
+      z-index: 2;
+      position: relative;
+    }
+  }
+  .search-keyword {
+    position: relative;
+    z-index: $zindex-navbar-fixed + 1;
+    label {
+      display: none;
+    }
+  }
+  .btn-secondary {
+    margin-bottom: 5px;
+  }
+  hr {
+    border-color: $white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+.events-search-options {
+  position: absolute;
+  top:-($global-search-top-padding);
+  left: 0; right: 0;
+
+  background-color: $global-search-main;
+  box-shadow: 0 10px 30px rgba(#000,.3);
+  padding-top: 75px;
+  padding-bottom: 50px;
+  .column-small, .column-wide {
+    padding: 10px 0 10px 5px;
+    float: left;
+    .btn-secondary {
+      background-color: $white;
+      padding-left: 10px;
+      padding-right: 30px;
+      margin-bottom: 5px;
+      margin-top: 0;
+      position: relative;
+      text-align: left;
+      font-size: 14px;
+      .fa-plus, .fa-close {
+        visibility: hidden;
+        position: absolute;
+        right: 5px;
+        top: 11px;
+        font-size: 12px;
+      }
+      &:hover {
+        i {
+          visibility: visible;
+        }
+      }
+      &.selected {
+        background-color: $brand-maroon;
+        color: $white;
+        &:hover {
+          background-color: $link-hover-color;
+        }
+
+      }
+    }
+  }
+  .column-small {
+    width: 18%;
+    &:first-of-type {
+      padding-left: 0;
+    }
+  }
+  .column-wide {
+    width: 23%;
+  }
+  p {
+    margin-bottom: 0;
+    z-index: $zindex-navbar-fixed + 2;
+    position: relative;
+  }
+  .filters-toggle {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right: 0;
+    z-index: $zindex-navbar-fixed + 3;
+
+    border-radius: 0;
+    background-color: darken($global-search-main,15);
+    color: $white;
+    &:hover {
+      background-color: darken($global-search-main,20);
+
+    }
+  }
+  .event-dropdowns {
+    position: relative;
+    z-index: 2;
+  }
+}
+.idk-button {
+  position: relative;
+  z-index: $zindex-tooltip;
+  button{
+    z-index:$zindex-tooltip;
+    position:relative;
+  }
+}
+.idk-tooltip {
+  position: absolute;
+  top: -25px;
+  left: -20px;
+  right: -20px;
+  z-index: 1069;
+  font-size: 14px;
+  padding: 10px;
+  opacity: 0;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+  strong {
+    font-size: 16px;
+  }
+  p {
+    margin-bottom: 0;
+    line-height: 1.3em;
+  }
+  &:after {
+    content:'';
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    height: 0;
+
+  }
+  &.top:after{
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top:10px solid #ccc;
+      top:auto;
+      bottom:-10px;
+  }
+  &.bottom:after{
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ccc;
+    top: -10px;
+    bottom:auto;
+  }
+}
+
+//Responsive Layout ----------------------------------------------------------------------
+
+// Tablets and up
+@media (min-width: $screen-xs-min) {
+
+.events-global-search-ctr {
+  height: $global-search-height;
+}
+.events-global-search {
+  height: $global-search-height;
+
+  .search-icon {
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 15px;
+
+    color: $white;
+    opacity: .3;
+    font-size: 110px;
+    line-height: 110px;
+    z-index: 1;
+
+    overflow: hidden;
+    height: 93px;
+    width: 110px;
+    i {
+      position: relative;
+      top:-13px;
+    }
+  }
+  .search-keyword {
+    padding-left: 40px;
+    .btn {
+        margin-left: -20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+  }
+}
+.large-input {
+  .form-control {
+    padding: 12px 18px;
+    font-size: 20px;
+    line-height: 1.33;
+    border-radius: 4px;
+    height: auto;
+  }
+}
+.events-search-options {
+  padding-left: 40px;
+
+}
+
+} //Tablets & Up
+
+
+

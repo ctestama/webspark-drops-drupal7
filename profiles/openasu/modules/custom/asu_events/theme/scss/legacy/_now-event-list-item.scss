@@ -1,0 +1,74 @@
+//
+// Event List on ASU Now
+// --------------------------------------------------
+
+.now-event-list-item {
+	margin-bottom: 1em;
+	.container-fluid {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.date-image {
+		position: relative;
+		background-size: cover;
+		background-position: center center;
+		margin-bottom: .5em;
+		a {
+			position: absolute;
+			top: 0; bottom: 0; left: 0; right: 0;
+			border: none;
+		}
+	}
+	.title a, .cta a {
+		color: $text-color;
+		border-color: transparent;
+		&:hover {
+			color: $brand-maroon;
+			border-color: $brand-maroon;
+		}
+	}
+	.title {
+		margin-bottom: 7px;
+	}
+	.small {
+		margin-bottom: 1em;
+	}
+	.cta {
+		font-size: 14px;
+	}
+	.description {
+		font-size: 24px;
+		line-height: 27px;
+		font-weight: normal;
+		margin-top: 15px;
+		p {
+			margin-top: 20px;
+			font-size: 18px;
+			line-height: 21px;
+			font-weight: 200;
+		}
+	}
+	&.featured {
+		.date-image {
+			height: 200px;
+		}
+		.event-date {
+			top:0; bottom: 0;
+			position: absolute;
+		}
+		.title a {
+			font-size: 24px;
+			line-height: 27px;
+			font-weight: 900;
+		}
+
+	}
+	&.sidebar {
+		margin-bottom: 3em;
+		.container-fluid {
+		  padding-left: 15px;
+		  padding-right: 15px;
+			
+		}
+	}
+}

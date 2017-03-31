@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the asu social share module.
+ */
+
+function asu_social_share_install() {
+  $modules = 'gigya';
+  if (module_exists($modules)) {
+    variable_set('gigya_login_mode', 'drupal');
+  }
+  else{
+    module_enable(array($modules), $enable_dependencies);
+    cache_clear_all();
+  }
+  cache_clear_all();
+}
+
+function asu_social_share_uninstall() {
+  $modules = array('encrypt','gigya');
+  foreach($modules as $module){
+    if( module_exists($module)) {
+      module_disable(array($module));
+      drupal_uninstall_modules(array($module));
+    }
+    drupal_uninstall_schema($module);
+  }
+}

@@ -1,0 +1,18 @@
+.news-teaser-with-image {
+	padding: 20px;
+	&:hover {
+		background-color: lighten($brand-tan, 30%);
+	}
+	a {
+		color: $gray-dark;
+		font-size: $font-size-h2;
+		border: 0;
+		&:hover {
+			color: $brand-primary;
+			border-bottom: 1px dotted $brand-primary;
+		}
+	}
+	.title, p {
+		margin-left: 20px;
+	}
+}

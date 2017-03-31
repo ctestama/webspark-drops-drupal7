@@ -1,0 +1,107 @@
+//
+// Event Date
+// --------------------------------------------------
+
+.event-date {
+  background: $brand-graydark;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px;
+  width: 120px;
+  display: inline-block;
+  span {
+    display: block;
+  }
+  .weekday {
+    margin-bottom: 5px;
+    font-size: .8em;
+  }
+  .month {
+    font-size: .7em;
+    font-weight: bold;
+  }
+  .date {
+    font-weight: bold;
+    font-size: 2.3em;
+    line-height: .9em;
+    margin-bottom: 5px;
+  }
+  .time {
+    font-size: .8em;
+    line-height: 1.2em;
+
+  }
+  // Full Width Event Date
+  &.wide {
+    display: block;
+    width: auto;
+    text-align: left;
+    position: relative;
+    .weekday {
+      margin-bottom: 0;
+      margin-left: 35px + 10px;
+      font-size: 14px;
+      line-height: 12px;
+      font-weight: normal;
+      display: block;
+    }
+    .month {
+      font-size: 11px;
+      line-height: 12px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      margin-left: 35px + 10px;
+      display: block;
+    }
+    .date {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 35px;
+      font-size: 27px;
+      text-align: center;
+    }
+
+  }
+  // Tiny Date for Home Page Events
+  &.tiny {
+    width: 60px;
+    padding: 5px;
+    .weekday {
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 0;
+      line-height: 12px;
+      margin-top: 3px;
+    }
+    .date {
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.3em;
+      margin-bottom: 0;
+    }
+
+  }
+  // Large Date for Topic
+  &.large {
+    width: 150px;
+    padding: 15px;
+    .weekday {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .month {
+      font-size: 22px;
+    }
+    .date {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+    .time {
+      font-size: 22px;
+    }
+
+
+  }
+}

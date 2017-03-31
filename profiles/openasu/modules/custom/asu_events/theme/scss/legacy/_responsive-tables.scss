@@ -1,0 +1,119 @@
+//
+// Responsive Tables
+// --------------------------------------------------
+
+@media (max-width: $screen-xs-max) {
+  .responsive-table {
+
+    td,
+    th {
+      display: block;
+    }
+    // All cells
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th,
+        > td {
+          display: block;
+          width: 100%;
+          float: left;
+          clear: left;
+          padding: 10px 15px;
+          border-top: 0;
+          border-bottom: 0;
+        }
+      }
+    }
+    // Border only the first td in a row
+    > tbody,
+    > tfoot {
+      > tr {
+        > td:first-child {
+          border-top: 1px solid $table-border-color;
+        }
+        // But not the first row because we already a 2px th border
+        &:first-child {
+          > td:first-child {
+            border-top: 0;
+          }
+        }
+      }
+    }
+    // Border only the last th in a row
+    > thead {
+      > tr {
+        > th:last-child {
+          border-bottom: 2px solid $table-border-color;
+        }
+        // But not the first row because we already a 2px th border
+        // &:first-child {
+        //   > td:first-child {
+        //     border-top: 0;
+        //   }
+        // }
+      }
+    }
+    // We increased padding but now there's too much between cells in each row
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th,
+        > td {
+          padding-top: 0;
+          // Add it back to the last td
+          &:first-child {
+            padding-top: 15px;
+          }
+          // Add the same to the bottom for uniformity
+          &:last-child {
+            padding-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+// Just a rough start in making a 2 column layout for screens 480-768px
+// @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+//   .responsive-table {
+//     > thead,
+//     > tbody,
+//     > tfoot {
+//       > tr {
+//         @include clearfix;
+//       }
+//     }
+//     > thead,
+//     > tbody,
+//     > tfoot {
+//       > tr {
+//         > th,
+//         > td {
+//           float: right;
+//           width: 60%;
+//           // margin-left: 158px;
+//           // @include clearfix;
+//           clear: none;
+//         }
+//       }
+//     }
+//     > thead,
+//     > tbody,
+//     > tfoot {
+//       > tr {
+//         > th,
+//         > td {
+//           &:first-child {
+//             width: 40%;
+//             float: left;
+//             // margin-left: 0;
+//           }
+//         }
+//       }
+//     }
+//
+//   }
+// }

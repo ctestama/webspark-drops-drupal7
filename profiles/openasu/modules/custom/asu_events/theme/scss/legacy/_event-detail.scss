@@ -1,0 +1,135 @@
+//
+// Event Detail
+// --------------------------------------------------
+
+.event-detail {
+  margin-top: 30px;
+
+  .event-detail-header {
+    h2 {
+      font-size: 26px;
+      line-height: 32px;
+
+    }
+    .title {
+      color: $brand-graydark;
+      border-color: transparent;
+    }
+    .event-date {
+      width: 100%;
+      min-width: 95px;
+    }
+  }
+  .action-row {
+    padding: 15px 0;
+    border-top: 1px solid $panel-border;
+    border-bottom: 1px solid $panel-border;
+    font-weight: 400;
+  }
+  .cost {
+    line-height: 30px;
+    font-weight: normal;
+    float:left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .tags {
+    float:left;
+    margin-bottom: 10px;
+    a {
+      display: inline-block;
+      float: left;
+      border: none;
+      background: $brand-tan-light;
+      color: $brand-tan;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      padding: 0 10px;
+      line-height: 32px;
+      font-size: 14px;
+      border-radius: 4px;
+      &:hover {
+        background: darken($brand-tan-light,8);
+      }
+    }
+  }
+  .event-share {
+    padding-top: 10px;
+  }
+  .event-actions {
+    .btn {
+      margin-bottom: 5px;
+    }
+    .buy-tickets{
+      font-size:24px;
+      line-height:57px;
+      padding:12px 0;
+      .fa.fa-ticket{
+        font-size:48px;
+        vertical-align: middle;
+        margin-right:5px;
+
+      }
+    }
+    .btn-add-to-calendar{
+      padding:6px 0;
+      .fa.fa-calendar{
+        font-size:20px;
+        margin-right:8px
+      }
+    }
+    .btn-download-schedule{
+      padding:6px 0;
+      .fa.fa-download{
+        font-size:20px;
+        margin-right:8px;
+      }
+    }
+  }
+}
+// Responsive 
+@media (min-width: $screen-xs-max) {
+.event-detail {
+  margin-top: 50px;
+
+  padding: 50px;
+  background: $white;
+  border: 1px solid $panel-border;
+  .action-row {
+    padding: 15px 50px;
+    margin-left: -50px;
+    margin-right: -50px;
+  }
+  .cost {
+    line-height: 50px;
+  }
+  .tags {
+    margin-top: 9px;
+    margin-bottom: 9px;
+  }
+}
+
+}
+@media (min-width: $screen-sm-max) {
+
+.event-detail {
+  .event-detail-header {
+    .title {  
+      font-size: 36px;
+      line-height: 1.4;
+    }
+  }
+  .cost {
+    margin-bottom: 0;
+    display: inline-block;
+  }
+  .tags {
+    margin-bottom: 0;
+    display: inline-block;
+  }
+  .event-share {
+    padding-top: 0;
+  }
+}
+
+}

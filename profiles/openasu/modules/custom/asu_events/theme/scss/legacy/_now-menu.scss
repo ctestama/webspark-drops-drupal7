@@ -1,0 +1,106 @@
+//
+// Now Specific Mega Wide Dropdown Menu
+// --------------------------------------------------
+
+#asu_school_name {
+  width: 600px;
+}
+
+@mixin nav-principle-type-color($type) {
+    border-color: $type;
+}
+.mega-menu.now-menu {
+  .container-fluid {
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  .column {
+    overflow: hidden;
+  }
+  .dropdown-menu {
+    width: 100%;
+    border-radius: 0;
+    a {
+      display: block;
+      clear: both;
+      padding: 0 5px;
+      font-size: 14px;
+      line-height: 26px;
+      color: $white;
+      border-bottom: 0;
+      white-space: nowrap;
+      &:hover {
+        background: #000;
+      }
+    }
+    hr {
+      margin-top: 25px;
+      margin-bottom: 25px;
+      border-color: $gray-dark;
+      border-width: 2px;
+    }
+    .design-principles {
+      a {
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 34px;
+        border-left-width: 6px;
+        border-left-style: solid;
+        border-left-color: $brand-tan;
+        margin-bottom: 2px;
+        padding-left: 12px;
+        @for $i from 1 through length($principle-type-list) {
+            &.#{nth($principle-type-list, $i)} {
+                @include nav-principle-type-color(nth($principle-type-vars-list, $i));
+            }
+        }
+      }
+    }
+    .other-departments {
+      background: $gray-dark;
+      .nav-section {
+        border-bottom: 1px solid $brand-graydark;
+        padding: 10px;
+        font-size: 12px;
+        &.large a {
+          font-weight: 900;
+          font-size: 16px;
+        }
+        i {
+          font-size: 1.5em;
+          padding: 0 5px;
+        }
+        &.social {
+          color: $white;
+          font-size: 14px;
+          span {
+            display: block;
+            margin-bottom: 8px;
+            padding: 0 5px;
+          }
+          a {
+            display: inline-block;
+
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: $screen-md-min) {
+
+    .dropdown-menu {
+      left: 0;
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $screen-lg-min) {
+
+    .dropdown-menu {
+      left: 0;
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}

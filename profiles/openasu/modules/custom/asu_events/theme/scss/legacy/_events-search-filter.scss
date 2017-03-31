@@ -1,0 +1,32 @@
+//
+// Event Search Filter
+// --------------------------------------------------
+
+ button.event-search-filter {
+  margin: 3px 0;
+    padding: 3px 28px 5px 12px;
+  span {
+    font-size: $font-size-base - 1 ;
+    font-weight: 600;
+    &:after {
+      position: absolute;
+      margin: -3px 0 0 8px;
+      font-family: FontAwesome;
+      font-size: $font-size-large;
+      content: "\f00d";
+    }
+  }
+}
+
+// Text for number of results
+span.events-search-filter-pretext {
+  margin-right: 25px;
+  font-size: $font-size-base;
+  font-weight: 400;
+}
+
+@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+  button.event-search-filter {
+    // display: block;
+  }
+}

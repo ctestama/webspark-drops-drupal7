@@ -1,0 +1,109 @@
+//
+// Visual Topic List Used on IDK & various places
+// --------------------------------------------------
+.event-topic-list {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    width: 50%;
+    float: left;
+  }
+  a {
+    @include transition(all .5s);
+    display: block;
+    border-radius: $border-radius-base;
+    color: $white;
+    font-weight: bold;
+    text-shadow: 0 0 5px #000;
+    border-bottom: none;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    margin: 3px;
+    background: #000;
+
+    height: 150px;
+    line-height: 130px;
+
+    &.selected {
+      background-color: $brand-maroon;
+      text-shadow: none;
+      &:hover {
+        .image {
+          opacity: 0;
+        }
+      }
+      .image {
+        opacity: 0;
+      }
+    }
+  }
+  .title {
+    position: relative;
+    z-index: 2;
+
+    display: inline-block;
+    line-height: 20px;
+    vertical-align: middle;
+  }
+  .image {
+    @include transition(all .5s);
+    border-radius: $border-radius-base;
+    position: absolute;
+    z-index: 1;
+    background-size: cover;
+    background-position: center center;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    width: 100%;
+    opacity: .7;
+  }
+  i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    opacity: 0;
+    display: none;
+  }
+  &.home-sidebar, &.detail-sidebar {
+    li:first-child {
+      width:100%;
+    }
+  }
+  &.idk-topics {
+    li {
+      width: 16.666%;
+    }
+    a {
+      height: 120px;
+      line-height: 100px;
+    }
+    i {
+      display: block;
+    }
+
+  }
+
+}
+
+@media (min-width: $screen-sm-max) {
+.event-topic-list {
+  a {
+    &:hover {
+      @include scale(1.15);
+      z-index:99;
+
+      .image {
+        opacity: .8;
+      }
+      i {
+        opacity: 1;
+      }
+    }
+  }
+}
+}

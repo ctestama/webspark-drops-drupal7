@@ -1,0 +1,163 @@
+//
+// Topic, Date Etc Dropdowns on ASU Events Site
+// --------------------------------------------------
+.event-dropdowns {
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+	li {
+	    padding: 0;
+	}
+	.dropdown-alt {
+		margin: 3px;
+	}
+
+	.select-style {
+	    padding: 0;
+	    margin: 0;
+	    border: none;
+	    overflow: hidden;
+	    background-color: transparent;
+	    position: relative;
+	    width: 100%;
+	    float: left;
+
+	    .fa {
+	    	color: #fff;
+		    left: 12px;
+		    position: absolute;
+		    top: 12px;
+		    z-index: 99;
+	    
+	    	&.fa-caret-down {
+	    		left: auto;
+	    		right: 22px;
+	    	}
+	    }
+	}
+	.select-style select {
+	    padding:6px 10px 6px 40px;
+	    width: 98%;
+	    border: none;
+	    box-shadow: none;
+	    background-color: $brand-graydark;
+		color: $white;
+	    background-image: none;
+	    -webkit-appearance: none;
+	       -moz-appearance: none;
+	            appearance: none;
+	    font-size: 16px;
+	    font-weight: 900;
+	    text-align: left;
+	    -moz-user-select: none;
+	    border: 1px solid transparent;
+	    border-radius: 4px;
+	    line-height: 1.44;
+	    margin-bottom: 0;
+	    vertical-align: middle;
+	    white-space: nowrap;
+	    option {
+	    	background-color: $brand-graydark;
+	    	color: $white;
+	    	text-align: center;
+	    	font-weight: normal;
+		    line-height: 1.44;
+	    }
+	}
+	.select-style select:focus {
+	    outline: none;
+	}
+}
+.dropdown {
+	&.dropdown-alt {
+		.btn {
+			background-color: $btn-secondary-bg;
+			padding-right: 10px;
+			padding-left: 10px;
+			.fa-caret-up, .fa-caret-down {
+				float: right;
+				margin-right: 0;
+				width: auto;
+				line-height: 24px;
+			}
+			&:hover {
+    			background-color: lighten($btn-secondary-bg, 9%);
+			}
+		}
+		i {
+			width: 20px;
+			text-align: center;
+			margin-right: 10px;
+		}
+		.dropdown-menu {
+			border-radius: 0 0 4px 4px;
+			background-color: $btn-secondary-bg;
+			margin-top: -3px;
+			border: none;
+			border-top: 1px solid darken($btn-secondary-bg,10);
+			width: 100%;
+			text-align: center;
+			a {
+				padding: 9px 20px;
+				color: $brand-graydark;
+				&:hover {
+	    			//background-color: lighten($btn-secondary-bg, 9%);
+				}
+			}
+		}
+	}
+
+	&.dropdown-dark {
+		text-align: left;
+		.btn {
+			text-align: left;
+			background-color: $brand-graydark;
+			color: $white;
+			font-weight: 900;
+			&:hover {
+    			background-color: $black;
+			}
+		}
+		.dropdown-menu {
+			background-color: $brand-graydark;
+			border-top-color: $black;
+			a {
+				color: $white;
+				padding: 9px 20px;
+				&:hover {
+					background-color: $black;
+
+				}				
+			}
+		}
+	}
+}
+//Responsive Layout
+
+// Tablets and up
+@media (min-width: $screen-sm-min) {
+	.col-md-4 {
+		.event-dropdowns {
+			.select-style {
+				width: 100%;
+			}
+		}
+	}
+	.event-dropdowns {
+		.select-style {
+			width:33.33%;
+		}
+		&.idk-search-dropdowns {
+			li {
+			    float: left;
+			    width: 33.33%;
+			    li {
+			    	float: none;
+			    	width: 100%;
+			    }
+			}
+		}
+	}
+}

@@ -1,0 +1,77 @@
+//
+// Event Detail Map
+// --------------------------------------------------
+$map-height: 468px;
+$mobile-map-height: auto;
+
+.event-map {
+  position: relative;
+  .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .event-map-canvas {
+    background: $brand-gray; //temp
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    z-index: 1;
+  }
+  .details {
+    background-color: $brand-graydark;
+    color: $white;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    h2, h4 {
+      color: $white;
+    }
+    h2 {
+      margin: 0;
+    }
+    h4, p {
+      font-size: 18px;
+    }
+    ul {
+      padding: 0;
+    }
+    li {
+      list-style-type: none;
+      margin-bottom: 1em;
+    }
+    a {
+      color: $white;
+      border-color: transparent;
+      font-size: 20px;
+      font-weight: 900;
+      &:hover {
+        border-color: $white;
+      }
+    }
+    i {
+      width: 30px;
+    }
+  }
+}
+// Responsive 
+@media (min-width: $screen-xs-max) {
+
+  .event-map {
+    .details {
+      width: 350px;
+      height: $mobile-map-height;
+      background-color: rgba($brand-graydark,.8);
+    }
+  }
+
+}
+@media (min-width: $screen-sm-max) {
+
+  .event-map {
+    .details {
+      width: 460px;
+      height: $map-height;
+    }
+  }
+
+}

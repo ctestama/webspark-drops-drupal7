@@ -1,0 +1,128 @@
+//
+// Footer
+// --------------------------------------------------
+
+.footer {
+
+  h1 {
+    margin-bottom: 16px;
+    font-size: $font-size-base;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #fff;
+  }
+  h2 {
+    margin-bottom: 16px;
+    font-size: $font-size-h4;
+    font-weight: normal;
+    color: #fff;
+  }
+  address {
+    color: #fff;
+    margin-bottom: 0;
+  }
+  .phone-link {
+    color: #fff;
+    border-bottom: 0;
+  }
+  .contact-link {
+    color: #a9a9a9;
+    border-bottom: 1px dotted #a9a9a9;
+
+    &:hover,
+    &:focus {
+      color: lighten(#a9a9a9, 25%);
+    }
+  }
+  ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @include clearfix();
+
+    > li {
+      position: relative;
+      display: block;
+
+      > a {
+        position: relative;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .social-media {
+    margin-bottom: 30px;
+
+    > li {
+      float: left;
+
+      > a {
+        margin-right: 10px;
+        font-size: 38px;
+        color: #a9a9a9;
+        border-bottom: 0;
+
+        &:hover,
+        &:focus {
+          color: lighten(#a9a9a9, 25%);
+        }
+      }
+      &:last-child > a {
+        margin-right: 0;
+      }
+    }
+  }
+  .big-foot {
+    padding-top: 40px;
+    padding-bottom: 14px;
+    background-color: #1e1e1e;
+  }
+  .big-foot-nav > li {
+    margin-bottom: 12px;
+
+    > a {
+      color: #ccc;
+      text-decoration: none;
+      border-bottom: 1px dotted #ccc;
+
+      &:hover,
+      &:focus {
+        color: lighten(#ccc, 25%);
+      }
+    }
+  }
+  .little-foot {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #e5e5e5;
+  }
+  .little-foot-nav > li {
+    float: left;
+
+    > a {
+      margin-right: 30px;
+      color: #333;
+      border-bottom: 0;
+
+      &:hover,
+      &:focus {
+        color: lighten(#333, 15%);
+      }
+    }
+    &:last-child > a {
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: $screen-sm-max) {
+
+    h2 {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.featured-article-with-teaser {
+	padding-top: 41px;
+	padding-bottom: 32px;
+	img {
+		width: 100%;
+		max-width: 569px;
+	}
+	h2 {
+		font-size: 42px;
+		line-height: 52px;
+		font-weight: 900;
+		margin: 0 0 21px;
+	}
+	.tags-wrapper{
+		margin:0 0 31px;
+		.tag{
+			margin-right:9px;
+			&:last-child{
+				margin-right:0;
+			}
+		}
+	}
+	p{
+		font-size:18px;
+		line-height:21px;
+		color:#000;
+		margin: 0 0 21px;
+	}
+}
+
+// Mobile
+@media (max-width: $screen-sm-max) {
+	.featured-article-with-teaser {
+		img {
+			margin-bottom: 20px;
+		}
+	}
+}

@@ -1,0 +1,100 @@
+//
+// Custom Radio and Checkbox Input
+// --------------------------------------------------
+
+// Shared styles
+.radio,
+.checkbox {
+  margin-bottom: ($line-height-computed / 2);
+
+  .outer-wrap {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    background-color: white;
+    border: 1px solid $input-border;
+  }
+  .outer-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+  }
+  label {
+    padding-left: 0;
+    font-size: $font-size-base;
+    font-weight: 200;
+  }
+  .fa-circle,
+  .fa-check {
+    position: absolute;
+    font-size: 23px;
+    color: white;
+  }
+  .fa-circle {
+    top: 3px;
+    left: 4px;
+  }
+  .fa-check {
+    top: 3px;
+    left: 3px;
+  }
+  @media (min-width: $screen-lg-min) {
+    .fa-circle,
+    .fa-check {
+      top: 4px;
+    }
+  }
+}
+
+// Radio buttons
+.radio {
+
+  input[type="radio"] {
+    display: none;
+
+    &:checked + .outer-wrap > .fa-circle {
+      color: $input-color;
+    }
+  }
+  .outer-wrap,
+  .fa-circle {
+    border-radius:  50%;
+  }
+}
+// Checkboxes
+.checkbox {
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked + .outer-wrap > .fa-check {
+      color: $input-color;
+    }
+  }
+  .outer-wrap {
+    border-radius:  $border-radius-base;
+  }
+}
+
+// Disabled state cursor tweak
+input[type="radio"] {
+  &[disabled],
+  &.disabled {
+    + .outer-wrap,
+    + .outer-wrap > .fa-circle {
+      cursor: not-allowed;
+      opacity: .5;
+    }
+  }
+}
+input[type="checkbox"] {
+  &[disabled],
+  &.disabled {
+    + .outer-wrap,
+    + .outer-wrap > .fa-check {
+      cursor: not-allowed;
+      opacity: .5;
+    }
+  }
+}

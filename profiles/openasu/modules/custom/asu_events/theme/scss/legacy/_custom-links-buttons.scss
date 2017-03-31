@@ -1,0 +1,136 @@
+// Custon anchor colors
+// Default link, maroon link with red hover and underline
+@mixin a() {
+	&:link, &:active, &:visited {
+		color: $brand-maroon;
+		border-bottom: 1px dotted $brand-maroon;
+	}
+	&:hover {
+		color: lighten($brand-maroon, 10%);
+		border-bottom: 1px dotted $brand-maroon;
+	}
+}
+
+// Black anchor with red hover and underline
+@mixin black-a() {
+	&:link, &:active, &:visited {
+		color: $black;
+		border-color: $transparent;
+	}
+	&:hover {
+		color: $brand-maroon;
+		border-color: $brand-maroon;
+	}
+}
+
+// Black anchor with black hover and underline
+@mixin black-a2() {
+	&:link, &:active, &:visited {
+		color: $black;
+		border: 1px dotted $transparent;
+	}
+	&:hover {
+		border-bottom: 1px dotted $black;
+	}
+}
+
+.read-more {
+	display:inline-block;
+	font-weight:700;
+	font-size:15px;
+	line-height:26px;
+	position:relative;
+	margin-bottom:26px;
+	&,&:visited,&:hover,&:active,&:focus {
+		color: #000;
+		border-bottom-color: transparent;
+	}
+	&:after{
+		position:absolute;
+		top:100%;
+		font-family:"FontAwesome";
+		color: $brand-graydark;
+		line-height:26px;
+		left:0;
+		right:0;
+		padding-top:6px;
+		text-align:center;
+	}
+	&.chevron-right{
+		&:after{
+			content:'\f138';
+			font-size:20px;
+			margin-left:15px;
+			vertical-align:middle;
+		}
+	}
+	&.chevron-down{
+		&:after{
+			content:'\f13a';
+			font-size:24px;
+			display:block;
+			text-align:center;
+		}
+	}
+	&:hover {
+		border-bottom-color: $brand-graydark;
+	}
+}
+
+.btn-secondary-icon {
+	i {
+		width: 20px;
+		text-align: center;
+		margin-right: 10px;
+	}
+}
+
+// Home Page All Events Link -----------------------------------------------------------------------
+.all-events-button {
+	color: $brand-graydark;
+	display: inline-block;
+	margin-bottom: 20px;
+	border-color: transparent;
+	line-height: 1.3em;
+	font-size: 16px;
+	text-align: left;
+	i {
+		float: left;
+		margin-right: 15px;
+	}
+	&:hover {
+		border-color: $brand-maroon;
+
+	}
+}
+
+// Event action buttons ---------------------------------------------------
+.event-actions {
+	width: 240px;
+	button {
+		margin: 6px 0;
+		&.buy-tickets {
+			padding: 18px 0 14px;
+			font-size: $font-size-large + 4;
+			i {
+				margin-right: 18px;
+				vertical-align: middle;
+				font-size: $font-size-h1;
+			}
+			span {
+				padding-top: 5px;
+			}
+		}
+	}
+}
+
+// Tablet and up
+@media (min-width: $screen-sm-min) {
+.all-events-button {
+	width: 115px;
+	float: right;
+	i {
+		font-size: 38px;
+	}
+}
+}// End of Tablet & Up

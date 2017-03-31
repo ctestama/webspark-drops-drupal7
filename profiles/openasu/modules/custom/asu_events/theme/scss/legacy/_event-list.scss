@@ -1,0 +1,123 @@
+//
+// Event Lists on the ASU Events Site
+// --------------------------------------------------
+.event-list {
+    border: 1px solid $panel-border;
+    border-bottom: none;
+    margin-bottom: 1em;
+    background: $white;
+}
+
+.event-list-item {
+    padding: 20px;
+    border-bottom: 1px solid $panel-border;
+
+    h3 {
+        margin-top: 0;
+        margin-bottom: 5px;
+
+        a {
+            color: $brand-graydark;
+            border-bottom-color: transparent;
+
+            &:hover {
+                color: $brand-maroon;
+                border-bottom-color: $brand-maroon;
+            }
+        }
+    }
+
+    p {
+        color: $gray-light;
+        margin-bottom: 0;
+        font-weight: normal;
+
+        a {
+            color: $gray-light;
+            font-weight: normal;
+            border-bottom-color: transparent;
+
+            &:hover {
+                color: $brand-maroon;
+                border-bottom-color: $brand-maroon;
+            }
+        }
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 150px;
+    }
+}
+
+.event-featured {
+    overflow: hidden;
+    height: 160px;
+    padding: 10px;
+    position: relative;
+    background: #000;
+
+    img {
+        position: absolute;
+        left: -90000px;
+        opacity: .8;
+    }
+
+    .image {
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        opacity: 0.8;
+    }
+
+    .event-detail-row {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+
+        .event-date-wrapper, .event-title-wrapper {
+            float: left;
+        }
+
+        .event-date-wrapper {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .event-title-wrapper {
+            width: 75%;
+        }
+    }
+
+    h3 {
+        line-height: 1.3em;
+        font-size: 14.12px;
+        margin-bottom: 0;
+        color: $white;
+        text-shadow: 0 0 5px $black;
+        font-weight: bold;
+
+        a {
+            color: $white;
+            text-shadow: 0 0 5px $black;
+            border-bottom-color: transparent;
+            font-weight: bold;
+
+            &:hover {
+                border-bottom-color: $white;
+            }
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 992px) {
+    .event-list-item {
+        img {
+            margin-bottom: 10px;
+        }
+    }
+}

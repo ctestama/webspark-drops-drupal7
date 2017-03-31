@@ -1,0 +1,48 @@
+.next-story {
+	.title {
+		font-size: 30px;
+		font-weight: 200;
+		line-height: 35px;
+		margin: 0 0 20px;
+		display: inline-block;
+
+		@include black-a2;		
+	}
+	.image {
+		display: block;
+		border-color: transparent;
+	}
+	img {
+		width:100%;
+		margin:0 0 13px;
+	}
+	p {
+		margin:0 0 30px;
+		position:relative;
+		font-size:18px;
+		line-height:21px;
+	}
+}
+.more-related-stories {
+	.tags {
+		a {
+			color: $gray-light;
+		}
+	}
+	a {
+		color: $brand-graydark;
+		border-color: transparent;
+		&:hover {
+			color: $brand-maroon;
+			border-color: $brand-maroon;
+		}
+	}
+	h3 {
+	margin-bottom: 12px;
+	font-size: $font-size-base2;
+	}
+	hr {
+	border-color: $gray-lighter;
+	}
+
+}

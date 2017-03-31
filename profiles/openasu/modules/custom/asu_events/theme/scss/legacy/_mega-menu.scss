@@ -1,0 +1,131 @@
+//
+// Mega Wide Dropdown Menu
+// --------------------------------------------------
+
+// CUSTOM MEDIA QUERY MIXIN BASED OFF BOOTSTRAP'S BREAKPOINTS
+$breakpoints: ("xsmall": (max-width: 568px), "small": (max-width: 768px), "medium": (max-width: 992px), "large": (max-width: 1200px));
+
+@mixin respond-to($name) {
+    @media #{inspect(map-get($breakpoints, $name))} {
+        @content;
+    }
+}
+
+.mega-menu {
+	list-style: none;
+	padding: 0;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: flex-start;
+	    -ms-flex-align: start;
+	        align-items: flex-start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+		@include respond-to(medium) {
+			width: 100%;
+			display: block;
+		}
+    &.dropdown {
+        position: static;
+    }
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	> li {
+		-webkit-flex: 2 0 0;
+		    -ms-flex: 2 0 0;
+		        flex: 2 0 0;
+		
+		&:last-child {
+			-webkit-flex: 1 0 0;
+			    -ms-flex: 1 0 0;
+			        flex: 1 0 0;
+		}
+	}
+	.design-principles {
+		-webkit-flex: 1 0 0;
+		    -ms-flex: 1 0 0;
+		        flex: 1 0 0;
+	}
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        margin-top: -1px;
+    }
+
+    .dropdown-title {
+        display: block;
+        clear: both;
+        padding: 9px 10px 10px 10px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1;
+        color: $navbar-ws-link-color;
+        border-bottom: 0;
+        white-space: nowrap;
+    }
+
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .vertical-border-right {
+        border-right: 1px solid #414141;
+    }
+
+    @media (min-width: $screen-md-min) {
+        .dropdown-menu {
+            position: absolute;
+            left: 50%;
+            width: 940px;
+            margin-left: -470px;
+        }
+    }
+
+    @media (min-width: $screen-lg-min) {
+        .dropdown-menu {
+            width: 1140px;
+            margin-left: -570px;
+        }
+    }
+
+    // This stuff is added for specificity in applying styles to dropdown
+    // list links because default style are applied to children and not
+    // descendants we need to add the extra row and column divs
+    .dropdown-menu > .row > .column > li > a {
+        display: block;
+        clear: both;
+        padding: 9px 10px 10px 10px;
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 1;
+        color: $navbar-ws-link-color;
+        border-bottom: 0;
+        white-space: nowrap;
+    }
+
+    .dropdown-menu > .row > .column > li > a {
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            color: $navbar-ws-link-color;
+            background-color: $navbar-ws-hover-bg;
+        }
+    }
+
+    .dropdown-menu > .row > .column > .active > a {
+        &,
+        &:hover,
+        &:focus {
+            color: $navbar-ws-link-color;
+            text-decoration: none;
+            outline: 0;
+            background-color: $navbar-ws-hover-bg;
+        }
+    }
+}

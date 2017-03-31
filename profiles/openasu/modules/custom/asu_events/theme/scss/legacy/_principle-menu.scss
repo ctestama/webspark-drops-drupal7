@@ -1,0 +1,158 @@
+//
+// Principle Menu
+// --------------------------------------------------
+
+.principle-menu {
+	overflow: hidden;
+	#selected-principle {
+		padding: 10px 40px;
+		font-size: $font-size-large + 8;
+		font-weight: bold;
+		color: $white;
+		-webkit-transition: all .8s ease; 
+		-moz-transition: all .8s ease; 
+		-o-transition: all .8s ease; 
+		transition: all .8s ease;
+	}
+	.principle-other {
+		text-align: center;
+		font-size: $font-size-base;
+		font-weight: normal;
+		div { margin:0; padding:0; }
+		a {
+			display: block;
+			margin-top: 1px;
+			color: white;
+			border-bottom: none;
+			border-right: 1px solid $white;
+			padding: 10px;
+			
+			&:nth-child(6) {
+			border: none;
+			}
+		}		
+	}
+	.azimpact {
+		background-color: $azimpact;
+		&:hover {
+			background:darken($azimpact, 8);	
+		}
+	}
+	.discoveries {
+		background-color: $discoveries;
+		&:hover {
+			background:darken($discoveries, 8);	
+		}
+	}
+	.entrepreneurship {
+		background-color: $entrepreneurship;
+		&:hover {
+			background:darken($entrepreneurship, 8);	
+		}
+	}
+	.excellence {
+		background-color: $excellence;
+		&:hover {
+			background:darken($excellence, 8);	
+		}
+	}
+	.globalengagement {
+		background-color: $globalengagement;
+		&:hover {
+			background:darken($globalengagement, 8);	
+		}
+	}
+	.solutions {
+		background-color: $solutions;
+		&:hover {
+			background:darken($solutions, 8);	
+		}
+	}
+	.sundevillife {
+		background-color:$sundevillife;
+		&:hover {
+			background:darken($sundevillife, 8);	
+		}
+	}
+	.select-style {
+	    padding: 0;
+	    margin: 0;
+	    border: none;
+	    overflow: hidden;
+	    background-color: transparent;
+	    position: relative;
+
+	    .fa {
+	    	position: absolute; 
+	    	right: 20px; 
+	    	top:12px;
+	    }
+	}
+	.select-style select {
+	    padding: 0 16px 0;
+	    width: 130%;
+	    border: none;
+	    box-shadow: none;
+	    background-color: transparent;
+	    background-image: none;
+	    -webkit-appearance: none;
+	       -moz-appearance: none;
+	            appearance: none;
+	    font-size: 24px;
+	    font-weight: 400;
+	    option {
+	    	background-color:#fff !important;
+	    	color: #000;
+	    }
+	}
+	.select-style select:focus {
+	    outline: none;
+	}
+}
+
+// Responsive Layout
+// Mobile
+@media (max-width: $screen-sm-min -1) {
+	.principle-menu {
+		#selected-principle {
+			font-size: $font-size-large;
+			padding: 10px 40px 10px 20px;
+		}
+		.principle-toggle {
+			background-color: transparent;
+			border: 0;
+			outline: none;
+		}
+		.principle-dropdown {
+			ul {
+				padding: 0;
+				list-style: none;
+				text-align: left;
+			}
+			li a {
+				padding-left: 40px;
+				border: 0;
+			}
+		}
+	}	
+}
+
+// Tablets
+@media (max-width: $screen-lg-min) {
+	.principle-menu {
+		.principle-other{
+			a {
+				-webkit-transition: all .8s ease; 
+				-moz-transition: all .8s ease; 
+				-o-transition: all .8s ease; 
+				transition: all .8s ease;
+				&:nth-child(3) {
+					border-right: 0;
+				}
+				&:nth-child(n+4) {
+					margin-top: 1px;
+				}
+			}
+		}
+	}
+} // End of Tablet

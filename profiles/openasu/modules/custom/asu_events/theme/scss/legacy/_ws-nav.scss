@@ -1,0 +1,207 @@
+//
+// Web Standards Global Navbar
+// --------------------------------------------------
+
+$navbar-ws-bg-color:                 #353535;
+$navbar-ws-link-color:               #ededed;
+$navbar-ws-hover-color:              #ffb310;
+$navbar-ws-hover-bg:                 #000;
+$navbar-ws-dropdown-bg-color:        #1f1f1f;
+$navbar-ws-dropdown-border-color:    #000;
+
+.navbar-ws {
+  background-color: $navbar-ws-bg-color;
+  border: 0;
+  border-radius: 0;
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+
+    @media (max-width: $screen-sm-max) {
+      width: 100%;
+    }
+  }
+
+  .navbar-nav {
+    > li > a {
+      padding: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1;
+      color: $navbar-ws-link-color;
+
+      &:hover,
+      &:focus {
+        color: $navbar-ws-hover-color;
+        background-color: $navbar-ws-hover-bg;
+      }
+      @media (min-width: $screen-lg-min) {
+        padding: 20px 25px;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $navbar-ws-link-color;
+        background-color: darken($navbar-ws-bg-color, 9%);
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $navbar-default-link-disabled-color;
+        background-color: $navbar-default-link-disabled-bg;
+      }
+    }
+  }
+
+  .navbar-brand {
+    width: calc(100% - 60px);
+    height: auto;
+    padding-right: 0;
+    overflow: hidden;
+    font-size: 16px;
+    color: $navbar-ws-link-color;
+
+    &:hover,
+    &:focus {
+      color: $navbar-ws-link-color;
+    }
+  }
+
+  .navbar-text {
+    color: $navbar-default-color;
+  }
+
+  .navbar-toggle {
+    border: 0;
+
+    &:hover,
+    &:focus {
+      background-color: $navbar-ws-hover-bg;
+
+      .icon-bar {
+        background-color: $navbar-ws-hover-color;
+      }
+    }
+    .icon-bar {
+      background-color: $navbar-ws-link-color;
+    }
+  }
+
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $navbar-ws-dropdown-border-color;
+  }
+
+  // Dropdown menu items
+  .navbar-nav {
+    // Remove background color from open dropdown
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: $navbar-ws-hover-bg;
+        color: $navbar-ws-hover-color;
+      }
+    }
+
+  }
+
+  // Links in navbars
+  //
+  // Add a class to ensure links outside the navbar nav are colored correctly.
+
+  .navbar-link {
+    color: $navbar-default-link-color;
+    &:hover {
+      color: $navbar-default-link-hover-color;
+    }
+  }
+
+  .btn-link {
+    color: $navbar-default-link-color;
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+    }
+    &[disabled],
+    fieldset[disabled] & {
+      &:hover,
+      &:focus {
+        color: $navbar-default-link-disabled-color;
+      }
+    }
+  }
+
+  // The dropdown menu (ul)
+  .dropdown-menu {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 160px;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: $navbar-ws-dropdown-bg-color;
+    border: 1px solid $navbar-ws-dropdown-border-color;
+    border-color: transparent;
+    border-radius: $border-radius-base;
+
+    @media (min-width: $grid-float-breakpoint) {
+      position: absolute;
+      width: auto;
+    }
+
+    // Dividers (basically an hr) within the dropdown
+    .divider {
+      height: 1px;
+      margin: 9px 0;
+      overflow: hidden;
+      background-color: $navbar-ws-dropdown-border-color;
+    }
+
+    // Links within the dropdown menu
+    > li > a {
+      padding: 9px 25px 10px 25px;
+      font-size: 15px;
+      font-weight: normal;
+      line-height: 1;
+      color: $navbar-ws-link-color;
+    }
+  }
+
+  // Open dropdown menu
+  .open > .dropdown-menu {
+    max-height: 2000px;
+    padding: 2em 0;
+    border-color: $navbar-ws-dropdown-border-color;
+  }
+
+  // Hover/Focus state
+  .dropdown-menu > li > a {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: $navbar-ws-link-color;
+      background-color: $navbar-ws-hover-bg;
+    }
+  }
+
+  // Active state
+  .dropdown-menu > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $navbar-ws-link-color;
+      text-decoration: none;
+      outline: 0;
+      background-color: $navbar-ws-hover-bg;
+    }
+  }
+
+}

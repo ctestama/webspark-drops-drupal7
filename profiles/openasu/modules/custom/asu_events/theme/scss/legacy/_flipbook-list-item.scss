@@ -1,0 +1,42 @@
+//
+// Flipbook Event
+// --------------------------------------------------
+// Dependent on _bookblock.scss
+
+$flipbook-height: 600px;
+
+.flipbook-list-item {
+	.container-fluid {
+		background: $white;
+		border: 1px solid $panel-border;
+		padding: 50px 38px;
+	}
+	.title {
+		color: $brand-graydark;
+		border-color: transparent;
+		&:hover {
+			color: $brand-maroon;
+			border-color: $brand-maroon;
+
+		}
+	}
+	.event-date{
+		padding:10px 20px;
+	}
+}
+
+//Tablets and up
+@media (min-width: 768px) {
+
+
+} // End of Tablet & Up
+
+// Desktop & Up
+@media (min-width: 992px){
+	.flipbook-list-item{
+		.event-date{
+			width:100%;
+		}
+	}
+
+}// Desktop & Up

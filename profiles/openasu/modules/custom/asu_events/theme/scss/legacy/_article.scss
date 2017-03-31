@@ -1,0 +1,90 @@
+//
+// Article
+// --------------------------------------------------
+
+@mixin article-page-type-color($type) {
+    &.first-section {
+		border-color: $type;
+    }
+}
+// ASU News Article
+.news-article {
+	h1 {
+		font-weight: 900;
+		font-size: 36px;
+	}
+	.tag-list {
+		.tag {
+			margin-bottom: 5px;
+		}
+	}
+}
+
+// ASU Now Articles
+.article-body {
+	background: $white;
+	padding-top: 20px;
+
+	@for $i from 1 through length($principle-type-list) {
+        &.#{nth($principle-type-list, $i)} {
+            @include article-page-type-color(nth($principle-type-vars-list, $i));
+        }
+    }
+	&.first-section {
+		border-top-width: 10px;
+		border-top-style: solid;
+		border-top-color: $brand-tan;
+		padding-top: 20px;
+	}
+	p {
+		line-height: 1.4em;
+	}
+
+	h3 {
+		font-size: 23px;
+		color: #000000;
+		line-height: 27px;
+		font-weight:200;
+		margin-bottom:22px;
+	}
+	.tag-list {
+		.tag {
+			margin-bottom: 5px;
+		}
+	}
+
+}
+
+
+// Tablets and up
+@media (min-width: $screen-sm-min) {
+
+// ASU News Article
+.news-article {
+	h1 {
+	  font-size: 60px;
+	  line-height: 73px;
+	}
+}
+.news-article-body  {
+	font-size: 18px;
+	line-height: 21px;
+}
+
+}// End Tablets and up
+
+// Desktop and up
+@media (min-width: $screen-md-min) {
+
+
+// ASU Now Articles
+.article-body {
+	.content-border-left {
+		margin-left: 10px;
+		padding-left: 30px;
+		border-left: 1px solid $brand-tan-light;
+	}
+}
+
+} // End of Desktop & Up
+

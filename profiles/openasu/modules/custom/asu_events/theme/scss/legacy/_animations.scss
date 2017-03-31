@@ -1,0 +1,22 @@
+//
+// Animations & Transitions
+// --------------------------------------------------
+
+a,
+button {
+  @include transition(all .25s ease-in-out);
+}
+
+.navbar-ws {
+  .dropdown-menu {
+    @include perspective(100);
+    @include transition(all .25s ease-out);
+    // @include rotate3d(1,0,0,-90deg);
+    // @include transform-origin(50% 0);
+  }
+  .open > .dropdown-menu {
+    @include translate3d(0, 0, 0);
+    // @include perspective(400);
+    // @include rotate3d(0,0,0,0);
+  }
+}
