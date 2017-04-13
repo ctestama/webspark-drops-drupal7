@@ -131,6 +131,13 @@ function asu_news_asu_news_listing_render($subtype, $conf, $panel_args, $context
     ),
   );
 
+  global $pager_total;
+  $pager_settings = array(
+    'pager_total' => $pager_total,
+  );
+
+  drupal_add_js(array('asu_news' => $pager_settings), 'setting');
+
   $block->content['#attached']['js'][] = $module_path . '/theme/js/jquery.autopager-1.0.0.js';
   $block->content['#attached']['js'][] = $module_path . '/theme/js/throbber.js';
   $block->content['#attached']['js'][] = $module_path . '/theme/js/asu_news.load_more.js';

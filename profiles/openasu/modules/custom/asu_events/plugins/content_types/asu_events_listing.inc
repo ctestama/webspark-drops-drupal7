@@ -94,7 +94,7 @@ function asu_events_asu_events_listing_edit_form_submit($form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function asu_events_asu_events_listing_render($subtype, $conf, $panel_args, $context = NULL) {
-
+  
   $block = new stdClass();
   $featured = array();
   $nodes_render = array();
@@ -106,6 +106,7 @@ function asu_events_asu_events_listing_render($subtype, $conf, $panel_args, $con
   $bc_render_array['easy_breadcrumb_easy_breadcrumb']['easy_breadcrumb']['#breadcrumb'][1]['content'] = 'Events';
   $field_filters = array();
   $module_path = drupal_get_path('module', 'asu_events');
+  drupal_add_css($module_path . '/theme/css/asumod-events.css', array('group' => CSS_THEME, 'every_page' => TRUE));
   $upcoming_title = array(
     '#type' => 'markup',
     '#markup' => '<div class="upcoming-title">Upcoming Events</div>'

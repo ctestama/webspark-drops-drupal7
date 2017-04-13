@@ -135,7 +135,9 @@ function asu_news_asu_news_block_render($subtype, $conf, $panel_args, $context =
       $nid = str_replace("nid: ", "", $nid);
 
       $featured_node = node_load($nid);
-      $featured = node_view($featured_node, 'news_featured_teaser');
+      if(!empty($featured_node)) {
+        $featured = node_view($featured_node, 'news_featured_teaser');
+      }
       $nodes = _asu_news_get_asunews_items(3, $field_filters);
       $nodes_render = node_view_multiple($nodes, 'news_small_teaser');
     }

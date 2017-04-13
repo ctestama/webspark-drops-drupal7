@@ -112,8 +112,8 @@ function asu_social_share_field_attach_view_alter(&$output, $context) {
       $email = array(
         '#type'    => 'link',
         '#title'   => '<i class="fa fa-envelope"></i>',
-        '#href'    => 'mailto:?subject=' . $share_settings['gigyaSharebar']['ua']['title']
-          . '&body=Please see: ' . $share_settings['gigyaSharebar']['ua']['linkBack'],
+        '#href'    => 'mailto:?subject=' . decode_entities($share_settings['gigyaSharebar']['ua']['title'])
+          . '&body=Please see: ' . decode_entities($share_settings['gigyaSharebar']['ua']['linkBack']),
         '#options' => array(
           'html' => TRUE,
           'title' => 'Email',

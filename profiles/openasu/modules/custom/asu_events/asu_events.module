@@ -108,15 +108,6 @@ function asu_events_image_default_styles() {
         ),
         'weight' => 0,
       ),
-      array(
-        'name' => 'image_crop',
-        'data' => array(
-          'width' => 553,
-          'height' => 311,
-          'anchor' => 'left-top',
-        ),
-        'weight' => 1,
-      ),
     ),
   );;
 
@@ -474,7 +465,7 @@ function asu_events_preprocess_node(&$vars) {
 
         $body = field_view_field('node', $node, 'body', array(
           'label'=>'hidden',
-          'type' => 'text_summary_or_trimmed',
+          'type' => 'text_trimmed_ellipsis',
           'settings'=> array('trim_length' => 240),
         ));
 
@@ -544,8 +535,8 @@ function asu_events_preprocess_node(&$vars) {
 
         $body = field_view_field('node', $node, 'body', array(
           'label'=>'hidden',
-          'type' => 'text_summary_or_trimmed',
-          'settings'=> array('trim_length' => 240),
+          'type' => 'text_trimmed_ellipsis',
+          'settings'=> array('trim_length' => 140),
         ));
 
         $content['asuevents_body'] = $body;
@@ -615,7 +606,7 @@ function asu_events_preprocess_node(&$vars) {
 
         $body = field_view_field('node', $node, 'body', array(
           'label'=>'hidden',
-          'type' => 'text_summary_or_trimmed',
+          'type' => 'text_trimmed_ellipsis',
           'settings'=> array('trim_length' => 240),
         ));
 
@@ -694,7 +685,7 @@ function asu_events_preprocess_node(&$vars) {
 
         $body = field_view_field('node', $node, 'body', array(
           'label'=>'hidden',
-          'type' => 'text_summary_or_trimmed',
+          'type' => 'text_trimmed_ellipsis',
           'settings'=> array('trim_length' => 240),
         ));
 
@@ -731,7 +722,7 @@ function asu_events_preprocess_node(&$vars) {
 
         $body = field_view_field('node', $vars['node'], 'body', array(
           'label'=>'hidden',
-          'type' => 'text_summary_or_trimmed',
+          'type' => 'text_trimmed_ellipsis',
           'settings'=> array('trim_length' => 240),
         ));
         $content['asunews_body'] = $body;

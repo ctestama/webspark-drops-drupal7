@@ -10,7 +10,7 @@
 function asu_events_install() {
   // Create Asu Events Content type
   _asu_events_create_node_type();
-  $modules = array('asu_social_share', 'addtocal');// Array of module names
+  $modules = array('asu_social_share', 'addtocal', 'field_ellipsis');// Array of module names
   $enable_dependencies = TRUE; // Whether or not to enable dependant modules
 
   module_enable($modules, $enable_dependencies);

@@ -115,6 +115,7 @@ function asu_events_asu_events_search_listing_render($subtype, $conf, $panel_arg
   $bc_render_array['easy_breadcrumb_easy_breadcrumb']['easy_breadcrumb']['#breadcrumb'][1]['content'] = 'Events';
 
   $module_path = drupal_get_path('module', 'asu_events');
+  drupal_add_css($module_path . '/theme/css/asumod-events.css', array('group' => CSS_THEME, 'every_page' => TRUE));
   $upcoming_title = array(
     '#type' => 'markup',
     '#markup' => '<div class="upcoming-title">Upcoming Events</div>'

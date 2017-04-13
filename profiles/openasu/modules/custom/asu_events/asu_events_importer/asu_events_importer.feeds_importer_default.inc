@@ -78,7 +78,7 @@ function asu_events_importer_feeds_importer_default() {
           'xpathparser:32' => 'register_website_url',
           'xpathparser:33' => 'register_website_url',
           'xpathparser:34' => 'theme',
-          'xpathparser:35' => 'event_types',
+          'xpathparser:35' => 'event_types/event_type',
           'xpathparser:36' => 'nid',
           'xpathparser:37' => 'unit',
           'xpathparser:38' => 'download',
