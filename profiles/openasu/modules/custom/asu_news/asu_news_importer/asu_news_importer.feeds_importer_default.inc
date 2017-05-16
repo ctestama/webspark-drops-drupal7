@@ -291,7 +291,7 @@ function asu_news_importer_feeds_importer_default() {
           ),
         ),
         'update_existing' => '2',
-        'input_format' => 'asu_feeds_input_format',
+        'input_format' => 'asu_feeds_text_format',
         'authorize' => 1,
         'skip_hash_check' => 0,
         'bundle' => 'asu_news',
