@@ -5,9 +5,9 @@ Feature: Import iSearch Profiles
     @private_files @javascript @api @panopoly_magic @drushTest
     Scenario: Import iSearch Profiles (no sub-departments)
       Given I am at "/admin/content/isearch/configure"
-      When I click on the property "data-reactid" from the element "label" with value ".1.1"
+      When I click on the element "label" which has property "data-reactid" with value ".1.1"
       And I press the "Browse" button
-      And I click on the property "dept_nid" from the element "li" with value "1344"
+      And I click on the element "li" which has property "dept_nid" with value "1344"
       And I press the "Submit" button
       And I press the "Save configuration" button
       And I click "Import iSearch Profiles"
@@ -19,9 +19,9 @@ Feature: Import iSearch Profiles
   @private_files @javascript @api @panopoly_magic @drushTest
   Scenario: Add directory panel with imported profiles
     Given I am at "/admin/content/isearch/configure"
-    When I click on the property "data-reactid" from the element "label" with value ".1.1"
+    When I click on the element "label" which has property "data-reactid" with value ".1.1"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1344"
+    And I click on the element "li" which has property "dept_nid" with value "1344"
     And I click on the text " Include sub-departments?" in the "label" tag
     And I press the "Submit" button
     And I press the "Save configuration" button
@@ -38,11 +38,11 @@ Feature: Import iSearch Profiles
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1344"
+    And I click on the element "li" which has property "dept_nid" with value "1344"
     And I click on the text " Include sub-departments?" in the "label" tag
     And I press the "Submit" button
-    And I click "Advanced"
-    And I click on the property "for" from the element "label" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-advanced-always-display-view"
+    And I click on the element "a" which has property "href" with value "#edit-field-asu-directory-items-und-0-horizontal-tabs-advanced"
+    And I click on the element "label" which has property "for" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-advanced-always-display-view"
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag

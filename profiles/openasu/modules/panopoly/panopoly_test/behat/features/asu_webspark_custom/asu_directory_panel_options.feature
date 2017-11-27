@@ -13,13 +13,13 @@ Feature: Add ASU directory panel with options
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1359"
+    And I click on the element "li" which has property "dept_nid" with value "1359"
     And I press the "Submit" button
-    And I click on the property "for" from the element "label" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-content-content-tabs-department-show-tree"
+    And I click on the element "label" which has property "for" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-content-content-tabs-department-show-tree"
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag
-    And I click on the property "id" from the element "div" with value "treediv1"
+    And I click on the element "div" which has property "id" with value "treediv1"
     Then I should see the property "class" from the element "div" with value "row row-header asu_directory_people_row "
 
   @private_files @javascript @api @panopoly_magic @drushTest
@@ -33,11 +33,11 @@ Feature: Add ASU directory panel with options
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1359"
+    And I click on the element "li" which has property "dept_nid" with value "1359"
     And I press the "Submit" button
     And I click on the text " Appearance" in the "strong" tag
     And I click "Exposed Filters"
-    And I click on the property "for" from the element "label" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-exposed-show-filters"
+    And I click on the element "label" which has property "for" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-exposed-show-filters"
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag
@@ -54,11 +54,11 @@ Feature: Add ASU directory panel with options
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1359"
+    And I click on the element "li" which has property "dept_nid" with value "1359"
     And I press the "Submit" button
     And I click on the text " Appearance" in the "strong" tag
     And I click "Columns"
-    And I click on the property "for" from the element "label" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-columns-display-building"
+    And I click on the element "label" which has property "for" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-columns-display-building"
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag
@@ -75,16 +75,15 @@ Feature: Add ASU directory panel with options
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1359"
+    And I click on the element "li" which has property "dept_nid" with value "1359"
     And I press the "Submit" button
     And I click on the text " Appearance" in the "strong" tag
     And I click "Exposed Filters"
-    And I click on the property "for" from the element "label" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-exposed-show-az-index"
+    And I click on the element "label" which has property "for" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-exposed-show-az-index"
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag
     Then I should not see "ALL"
-
 
   @private_files @javascript @api @panopoly_magic @drushTest
   Scenario: Add ASU directory panel without search box
@@ -97,11 +96,11 @@ Feature: Add ASU directory panel with options
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1359"
+    And I click on the element "li" which has property "dept_nid" with value "1359"
     And I press the "Submit" button
     And I click on the text " Appearance" in the "strong" tag
     And I click "Exposed Filters"
-    And I click on the property "for" from the element "label" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-exposed-show-filter-omni"
+    And I click on the element "label" which has property "for" with value "edit-field-asu-directory-items-und-0-horizontal-tabs-appearance-appearance-tabs-exposed-show-filter-omni"
     And I press the "Add" button
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag

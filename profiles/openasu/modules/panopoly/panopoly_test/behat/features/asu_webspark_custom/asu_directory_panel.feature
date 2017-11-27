@@ -13,7 +13,7 @@ Feature: Add ASU directory panel
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the property "dept_nid" from the element "li" with value "1359"
+    And I click on the element "li" which has property "dept_nid" with value "1359"
     And I press the "Submit" button
     And I press the "Add" button
     And I press the "Save as custom" button
