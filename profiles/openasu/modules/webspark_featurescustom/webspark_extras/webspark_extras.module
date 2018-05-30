@@ -44,3 +44,21 @@ function webspark_extras_quicktabs_tabstyles() {
   return array($tabstyles_directory . '/asu_web_standards/asu_web_standards.css' => t('ASU Web Standards'));
 }
 
+/**
+ * Implements hook_views_pre_render
+ *
+ * @param $view
+ **/
+function webspark_extras_views_pre_render(&$view) {
+
+  // If the asu-webspark-views-column-height class is found, then add the supporting JS to
+  // properly columnify the view display
+  if (isset($view->display_handler->view->display['default']->display_options['css_class'])) {
+
+   $classes = $view->display_handler->view->display['default']->display_options['css_class'];
+    if (strpos($classes, 'asu-webspark-views-column-height') !== false) {
+      drupal_add_js(drupal_get_path('module', 'webspark_extras') . '/js/webspark_extras_views_column_height.js');
+    }
+  }
+}
+
