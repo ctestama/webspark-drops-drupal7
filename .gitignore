@@ -46,3 +46,35 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+
+# Eclipse generated files #
+######################
+.project
+.settings/
+.buildpath
+*/.project
+*/.settings/
+*/.buildpath
+
+# PHPStorm generated files #
+######################
+.idea
+
+# .patch files in Webspark profile subdirectories
+######################
+profiles/openasu/libraries/**/*.patch
+profiles/openasu/modules/**/*.patch
+profiles/openasu/themes/**/*.patch
+profiles/openasu/**/PATCHES.txt
+
+# .gitignore in Drush make-pulled module repos
+######################
+profiles/openasu/modules/**/.gitignore
+!profiles/openasu/modules/panopoly/panopoly_test/.gitignore
+
+# Files for local development
+######################
+webspark**.bash
+sites/default/settings.local.php
+profiles/openasu/modules/panopoly_test/tests/bin
+profiles/openasu/modules/panopoly_test/tests/vendor
