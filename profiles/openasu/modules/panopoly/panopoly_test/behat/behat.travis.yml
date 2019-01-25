@@ -6,12 +6,12 @@ default:
       base_url: http://127.0.0.1:8888
       files_path: './profiles/openasu/modules/panopoly/panopoly_test/behat'
     Drupal\DrupalExtension:
-          drush:
-            root: "$TRAVIS_BUILD_DIR"
-          drupal:
-            drupal_root: "$TRAVIS_BUILD_DIR"
+      drush:
+        root: "$TRAVIS_BUILD_DIR"
+      drupal:
+        drupal_root: "$TRAVIS_BUILD_DIR"
 
-          # Look in the profile modules directory and pull in module subcontexts.
-          subcontexts:
-            paths:
-              - "$TRAVIS_BUILD_DIR/profiles/openasu/modules/custom/webspark_test"
+      # Look in the profile modules directory and pull in module subcontexts.
+      subcontexts:
+        paths:
+          - "$TRAVIS_BUILD_DIR/profiles/openasu/modules/custom/webspark_test"
