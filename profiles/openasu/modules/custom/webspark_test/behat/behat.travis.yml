@@ -7,11 +7,11 @@ default:
       files_path: './profiles/openasu/modules/custom/webspark_test/behat'
     Drupal\DrupalExtension:
       drush:
-        root: "$TRAVIS_BUILD_DIR"
+        root: "/home/travis/build/ctestama/webspark-drops-drupal7"
       drupal:
-        drupal_root: "$TRAVIS_BUILD_DIR"
+        drupal_root: "/home/travis/build/ctestama/webspark-drops-drupal7"
 
       # Look in the profile modules directory and pull in module subcontexts.
       subcontexts:
         paths:
-          - "$TRAVIS_BUILD_DIR/profiles/openasu/modules/custom/webspark_test"
+          - "/home/travis/build/ctestama/webspark-drops-drupal7/profiles/openasu/modules/custom/webspark_test"
