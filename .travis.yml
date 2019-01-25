@@ -1,5 +1,8 @@
 language: php
 
+addons:
+  artifacts: true
+
 # PHP 7
 php:
   - 7.0
@@ -8,10 +11,6 @@ php:
 sudo: required
 dist: trusty
 group: edge
-
-# todo: set up artifacts for behat screenshots
-#addons:
-#  artifacts: true
 
 # Cache Composer & Drush directories.
 cache:
@@ -74,13 +73,13 @@ install:
   - cd ../../../custom/webspark_test/behat
   - composer install --no-interaction
 
-  - cd /home/travis/build/ASU/webspark-drops-drupal7
+  - cd $TRAVIS_BUILD_DIR
 
   # Build Codebase
   - mkdir private_files
 
   # create directory for behat screenshots
-  - mkdir -p sites/default/files/behat_screenshot
+  - sudo mkdir -m 777 /behat_screenshot
   - mkdir -p sites/default/files/private/isearch/feeds
 
   # Setup files

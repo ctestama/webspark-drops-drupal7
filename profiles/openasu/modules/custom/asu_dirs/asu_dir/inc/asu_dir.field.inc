@@ -542,9 +542,11 @@ function asu_dir_field_widget_form(&$form, &$form_state, $field, $instance, $lan
         https://isearch.asu.edu/asu_dept_mgr.'),
     );
 
+    $lnameSort = variable_get('asu_dir_utilities_lname_sort_field', ASU_DIR_UTILITIES_SOLR_LASTNAME_SORT_DEFAULT);
+
     $default_sort_by_options = array(
       'tsort' => 'Rank',
-      'lastNameSort' => 'Last Name',
+      $lnameSort => 'Last Name',
       'firstNameSort' => 'First Name',
     );
 
@@ -744,7 +746,6 @@ function asu_dir_field_widget_form(&$form, &$form_state, $field, $instance, $lan
       '#collapsed' => TRUE,
       '#title' => t('Advanced'),
     );
-
 
     if (module_exists('asu_isearch')) {
       // Advanced tab content

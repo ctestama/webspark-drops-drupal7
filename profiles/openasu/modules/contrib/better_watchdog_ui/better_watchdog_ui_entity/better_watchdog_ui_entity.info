@@ -6,9 +6,7 @@ core = 7.x
 dependencies[] = dblog
 dependencies[] = entity
 
-; Information added by Drupal.org packaging script on 2016-03-08
-version = "7.x-2.2"
-core = "7.x"
+; Information added by Drupal.org packaging script on 2018-07-28
+version = "7.x-3.1"
 project = "better_watchdog_ui"
-datestamp = "1457431440"
-
+datestamp = "1532752688"
