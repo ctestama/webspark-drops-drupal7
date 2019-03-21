@@ -1,3 +1,9 @@
+Webspark 1.64 (California) release
+----------------------------------
+- Webspark core
+  * Panopoly (v1.64)
+    * This release includes a fix for a Moderately security vulnerability in Drupal core, as well as Panopoly contrib module updates.
+
 Webspark 1.60 (Minnesota) release
 ---------------------------------
 - Webspark core
