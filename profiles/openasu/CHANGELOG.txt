@@ -16,6 +16,8 @@ Webspark 1.64 (California) release
     * Add Yavapai, Pima and Cochise campus support
     * Fix data importing for college/department joint programs
     * Fix Views grid display on program overview grid pages
+  * ASU Brand (v1.20)
+    * Added check for asu_brand_ci_testing variable which will disable cookie consent for Travis-CI testing
   * ASU Local iSearch Directory (v1.11)
       * Added queue cleanup update and limits to avoid bloating database
   * ASU RFI (v1.14)
