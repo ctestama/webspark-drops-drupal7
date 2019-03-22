@@ -56,8 +56,7 @@ projects[panopoly_test][patch][137] = patches/webspark-847_panopoly-test-137-upd
 projects[panopoly_test][patch][1370] = patches/webspark-847_behat_common.patch
 projects[panopoly_test][patch][142] = patches/webspark-944_add-init-config-tests-panopoly-test.patch
 projects[panopoly_test][patch][143] = patches/webspark-1066-panopoly-test-v146.patch
-; moved custom tests to webspark_test custom module
-;projects[panopoly_test][patch][1403] = patches/webspark-1066-panopoly-webspark-add-custom-tests-v143.patch
+projects[panopoly_test][patch][1640] = patches/v1.64-behat-test-disable-video-test.patch
 
 ; ASU-specific, Webspark-agnostic modules (/custom directory contents)
 ;projects[asu_drupal_modules][type] = module
