@@ -307,6 +307,7 @@ projects[kalatheme][patch][] = patches/webspark-565-add-views-tpl-to-kalatheme.p
 projects[kalatheme][patch][] = patches/nojira-20150812-kalatheme-spelling-fix.patch
 projects[kalatheme][patch][] = patches/nojira-20150812-kalatheme-admin-spelling-fix.patch
 projects[kalatheme][patch][] = patches/nojira-20160715-kalatheme_fix-missing-index.patch
+projects[kalatheme][patch][] = patches/webspark-1225-kalatheme-undefined-index-fix.patch
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; ASU Module prerequisites - Webstandards additions - Libraries
