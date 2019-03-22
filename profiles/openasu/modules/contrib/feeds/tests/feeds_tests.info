@@ -4,3 +4,8 @@ package = Testing
 version = VERSION
 core = 7.x
 hidden = TRUE
+
+; Information added by drush on 2018-06-19
+version = "7.x-2.x-dev"
+project = "feeds"
+datestamp = "1529428857"
