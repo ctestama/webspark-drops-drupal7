@@ -225,14 +225,6 @@ projects[video_embed_field][version] = 2.0-beta11
 projects[video_embed_field][type] = module
 projects[video_embed_field][subdir] = contrib
 
-; WEBSPARK-1404
-projects[views][type] = module
-projects[views][subdir] = contrib
-projects[views][patch][] = https://www.drupal.org/files/issues/2018-06-28/2885660-13.patch
-projects[views][patch][] = https://www.drupal.org/files/issues/2019-03-13/2977851-views-php72-count-8.patch
-projects[views][patch][] = https://www.drupal.org/files/issues/views-exposed-sorts-2037469-26.patch
-projects[views][patch][] = patches/webspark-1404_set-views-handler-filter-maxlength-to-null.patch
-
 projects[wysiwyg_template][version] = 2.12
 projects[wysiwyg_template][type] = module
 projects[wysiwyg_template][subdir] = contrib

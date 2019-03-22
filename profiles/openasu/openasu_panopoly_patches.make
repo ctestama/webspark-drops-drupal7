@@ -60,3 +60,12 @@ projects[media][version] = 2.21
 projects[media][subdir] = contrib
 ; WEBSPARK-679 - WYSIWYG + Media module issues
 projects[media][patch][679] = patches/webspark-679_fix-HTML-encoded-macros-2028253-10.patch
+
+
+; WEBSPARK-1404
+projects[views][type] = module
+projects[views][subdir] = contrib
+projects[views][patch][] = https://www.drupal.org/files/issues/2018-06-28/2885660-13.patch
+projects[views][patch][] = https://www.drupal.org/files/issues/2019-03-13/2977851-views-php72-count-8.patch
+projects[views][patch][] = https://www.drupal.org/files/issues/views-exposed-sorts-2037469-26.patch
+projects[views][patch][] = patches/webspark-1404_set-views-handler-filter-maxlength-to-null.patch
