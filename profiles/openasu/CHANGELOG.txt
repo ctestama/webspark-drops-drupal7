@@ -5,7 +5,7 @@ Webspark 1.64 (California) release, 2019-03-25
   * Drupal (v7.65)
     * This release fixes security vulnerabilities. See https://www.drupal.org/project/drupal/releases/7.65 for more details.
   * Panopoly (v1.64)
-    * This release includes a fix for a Moderately Critical security vulnerability in Drupal core, as well as Panopoly contrib module updates.
+    * Multiple Panopoly releases (1.61-1.64) rolled into one update; Includes updates to contrib modules. See https://www.drupal.org/project/panopoly/releases/7.x-1.64 for more info.
 
 - Web standards components in Webspark
 
