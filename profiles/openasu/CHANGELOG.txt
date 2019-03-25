@@ -1,5 +1,5 @@
-Webspark 1.64 (California) release
-----------------------------------
+Webspark 1.64 (California) release, 2019-03-25
+----------------------------------------------
 - Webspark core
 
   * Drupal (v7.65)
@@ -39,8 +39,8 @@ Webspark 1.64 (California) release
     * Views (v3.21)
 
 
-Webspark 1.60 (Minnesota) release
----------------------------------
+Webspark 1.60 (Minnesota) release, 2019-01-29
+---------------------------------------------
 - Webspark core
 
   * Panopoly (v1.60)
