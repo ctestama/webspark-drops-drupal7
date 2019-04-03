@@ -61,7 +61,6 @@ projects[media][subdir] = contrib
 ; WEBSPARK-679 - WYSIWYG + Media module issues
 projects[media][patch][679] = patches/webspark-679_fix-HTML-encoded-macros-2028253-10.patch
 
-
 ; WEBSPARK-1404
 projects[views][type] = module
 projects[views][subdir] = contrib
