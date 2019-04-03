@@ -60,6 +60,14 @@ install:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require --no-interaction drush/drush:7.*
 
+  # get chromedriver
+  - wget -N https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
   # Build Behat dependencies
   - cd profiles/openasu/modules/panopoly/panopoly_test/behat
   - composer install --no-interaction
@@ -78,6 +86,8 @@ install:
 
   # Setup files
   - sudo chmod -R 777 sites
+
+
 
   # Get Selenium
   - wget https://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar
