@@ -70,7 +70,7 @@ install:
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 
   # Build Behat dependencies
-  - cd profiles/openasu/modules/panopoly/panopoly_test/behat
+  - cd $TRAVIS_BUILD_DIR/profiles/openasu/modules/panopoly/panopoly_test/behat
   - composer install --no-interaction
   # Build Behat dependencies
   - cd ../../../custom/webspark_test/behat
