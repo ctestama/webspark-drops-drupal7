@@ -61,6 +61,7 @@ install:
   - composer global require --no-interaction drush/drush:7.*
 
   # get chromedriver
+  - cd ~/
   - wget -N https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
