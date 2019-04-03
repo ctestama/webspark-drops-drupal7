@@ -6,6 +6,7 @@ default:
     Behat\MinkExtension:
       selenium2:
         # This will probably be the same always, if you follow the guide for browsers below.
+        wd_host: http://localhost:4444/wd/hub
         capabilities:
           chrome:
             switches:

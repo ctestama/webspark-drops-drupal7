@@ -51,6 +51,7 @@ before_install:
   - sleep 1
   # Disable PHP features - XDebug
   - phpenv config-rm xdebug.ini
+  #- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 install:
   - sudo apt-get update > /dev/null
@@ -61,13 +62,13 @@ install:
   - composer global require --no-interaction drush/drush:7.*
 
   # get chromedriver
-  - cd ~/
-  - wget -N https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
-  - unzip ~/chromedriver_linux64.zip -d ~/
-  - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  #- cd ~/
+  #- wget -N https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
+  #- unzip ~/chromedriver_linux64.zip -d ~/
+  #- rm ~/chromedriver_linux64.zip
+  #- sudo mv -f ~/chromedriver /usr/local/share/
+  #- sudo chmod +x /usr/local/share/chromedriver
+  #- sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 
   # Build Behat dependencies
   - cd $TRAVIS_BUILD_DIR/profiles/openasu/modules/panopoly/panopoly_test/behat
