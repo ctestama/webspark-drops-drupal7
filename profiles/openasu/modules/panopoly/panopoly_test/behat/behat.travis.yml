@@ -19,11 +19,11 @@ default:
       files_path: './profiles/openasu/modules/panopoly/panopoly_test/behat'
     Drupal\DrupalExtension:
       drush:
-        root: "/home/travis/build/ASU/webspark-drops-drupal7"
+        root: "/home/travis/build/ctestama/webspark-drops-drupal7"
       drupal:
-        drupal_root: "/home/travis/build/ASU/webspark-drops-drupal7"
+        drupal_root: "/home/travis/build/ctestama/webspark-drops-drupal7"
 
       # Look in the profile modules directory and pull in module subcontexts.
       subcontexts:
         paths:
-          - "/home/travis/build/ASU/webspark-drops-drupal7/profiles/openasu/modules/panopoly/panopoly_test"
+          - "/home/travis/build/ctestama/webspark-drops-drupal7/profiles/openasu/modules/panopoly/panopoly_test"
