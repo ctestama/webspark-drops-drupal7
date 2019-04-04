@@ -5,7 +5,7 @@ addons:
 
 # PHP 7
 php:
-  - 7.0
+  - 7.2
 
 # make sure we test on latest trusty environment
 sudo: required
