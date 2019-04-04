@@ -23,12 +23,10 @@ mysql:
   encoding: utf8
 
 # whitelist
-#todo: remove i1490
 branches:
   only:
     - master
     - travis-ci
-    - i1490
 
 # Firefox 47.0 is currently breaking Selenium Server
 # TODO - Update from Selenium Server Standalone to alternative Marionette
