@@ -7,8 +7,3 @@ core = 7.x
 dependencies[] = libraries
 dependencies[] = jquery_update
 configure = admin/structure/tb-megamenu
-
-; Information added by drush on 2017-11-20
-version = "7.x-1.0-rc2+10-dev"
-project = "tb_megamenu"
-datestamp = "1511153459"

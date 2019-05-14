@@ -9,8 +9,3 @@ features[features_api][] = api:2
 features[feeds_importer][] = node
 features[feeds_importer][] = user
 files[] = feeds_import.test
-
-; Information added by drush on 2018-06-19
-version = "7.x-2.x-dev"
-project = "feeds"
-datestamp = "1529428857"

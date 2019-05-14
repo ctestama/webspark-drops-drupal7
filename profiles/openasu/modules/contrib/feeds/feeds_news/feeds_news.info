@@ -17,8 +17,3 @@ features[node][] = feed
 features[node][] = feed_item
 features[views_view][] = feeds_defaults_feed_items
 files[] = feeds_news.test
-
-; Information added by drush on 2018-06-19
-version = "7.x-2.x-dev"
-project = "feeds"
-datestamp = "1529428857"

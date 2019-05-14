@@ -7,8 +7,3 @@ dependencies[] = entity
 package = Features
 
 configure = admin/structure/features/uuid_features
-
-; Information added by drush on 2018-05-28
-version = "7.x-1.0-rc1+4-dev"
-project = "uuid_features"
-datestamp = "1527472637"
