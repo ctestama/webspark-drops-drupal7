@@ -1,11 +1,37 @@
-Webspark 1.67 (Iowa), 2019-05-10
+Webspark 1.70 (Texas), 2019-07-02
+---------------------------------
+- Webspark core
+
+  * Panopoly - v1.70
+    * Multiple Panopoly releases (1.68-1.70) rolled into one update; Includes updates to contrib modules. See https://www.drupal.org/project/panopoly/releases/7.x-1.70 for more info.
+
+- Web standards components in webspark
+
+- Contrib module updates
+
+  - Managed by Webspark
+
+    * Views (views) - v3.23
+  
+  - Managed by Panopoly
+
+    * Chaos Tool Suite (ctools) - v1.15
+    * Universally Unique Identifier (uuid) - v1.3
+    * Devel (devel) - v1.7
+    * Search API (search_api) - v1.26
+    * Tablefield (tablefield) - v3.5
+    * Media: Youtube - v3.8
+
+Webspark 1.67 (Iowa), 2019-05-20
 --------------------------------
 - Webspark core
 
-  * Drupal core (v7.67)
+  * Drupal core - v7.67
     * Security update! See the latest release notes at https://www.drupal.org/project/drupal/releases/7.67 for more
       information
-  * Panopoly (v1.67)
+    * Fixed array_flip() issues in core Entity API include. See https://drupal.org/node/1803048 for 
+      more information.
+  * Panopoly - v1.67
     * See the latest release notes at https://www.drupal.org/project/panopoly/releases/7.x-1.67 for more information
 
 - Web standards components in Webspark
@@ -28,12 +54,14 @@ Webspark 1.67 (Iowa), 2019-05-10
 
 - Experimental modules in Webspark
 
-  - If you wish to keep using the modules below outside of production, copy their root directory
-  (in /profiles/openasu/modules/custom) into /sites/all/modules/custom (create if necessary) BEFORE applying
-  this (Iowa) update.
-  - Please send any questions about the future of these modules to webconsulting@asu.edu.
+  - The following modules have been removed in this release. If you wish to keep using the modules below outside of production, copy their root directory
+  in /profiles/openasu/modules/custom into /sites/all/modules/custom (create if necessary) BEFORE applying
+  this update:
 
-  * ASU Events, (v3.0-alpha1), ASU News (v3.0-alpha1)
+  * ASU Events (asu_events) - v3.0-alpha1
+  * ASU News (asu_news) - v3.0-alpha1
+
+  - Please send any questions about the future of these modules to webconsulting@asu.edu.
 
 
 Webspark 1.66 (Wisconsin), 2019-04-18
