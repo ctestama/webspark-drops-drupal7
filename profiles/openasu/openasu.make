@@ -53,7 +53,7 @@ projects[panopoly_search][subdir] = panopoly
 projects[panopoly_test][version] = 1.70
 projects[panopoly_test][subdir] = panopoly
 ; ASU custom tests and modifications
-;projects[panopoly_test][patch][137] = patches/webspark-847_panopoly-test-137-update-v-1.46.patch
+projects[panopoly_test][patch][137] = patches/webspark-847_panopoly-test-137-update-v-1.46.patch
 projects[panopoly_test][patch][1370] = patches/webspark-847_behat_common.patch
 projects[panopoly_test][patch][142] = patches/webspark-944_add-init-config-tests-panopoly-test.patch
 projects[panopoly_test][patch][143] = patches/webspark-1066-panopoly-test-v146.patch
