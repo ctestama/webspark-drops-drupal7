@@ -12,6 +12,8 @@ Webspark 1.70 (Texas), 2019-07-02
   - Managed by Webspark
 
     * Views (views) - v3.23
+    * Webform (webform) - v4.19
+    * SMTP (smtp) - v1.7+patch (https://www.drupal.org/project/smtp/issues/2979682)
   
   - Managed by Panopoly
 
@@ -20,7 +22,7 @@ Webspark 1.70 (Texas), 2019-07-02
     * Devel (devel) - v1.7
     * Search API (search_api) - v1.26
     * Tablefield (tablefield) - v3.5
-    * Media: Youtube - v3.8
+    * Media: Youtube (media_youtube) - v3.8
 
 Webspark 1.67 (Iowa), 2019-05-20
 --------------------------------
