@@ -1,3 +1,13 @@
+Webspark 1.70 (Texas), 2019-07-02
+---------------------------------
+- Webspark core
+
+  * Panopoly - v1.70
+    * Multiple Panopoly releases (1.68-1.70) rolled into one update; Includes updates to contrib modules. See https://www.drupal.org/project/panopoly/releases/7.x-1.70 for more info.
+
+- Web standards components in webspark
+
+
 Webspark 1.67 (Iowa), 2019-05-20
 --------------------------------
 - Webspark core
