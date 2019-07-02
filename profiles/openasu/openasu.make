@@ -114,13 +114,15 @@ projects[smtp][download][type] = "git"
 projects[smtp][download][branch] = "7.x-1.x"
 projects[smtp][download][url] = "https://git.drupalcode.org/project/smtp.git"
 projects[smtp][download][revision] = "47f4114b1e6d357708b6ffcade01241a11c41ef1"
+; https://www.drupal.org/project/webform/issues/2966816
+projects[smtp][patch][] = https://www.drupal.org/files/issues/2018-11-13/smtp-filepath_uri-2966816-27-D7_0.patch
+
 
 projects[viewfield][version] = 2.0
 projects[viewfield][type] = module
 projects[viewfield][subdir] = contrib
 
-; Don't update to v4.17 until https://www.drupal.org/project/webform/issues/2966816 is worked out
-projects[webform][version] = 4.16
+projects[webform][version] = 4.19
 projects[webform][type] = module
 projects[webform][subdir] = contrib
 
