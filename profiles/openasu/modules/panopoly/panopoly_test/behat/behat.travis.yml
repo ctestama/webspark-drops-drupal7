@@ -5,7 +5,19 @@ default:
     Behat\MinkExtension:
       selenium2:
         wd_host: http://localhost:4444/wd/hub
-        capabilities: { "browser": "chrome", "version": "*", 'chromeOptions': {'args':['start-maximized', "headless", "disable-gpu"]}}
+        capabilities: 
+          extra_capabilities:
+            chromeOptions:
+              args:
+                - "--start-maximized"
+                - "--headless"
+                - "--disable-gpu"
+          chrome:
+            switches:
+              - "--headless"
+              - "--disable-gpu"
+              - "--window-size=1920,1080"
+              - "--no-sandbox"
       javascript_session: selenium2
       browser_name: 'chrome'
       base_url: http://127.0.0.1:8888
