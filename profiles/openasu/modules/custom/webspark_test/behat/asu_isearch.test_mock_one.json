@@ -1,0 +1,364 @@
+[
+    {
+        "eid": "11397",
+        "asuriteId": "aubjr",
+        "lastName": "Roseberry",
+        "firstName": "Bryan",
+        "middleName": "J",
+        "displayName": "Bryan Roseberry",
+        "preferredFirstName": "",
+        "affiliations": [
+            "Employee",
+            "Courtesy Affiliate"
+        ],
+        "affiliationsFacet": [
+            "Employee",
+            "Courtesy Affiliate"
+        ],
+        "emailAddress": "aubjr@asu.edu",
+        "phone": "480\/965-8216",
+        "addressLine1": "1551 S. Rural Rd.",
+        "addressLine2": "Rm. #2350",
+        "addressLine3": "",
+        "city": "Tempe",
+        "postalCode": "85281-6312",
+        "titleSource": [
+            "workingTitle"
+        ],
+        "titles": [
+            "Systems Analyst"
+        ],
+        "departments": [
+            "Applications and Design"
+        ],
+        "departmentsFacet": [
+            "Applications and Design"
+        ],
+        "deptids": [
+            "2163"
+        ],
+        "vpAreas": [
+            "U01"
+        ],
+        "emplClasses": [
+            "University Staff"
+        ],
+        "simplifiedEmplClasses": [
+            "University Staff"
+        ],
+        "psDeptids": [
+            "U0106004"
+        ],
+        "jobCampuses": [
+            "TEMPE"
+        ],
+        "mailCodes": [
+            "6312"
+        ],
+        "locations": [
+            "TEMPE"
+        ],
+        "employeeTypes": [
+            "University Staff"
+        ],
+        "managers": [
+            0
+        ],
+        "primaryTitle": "Systems Analyst Senior",
+        "workingTitle": "Systems Analyst Senior",
+        "primaryDepartment": "DEV Applications and Design",
+        "primaryEmplClass": "University Staff",
+        "primarySimplifiedEmplClass": "University Staff",
+        "primaryMailCode": "6312",
+        "primaryDeptid": "DEV Applications and Design",
+        "primaryJobCampus": "TEMPE",
+        "primaryiSearchDepartmentAffiliation": "Applications and Design",
+        "subaffiliations": [
+            "Alumni"
+        ],
+        "subaffiliationsFacet": [
+            "Alumni"
+        ],
+        "subaffiliationDepartments": [
+            "Arizona State University"
+        ],
+        "subaffiliationDepartmentsFacet": [
+            "Arizona State University"
+        ],
+        "photoUrl": "https:\/\/webapp4.asu.edu\/photo-ws\/directory_photo\/11397",
+        "photoPermission": "public",
+        "photoPreference": "custom",
+        "website": "",
+        "facebook": "",
+        "twitter": "",
+        "googlePlus": "",
+        "linkedin": "",
+        "teachingWebsite": "",
+        "fax": "",
+        "researchWebsite": "",
+        "employeeWeight": [
+            "16"
+        ],
+        "imageUrls": [
+            ""
+        ],
+        "_version_": 1638562506625515520,
+        "profileNid": "79414",
+        "affilWeight": [
+            999
+        ],
+        "affilHide": [
+            0
+        ],
+        "departmentTitleRanks": [
+            null
+        ],
+        "departmentTitleRanksWeight": [
+            null
+        ],
+        "departmentTitleRanksTenure": [
+            0
+        ],
+        "departmentTitleRanksTids": [
+            null
+        ]
+    },
+    {
+        "eid": "1962650",
+        "asuriteId": "ctestama",
+        "lastName": "Testamarck",
+        "firstName": "Colton",
+        "middleName": "",
+        "displayName": "Colton Testamarck",
+        "preferredFirstName": "",
+        "affiliations": [
+            "Employee"
+        ],
+        "affiliationsFacet": [
+            "Employee"
+        ],
+        "emailAddress": "Colton.Testamarck@asu.edu",
+        "addressLine1": "USB",
+        "addressLine2": "1551 S Rural Rd",
+        "addressLine3": "",
+        "city": "Tempe",
+        "postalCode": "85281",
+        "titleSource": [
+            "titles"
+        ],
+        "titles": [
+            "Customized Drupal Developer Senior"
+        ],
+        "departments": [
+            "Applications and Design"
+        ],
+        "departmentsFacet": [
+            "Applications and Design"
+        ],
+        "deptids": [
+            "2163"
+        ],
+        "vpAreas": [
+            "U01"
+        ],
+        "emplClasses": [
+            "University Staff"
+        ],
+        "simplifiedEmplClasses": [
+            "University Staff"
+        ],
+        "psDeptids": [
+            "U0106004"
+        ],
+        "jobCampuses": [
+            "TEMPE"
+        ],
+        "mailCodes": [
+            "6312"
+        ],
+        "locations": [
+            "TEMPE"
+        ],
+        "employeeTypes": [
+            "University Staff"
+        ],
+        "managers": [
+            0
+        ],
+        "primaryTitle": "Drupal Developer Senior",
+        "workingTitle": "Drupal Developer Senior",
+        "primaryDepartment": "DEV Applications and Design",
+        "primaryEmplClass": "University Staff",
+        "primarySimplifiedEmplClass": "University Staff",
+        "primaryMailCode": "6312",
+        "primaryDeptid": "DEV Applications and Design",
+        "primaryJobCampus": "TEMPE",
+        "primaryiSearchDepartmentAffiliation": "Applications and Design",
+        "photoUrl": "https:\/\/webapp4.asu.edu\/photo-ws\/directory_photo\/1962650",
+        "photoPermission": "public",
+        "photoPreference": "suncard",
+        "bio": "\u003Cp\u003EColton Testamarck is a senior developer with the UTO DEV Applications and Design group\u0026nbsp;and specializes\u0026nbsp;in Drupal development.\u0026nbsp;\u003C\/p\u003E",
+        "website": "",
+        "facebook": "",
+        "twitter": "",
+        "googlePlus": "",
+        "linkedin": "",
+        "teachingWebsite": "",
+        "fax": "",
+        "researchWebsite": "",
+        "employeeWeight": [
+            "19"
+        ],
+        "imageUrls": [
+            ""
+        ],
+        "_version_": 1638562985797484544,
+        "profileNid": "89897",
+        "affilWeight": [
+            999
+        ],
+        "affilHide": [
+            0
+        ],
+        "departmentTitleRanks": [
+            null
+        ],
+        "departmentTitleRanksWeight": [
+            null
+        ],
+        "departmentTitleRanksTenure": [
+            0
+        ],
+        "departmentTitleRanksTids": [
+            null
+        ]
+    },
+    {
+        "eid": "748868",
+        "asuriteId": "dgarciam",
+        "lastName": "Garcia-Mont",
+        "firstName": "Daniel",
+        "middleName": "",
+        "displayName": "Daniel Garcia-Mont",
+        "preferredFirstName": "",
+        "affiliations": [
+            "Employee"
+        ],
+        "affiliationsFacet": [
+            "Employee"
+        ],
+        "emailAddress": "Daniel.Garcia-Mont@asu.edu",
+        "addressLine1": "USB",
+        "addressLine2": "2659",
+        "addressLine3": "",
+        "city": "Tempe",
+        "postalCode": "85287",
+        "titleSource": [
+            "workingTitle",
+            "workingTitle"
+        ],
+        "titles": [
+            "Manager Applications and Design",
+            "Manager Information Service"
+        ],
+        "departments": [
+            "Development",
+            "Applications and Design"
+        ],
+        "departmentsFacet": [
+            "Development",
+            "Applications and Design"
+        ],
+        "deptids": [
+            "1569",
+            "2163"
+        ],
+        "vpAreas": [
+            "U01",
+            "U01"
+        ],
+        "emplClasses": [
+            "University Staff",
+            "University Staff"
+        ],
+        "simplifiedEmplClasses": [
+            "University Staff",
+            "University Staff"
+        ],
+        "psDeptids": [
+            "U0106004"
+        ],
+        "jobCampuses": [
+            "TEMPE",
+            "TEMPE"
+        ],
+        "mailCodes": [
+            "6312",
+            "6312"
+        ],
+        "locations": [
+            "TEMPE"
+        ],
+        "employeeTypes": [
+            "University Staff",
+            "University Staff"
+        ],
+        "managers": [
+            0,
+            0
+        ],
+        "primaryTitle": "Dir Information Technology Svc",
+        "workingTitle": "Dir Information Technology Svc",
+        "primaryDepartment": "DEV Applications and Design",
+        "primaryEmplClass": "University Staff",
+        "primarySimplifiedEmplClass": "University Staff",
+        "primaryMailCode": "6312",
+        "primaryDeptid": "DEV Applications and Design",
+        "primaryJobCampus": "TEMPE",
+        "primaryiSearchDepartmentAffiliation": "Applications and Design",
+        "photoUrl": "https:\/\/webapp4.asu.edu\/photo-ws\/directory_photo\/748868",
+        "photoPermission": "public",
+        "photoPreference": "custom",
+        "website": "",
+        "facebook": "",
+        "twitter": "",
+        "googlePlus": "",
+        "linkedin": "",
+        "teachingWebsite": "",
+        "fax": "",
+        "researchWebsite": "",
+        "employeeWeight": [
+            "999",
+            "0"
+        ],
+        "imageUrls": [
+            ""
+        ],
+        "_version_": 1638562730576183296,
+        "profileNid": "64388",
+        "affilWeight": [
+            999,
+            999
+        ],
+        "affilHide": [
+            0,
+            0
+        ],
+        "departmentTitleRanks": [
+            null,
+            null
+        ],
+        "departmentTitleRanksWeight": [
+            null,
+            null
+        ],
+        "departmentTitleRanksTenure": [
+            0,
+            0
+        ],
+        "departmentTitleRanksTids": [
+            null,
+            null
+        ]
+    }
+]
