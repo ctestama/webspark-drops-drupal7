@@ -2,15 +2,18 @@ Feature: Import iSearch Profiles
   Background:
     Given I am logged in as a user with the "administrator" role
 
-  @javascript @api
+  @javascript @api @asu_isearch
   Scenario: Run an import, then add directory panel with imported profiles
     Given I am at "/admin/content/isearch/configure"
     When I click on the element "label" which has property "data-reactid" with value ".1.1"
     And I press the "Browse" button
-    And I click on the element "li" which has property "dept_nid" with value "1344"
+    And I click the '[dept_nid="1359"] a.jqtree-toggler' element
+    And I click the '[dept_nid="1569"] a.jqtree-toggler' element
+    And I click on the element "li" which has property "dept_nid" with value "2163"
     And I click on the text " Include sub-departments?" in the "label" tag
     And I press the "Submit" button
     And I press the "Save configuration" button
+    And I mock the migration source "asu_isearch.test_mock_one.json"
     And I click "Import iSearch Profiles"
     And I fill in "edit-isearch-import-limit-value" with "50"
     And I press the "Begin import" button
@@ -27,7 +30,9 @@ Feature: Import iSearch Profiles
     And I click "Add new pane"
     And I click "Add ASU Directory Panel"
     And I press the "Browse" button
-    And I click on the element "li" which has property "dept_nid" with value "1344"
+    And I click the '[dept_nid="1359"] a.jqtree-toggler' element
+    And I click the '[dept_nid="1569"] a.jqtree-toggler' element
+    And I click on the element "li" which has property "dept_nid" with value "2163"
     And I click on the text " Include sub-departments?" in the "label" tag
     And I press the "Submit" button
     And I click on the element "a" which has property "href" with value "#edit-field-asu-directory-items-und-0-horizontal-tabs-advanced"
@@ -36,4 +41,4 @@ Feature: Import iSearch Profiles
     And I press the "Save as custom" button
     And I click on the text "View" in the "a" tag
     And I click on the text "ALL" in the "li" tag
-    Then I should not see "No employees found."
+    Then I should see "Customized Drupal Developer Senior"
