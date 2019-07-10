@@ -2,7 +2,7 @@ Feature: Import iSearch Profiles
   Background:
     Given I am logged in as a user with the "administrator" role
 
-  @javascript @api @asu_isearch
+  @javascript @api @asu_isearcha
   Scenario: Run an import, then add directory panel with imported profiles
     Given I am at "/admin/content/isearch/configure"
     When I click on the element "label" which has property "data-reactid" with value ".1.1"
@@ -47,13 +47,27 @@ Feature: Import iSearch Profiles
   Scenario: Run an import to update profiles, then load updated profile
     Given I am at "/admin/content/isearch/import"
     And I run drush "vset isearch_local_lock 1"
-    When I mock the migration source "asu_isearch.test_mock_two.json"
+    When I mock the migration source "asu_isearch.test_mock_one.json"
     And I fill in "edit-isearch-import-limit-value" with "50"
     And I press the "Begin import" button
     And I wait for 30 seconds
     Then I should see "Processed"
     When I am at "/content/sparky-webspark"
     Then I should see "Sparky Webspark"
+    And I should see "Customized Drupal Developer Senior"
     And I should see "This is a mock bio."
     When I click on the element "a" which has property "id" with value "ui-id-2"
     Then I should see the "a" element with the "href" attribute set to "https://isearch.asu.edu/asu-people/testvalue" in the "Content" region
+    And I should see the "a" element with the "href" attribute set to "https://www.asu.edu/" in the "Content" region
+    When I am at "/admin/content/isearch/import"
+    When I mock the migration source "asu_isearch.test_mock_two.json"
+    And I fill in "edit-isearch-import-limit-value" with "50"
+    And I press the "Begin import" button
+    And I wait for 30 seconds
+    Then I should see "Updated"
+    When I am at "/content/sparky-webspark"
+    Then I should see "Super Drupal Developer Senior"
+    When I run drush "vset isearch_local_lock 0"
+    And I am at "/content/sparky-webspark"
+    Then I should see "Profile not found."
+    
