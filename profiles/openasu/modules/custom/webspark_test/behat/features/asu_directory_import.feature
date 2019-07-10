@@ -2,7 +2,7 @@ Feature: Import iSearch Profiles
   Background:
     Given I am logged in as a user with the "administrator" role
 
-  @javascript @api @asu_isearcha
+  @javascript @api @asu_isearch
   Scenario: Run an import, then add directory panel with imported profiles
     Given I am at "/admin/content/isearch/configure"
     When I click on the element "label" which has property "data-reactid" with value ".1.1"
