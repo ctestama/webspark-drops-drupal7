@@ -42,3 +42,18 @@ Feature: Import iSearch Profiles
     And I click on the text "View" in the "a" tag
     And I click on the text "ALL" in the "li" tag
     Then I should see "Customized Drupal Developer Senior"
+
+  @javascript @api @asu_isearch
+  Scenario: Run an import to update profiles, then load updated profile
+    Given I am at "/admin/content/isearch/import"
+    And I run drush "vset isearch_local_lock 1"
+    When I mock the migration source "asu_isearch.test_mock_two.json"
+    And I fill in "edit-isearch-import-limit-value" with "50"
+    And I press the "Begin import" button
+    And I wait for 30 seconds
+    Then I should see "Processed"
+    When I am at "/content/sparky-webspark"
+    Then I should see "Sparky Webspark"
+    And I should see "This is a mock bio."
+    When I click on the element "a" which has property "id" with value "ui-id-2"
+    Then I should see the "a" element with the "href" attribute set to "https://isearch.asu.edu/asu-people/testvalue" in the "Content" region
