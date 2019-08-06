@@ -78,6 +78,7 @@
                     var parent = $(this).closest('li');
                     var node = tree_div.tree('getNodeByHtmlElement', parent);
 
+                    
                     if ($(this).is(':checked')) {
 
                         if (asu_maps_enhanced_containsObject(node, map_items) == -1) {
@@ -114,78 +115,93 @@
             }
         }
     }
+
+    function asu_maps_enhanced_isInt(value) {
+        return !isNaN(value) &&
+            parseInt(Number(value)) == value && !isNaN(parseInt(value, 10));
+    }
+    
+    function asu_maps_enhanced_containsObject(obj, list) {
+    
+        for (i = 0; i < list.length; i++) {
+    
+            if (obj.hasOwnProperty('id')) {
+                if (obj.id == list[i].id) {
+                    return i;
+                }
+            } else if (obj.hasOwnProperty('catId') && !list[i].hasOwnProperty('id')) {
+                if (obj.catId == list[i].catId) {
+                    return i;
+                }
+            }
+        }
+    
+        return -1;
+    }
+    
+    function asu_maps_enhanced_insertObject(obj, list) {
+    
+        var newnode = {};
+        var thetype = asu_maps_enhanced_get_type(obj);
+    
+        newnode.item_type = thetype;
+    
+        if (obj.hasOwnProperty('catId')) {
+            newnode.catId = obj.catId;
+        }
+    
+        if (obj.hasOwnProperty('id')) {
+            newnode.id = obj.id;
+        }
+    
+        if (obj.hasOwnProperty('lat')) {
+            newnode.lat = obj.lat;
+        }
+    
+        if (obj.hasOwnProperty('level')) {
+            newnode.level = obj.level;
+        }
+    
+        if (obj.hasOwnProperty('lng')) {
+            newnode.lng = obj.lng;
+        }
+    
+        if (obj.hasOwnProperty('mapId')) {
+            newnode.mapId = obj.mapId;
+        }
+    
+        if (obj.hasOwnProperty('name')) {
+            newnode.name = obj.name;
+        }
+    
+        if (obj.hasOwnProperty('private')) {
+            newnode.private = obj.private;
+        }
+    
+        // remove any location nodes from the list if they exist,
+        // and uncheck the box
+        if (newnode.item_type == 'location') {
+            for (var i = 0; i < list.length; i++) {
+    
+                if (list[i].item_type == 'location') {
+                    var removed = list.splice(i, 1);
+                    var selector = '#' + removed[0].id + ' input';
+                    $(selector).prop('checked', false);
+                }
+            }
+        }
+    
+        list.push(newnode);
+    }
+    
+    function asu_maps_enhanced_get_type(obj) {
+        if (obj.hasOwnProperty('id')) {
+            return 'location';
+        } else {
+            return 'category';
+        }
+    }    
+
 }(jQuery));
 
 
-function asu_maps_enhanced_isInt(value) {
-    return !isNaN(value) &&
-        parseInt(Number(value)) == value && !isNaN(parseInt(value, 10));
-}
-
-function asu_maps_enhanced_containsObject(obj, list) {
-
-    for (i = 0; i < list.length; i++) {
-
-        if (obj.hasOwnProperty('id')) {
-            if (obj.id == list[i].id) {
-                return i;
-            }
-        } else if (obj.hasOwnProperty('catId') && !list[i].hasOwnProperty('id')) {
-            if (obj.catId == list[i].catId) {
-                return i;
-            }
-        }
-    }
-
-    return -1;
-}
-
-function asu_maps_enhanced_insertObject(obj, list) {
-
-    var newnode = {};
-    var thetype = asu_maps_enhanced_get_type(obj);
-
-    newnode.item_type = thetype;
-
-    if (obj.hasOwnProperty('catId')) {
-        newnode.catId = obj.catId;
-    }
-
-    if (obj.hasOwnProperty('id')) {
-        newnode.id = obj.id;
-    }
-
-    if (obj.hasOwnProperty('lat')) {
-        newnode.lat = obj.lat;
-    }
-
-    if (obj.hasOwnProperty('level')) {
-        newnode.level = obj.level;
-    }
-
-    if (obj.hasOwnProperty('lng')) {
-        newnode.lng = obj.lng;
-    }
-
-    if (obj.hasOwnProperty('mapId')) {
-        newnode.mapId = obj.mapId;
-    }
-
-    if (obj.hasOwnProperty('name')) {
-        newnode.name = obj.name;
-    }
-
-    if (obj.hasOwnProperty('private')) {
-        newnode.private = obj.private;
-    }
-
-    list.push(newnode);
-}
-
-function asu_maps_enhanced_get_type(obj) {
-    if (obj.hasOwnProperty('id')) {
-        return 'location';
-    } else {
-        return 'category';
-    }
-}
