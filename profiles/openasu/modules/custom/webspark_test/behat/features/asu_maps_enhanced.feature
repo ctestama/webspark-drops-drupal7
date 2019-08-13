@@ -23,6 +23,7 @@ Feature: Configure and display an interactive map showing an ASU building locati
       | field_asu_maps_enhanced_items[und][0][campus_selection]  | TEMPE   |
     And I click the "#edit-return" element
     And I press "Save as custom"
+    And I wait 5 seconds
     And I switch to the iframe "enhanced-map-frame"
     And I wait 1 seconds
     Then I should see "College of Design North"
@@ -46,6 +47,7 @@ Feature: Configure and display an interactive map showing an ASU building locati
       | field_asu_maps_enhanced_items[und][0][campus_selection]  | TEMPE   |
     And I click the "#edit-return" element
     And I press "Save as custom"
+    And I wait 5 seconds
     And I switch to the iframe "enhanced-map-frame"
     And I wait 2 seconds
     And I click the '[alt="Palo Verde West map marker"]' element
