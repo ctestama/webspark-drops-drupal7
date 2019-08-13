@@ -666,8 +666,13 @@ h4.ui-accordion-header.ui-state-default:last-of-type {
   margin: 1em 0;
 }
 
-.alert > ul > li > [class^=krumo] {
+/* Devel debugging */
+.logged-in .alert > ul > li > [class^=krumo] {
   all: initial;
+}
+
+.logged-in .alert .krumo-root .krumo-element:not(a) {
+  color: green;
 }
 
 /* =ADMIN UI
@@ -971,4 +976,22 @@ body #content .ui-tabs .ui-tabs-nav li a {
   margin-left: 0;
   border-bottom: none;
   clear: both;
+}
+
+/* fixes @media print issues - WEBSPARK-764 */
+@media print {
+  .megafoot > .row div:not(.megafoot-border) {
+    display: none; }
+  .megafoot ul.social-media li a {
+    font-size: 1em;
+  }
+  .ui-tabs-nav {
+    display: none;
+  }
+  .ui-tabs .ui-tabs-hide {
+    display: block !important;
+  }
+  #innovation-footer {
+    position: revert;
+  }
 }
