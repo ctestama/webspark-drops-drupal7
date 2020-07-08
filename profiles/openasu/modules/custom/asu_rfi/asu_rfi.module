@@ -28,11 +28,14 @@
 define('ASU_RFI_PROSPECT_LEVEL_UNDERGRAD', "Undergraduate");
 define('ASU_RFI_PROSPECT_LEVEL_GRAD', "Graduate");
 define('ASU_RFI_STALE_TIME_DEFAULT', 86400); // One Day
-define('ASU_RFI_SUBMISSION_EXP_PERIOD', ASU_RFI_STALE_TIME_DEFAULT * 14); // Two weeks
+$period = (int) variable_get('asu_rfi_expired_period', 45);
+define('ASU_RFI_SUBMISSION_EXP_PERIOD', (ASU_RFI_STALE_TIME_DEFAULT * $period)); // Two weeks
+define('ASU_RFI_MIDDLEWARE_GRAD_QA', 'https://requestinfo-qa.asu.edu');
+define('ASU_RFI_MIDDLEWARE_GRAD_PROD', 'https://requestinfo.asu.edu');
+define('ASU_RFI_MIDDLEWARE_UNDERGRAD_QA', 'https://webforms-qa.asu.edu');
+define('ASU_RFI_MIDDLEWARE_UNDERGRAD_PROD', 'https://webforms.asu.edu');
 define('ASU_RFI_UNDERGRAD_CONFIRMATION_NID', variable_get('asu_rfi_undergrad_confirm_nid', 0));
 define('ASU_RFI_GRAD_CONFIRMATION_NID', variable_get('asu_rfi_grad_confirm_nid', 0));
-define('ASU_RFI_EXPIRED_DELETE', variable_get('asu_rfi_expired_delete', 'all'));
-define('ASU_RFI_EXPIRED_SUBMIT', variable_get('asu_rfi_expired_submit', 'all'));
 
 // require_once load at all times for AJAX calls (these should probably all be in .module,
 // if not for the size of the file)
@@ -512,81 +515,92 @@ function asu_rfi_form_alter(&$form, &$form_state, $form_id) {
   // MOVED FOR AJAX FIXES
 
   // LONG FORM
-  if ($form['#id'] == "asu-rfi-long-form-data") {
-    if (isset($form['my_interest']['program_code']['#options'])) {
+  /*
+// (likely for non-degree, AP page forms)
 
-      // Generate campus lists
-      $pcodes = $form['my_interest']['program_code']['#options'];
-      $possibleLocations = _asu_rfi_get_campus_location_options($pcodes);
-      asu_rfi_disable_form($form, $possibleLocations);
+if ($form['#id'] == "asu-rfi-long-form-data") {
+if (isset($form['my_interest']['program_code']['#options'])) {
+  //dpm($form['my_interest']['campus']['#options'], 'form_alter fired campus');
 
-      if ($possibleLocations !== FALSE) {
-        if (!in_array("Online", $possibleLocations)) {
-          $form['my_interest']['location']['online'] = array('#disabled' => TRUE);
-          $form['my_interest']['location']['no_preference'] = array('#disabled' => TRUE);
-          $form['my_interest']['location']['#default_value'] = 'on_campus';
-        } else {
-          if (count($possibleLocations) == 1 && $possibleLocations[0] == "Online") {
-            $form['my_interest']['location']['on_campus'] = array('#disabled' => TRUE);
-            $form['my_interest']['location']['no_preference'] = array('#disabled' => TRUE);
-            $form['my_interest']['location']['#default_value'] = 'online';
-            /* -- Convert form for EdPlus Consumption -- */
-            $form['my_interest']['campus']['#access'] = FALSE;
-            $form['my_interest']['student_type']['#access'] = FALSE;
-            $form['my_interest']['start_date']['#access'] = FALSE;
-            $form['about_me']['mobile_check']['#access'] = FALSE;
-            $form['about_me']['country']['#access'] = FALSE;
-            $form['about_me']['zipcode']['#access'] = FALSE;
-            $form['about_me']['dob_field']['#access'] = FALSE;
-            $form['about_me']['birthdate']['#access'] = FALSE;
-            $form['about_me']['citizenship']['#access'] = FALSE;
-            $form['about_me']['military']['#access'] = FALSE;
-            $form['address_info']['#access'] = FALSE;
-            $form['questions']['#access'] = FALSE;
-            /* -- END Convert form for EdPlus Consumption -- */
-          }
-        }
+
+  // Generate campus lists for RFI forms not rendered on an asu_ap node (degree page)
+  $pcodes = $form['my_interest']['program_code']['#options'];
+  $possibleLocations = _asu_rfi_get_campus_location_options($pcodes);
+  asu_rfi_disable_form($form, $possibleLocations);
+
+  if ($possibleLocations !== FALSE) {
+    if (!in_array("Online", $possibleLocations)) {
+      $form['my_interest']['location']['online'] = array('#disabled' => TRUE);
+      $form['my_interest']['location']['no_preference'] = array('#disabled' => TRUE);
+      $form['my_interest']['location']['#default_value'] = 'on_campus';
+    } else {
+      if (count($possibleLocations) == 1 && $possibleLocations[0] == "Online") {
+        $form['my_interest']['location']['on_campus'] = array('#disabled' => TRUE);
+        $form['my_interest']['location']['no_preference'] = array('#disabled' => TRUE);
+        $form['my_interest']['location']['#default_value'] = 'online';
+        // -- Convert form for EdPlus Consumption
+        $form['my_interest']['campus']['#access'] = FALSE;
+        $form['my_interest']['student_type']['#access'] = FALSE;
+        $form['my_interest']['start_date']['#access'] = FALSE;
+        $form['about_me']['mobile_check']['#access'] = FALSE;
+        $form['about_me']['country']['#access'] = FALSE;
+        $form['about_me']['zipcode']['#access'] = FALSE;
+        $form['about_me']['dob_field']['#access'] = FALSE;
+        $form['about_me']['birthdate']['#access'] = FALSE;
+        $form['about_me']['citizenship']['#access'] = FALSE;
+        $form['about_me']['military']['#access'] = FALSE;
+        $form['address_info']['#access'] = FALSE;
+        $form['questions']['#access'] = FALSE;
+        // -- END Convert form for EdPlus Consumption
       }
-      $newLocationArr = array();
-      if ($possibleLocations !== FALSE) {
-        foreach ($possibleLocations as $key => $value) {
-          $newLocationArr[$value] = $value;
-        }
-      }
-      $possibleLocations = $newLocationArr;
-
-      $form['my_interest']['campus']['#options'] = $possibleLocations;
-      //$form['my_interest']['campus']['#options'] = _asu_rfi_get_campus_select($form);
     }
   }
+
+  $newLocationArr = array();
+  if ($possibleLocations !== FALSE) {
+    foreach ($possibleLocations as $key => $value) {
+      $newLocationArr[$value] = $value;
+    }
+  }
+  $possibleLocations = $newLocationArr;
+  $form['my_interest']['campus']['#options'] = $possibleLocations;
+    }
+  }
+*/
 
   // ASU RFI module's admin settings
   // * Disable Google analytics site transactions key in asu_rfi admin settings page
   if ($form['#id'] == "asu-rfi-admin-settings") {
-    if (!empty($form['asu_rfi_form_access']['asu_rfi_google_analytics_key']['#default_value'])) {
-      $form['asu_rfi_form_access']['asu_rfi_google_analytics_key']['#disabled'] = TRUE;
-    }
-    else {
-      $form['asu_rfi_form_access']['asu_rfi_google_analytics_key']['#disabled'] = FALSE;
+    if (!empty($form['general_settings']['developer_settings']['asu_rfi_google_analytics_key']['#default_value'])) {
+      if (preg_match("/^[a-zA-Z0-9\-_]{6,10}$/", $form['general_settings']['developer_settings']['asu_rfi_google_analytics_key']['#default_value'])) {
+        $form['general_settings']['developer_settings']['asu_rfi_google_analytics_key']['#disabled'] = TRUE;
+      } else {
+        $form['general_settings']['developer_settings']['asu_rfi_google_analytics_key']['#disabled'] = FALSE;
+      }
     }
   }
-  // * Get the RFI form mode settings, if form is in test mode, give only admins access to the form view
+
+  // If Test Mode is set to "test" or "none", hide all multipage and longform RFI forms (and a Views exposed form)
+  // from all users except administrators
   $rfi_mode = variable_get('asu_rfi_form_mode');
-  if ((($rfi_mode == "test") || empty($rfi_mode)) && ($form['#id'] == "asu-rfi-form-data"
-      || $form['#id'] == "asu-rfi-long-form-data"
-      || $form['#id'] == 'views-exposed-form-asu-rfi-submissions-report-page')) {
+  if ((($rfi_mode === "test") || empty($rfi_mode) || $rfi_mode === 'none') && ($form['#id'] == "asu-rfi-form-data"
+      || $form['#id'] === "asu-rfi-long-form-data"
+      || $form['#id'] === 'views-exposed-form-asu-rfi-submissions-report-page')) {
       return TRUE;
   }
 }
 
 /**
- * Hides the RFI form ONLY if there is a missing data value.
+ * Hides the RFI form ONLY if there is a missing data value. Not working at the moment?
  * @param array $form The RFI form
  * @param $decider
  */
 function asu_rfi_disable_form(&$form, $decider) {
   if ($decider == FALSE) {
-    flogger('asu_rfi', 'An RFI form was disabled possibly due to corrupt degree data. Please run cron. If cron doesn\'t fix the issue, please refresh your degree nodes');
+    flogger('asu_rfi', 'An RFI form was disabled, either due to corrupt degree data in a degree node,'
+      . ' or because the data is not available (i.e. not a degree node and the data is not otherwise loaded.'
+      . ' Please run cron. If cron doesn\'t fix the issue, please refresh your degree nodes. If the form is not a degree node,'
+      . ' the data is not otherwise being loaded and available.');
     foreach (element_children($form) as $key) {
       $form[$key]['#access'] = FALSE;
     }
@@ -594,9 +608,10 @@ function asu_rfi_disable_form(&$form, $decider) {
 }
 
 /**
- * Implementation of hook form_after_build().
+ * Implementation of hook_form_after_build().
  */
 function asu_rfi_form_after_build($form, &$form_state) {
+  // Used to ensure loading of elements
   // Remove requirement on student type field on Graduate forms
   if (isset($form['degree_type']['#default_value'])) {
     if (($form['degree_type']['#default_value'] === "graduate_longform")
@@ -620,23 +635,34 @@ function asu_rfi_form_after_build($form, &$form_state) {
  */
 function _asu_rfi_form_test_mode_markup(&$form, $form_id) {
   $form_mode = variable_get('asu_rfi_form_mode');
-  $markup = ($form_id !== 'asu_rfi_current_form_data')
-    ? '<div class="alert alert-warning"><b>NOTICE</b>: The
-        Salesforce component of this site\'s RFI forms is in <b>TEST MODE</b>.
-        This form\'s submissions will not go to Salesforce. <a href="/admin/config/content/asurfi">Toggle
-        TEST MODE off</a> under "Test/Live Mode".</div>'
-    : '<div class="alert alert-info"><b>FYI</b>: While the
-        Salesforce component of this site\'s RFI form processing is in
-        <a href="/admin/config/content/asurfi"><b>TEST MODE</b></a>, current student RFI forms
-         do not submit their data to Salesforce.</div>';
-   // Non-current student forms only!
-    if (($form_mode === "test" || empty($form_mode))
-      && (user_access('administrator asu rfi'))) {
-      $form['form_stage'] = array(
-        '#type' => 'item',
-        '#markup' => $markup,
-      );
+  if (user_access('administrator asu rfi') && $form_mode !== "prod") {
+    if ($form_id !== 'asu_rfi_current_form_data') { // Non-current student forms
+      switch ($form_mode) {
+        case 'test':
+          $markup = '<div class="alert alert-warning"><b>NOTICE</b>:'
+            . ' Submissions by this form to Salesforce are in <b>TEST MODE</b>.'
+            . '<a href="/admin/config/content/asurfi">Toggle Test Mode</a>.</div>';
+          break;
+        case 'none':
+          $markup = '<div class="alert alert-warning"><b>NOTICE</b>:'
+            . ' Submissions by this form to Salesforce are disabled.'
+            . '<a href="/admin/config/content/asurfi">Toggle Test Mode</a>.</div>';
+          break;
+        default:
+          $markup = '<div class="alert alert-warning"><b>NOTICE</b>:'
+            . ' Submissions by this form to Salesforce may not be enabled.'
+            . '<a href="/admin/config/content/asurfi">Check your settings</a>.</div>';
+          break;
+        }
+    } else { // Current student forms ONLY - never submit
+      $markup = '<div class="alert alert-info"><b>FYI</b>: All <em>current student</em> RFI
+         forms do not submit their data to Salesforce.</div>';
     }
+    $form['form_stage'] = array(
+      '#type' => 'item',
+      '#markup' => $markup,
+    );
+  }
 }
 
 /**
@@ -653,129 +679,19 @@ function _asu_rfi_check_form_values($db_tbl) {
 }
 
 /**
- * Validation - Email + phone numbers
- * @param $email
- * @param $phone - If NULL, skip
- * @param $email_field - Alternate Form API key for this field. Defaults to 'email'
+ * Filter all programs in a form list down to a single program
+ *
+ * @param array $programs - List of all programs to filter
+ * @param string $acad_plan - Academic
+ * @return mixed - Filtered array containing only a single degree program and its human-readable name
  */
-function _asu_rfi_validate_electronic_contacts($email, $phone = '', $email_field = 'email') {
-  if (!preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9._-]+)*(\.[a-zA-Z]{2,6})+$/", $email)) {
-    form_set_error($email_field, t('You entered an invalid email.'));
-  }
-  /** If mobile number field is checked, then check for USA format, else check for special characters **/
-  if (!empty($phone)) {
-    $scam_num = substr($phone, 0, 3);
-    if (!empty($mobile_check) && $mobile_check != 0) {
-      if (!preg_match("/^([1]-)?([0-9]{3}[-|.][0-9]{3}[-|.][0-9]{4})$/i", $phone) || ($scam_num == "555")) {
-        form_set_error('phone', t('You entered an invalid Phone number.'));
-      }
-    }
-    else {
-      if (!preg_match("/^[0-9.\s-_+()]+$/", $phone) || ($scam_num == "555")) {
-        form_set_error('phone', t('You entered an invalid Phone number.'));
-      }
+function _asu_rfi_get_single_program($programs, $acad_plan) {
+  foreach ($programs as $key => $value) {
+    if ($acad_plan !== $key) {
+      unset($programs[$key]);
     }
   }
-}
-
-/**
- * Validation - Birthdate
- * @param $birthdate
- */
-function _asu_rfi_validate_birthdate($birthdate) {
-  //get number of occurences of '/' in dob
-  $slashes = substr_count($birthdate, '/');
-  if ($slashes == 2) {
-    $date_format = explode('/', $birthdate);
-    $month = $date_format[0];
-    $day = $date_format[1];
-    $year = $date_format[2];
-    $current_year = date('Y');
-    $year_limit = $current_year - 1;
-    $isLeapYear = date('L');
-
-    if (strlen($birthdate) < 11) {
-      if (($month < 1) || ($month > 12)) {
-        form_set_error('birthdate', t('Month range has to be between 1 and 12.'));
-        form_set_error('dob_field', t(' '));
-      }
-
-      if (($month == 1) || ($month == 3) || ($month == 5) || ($month == 7) || ($month == 8) || ($month == 10) || ($month == 12)) {
-        if (($day < 1) || ($day > 31)) {
-          form_set_error('birthdate', t('Date range has to be between 1 and 31.'));
-          form_set_error('dob_field', t(' '));
-        }
-      }
-
-      if (($month == 4) || ($month == 6) || ($month == 9) || ($month == 11)) {
-        if (($day < 1) || ($day > 30)) {
-          form_set_error('birthdate', t('Date range has to be between 1 and 30.'));
-          form_set_error('dob_field', t(' '));
-        }
-      }
-
-      if ($month == 2) {
-        if ($isLeapYear == 1) {
-          if (($day < 1) || ($day > 29)) {
-            form_set_error('birthdate', t('Date range has to be between 1 and 29.'));
-            form_set_error('dob_field', t(' '));
-          }
-        }
-        if ($isLeapYear == 0) {
-          if (($day < 1) || ($day > 28)) {
-            form_set_error('birthdate', t('Date range has to be between 1 and 28.'));
-            form_set_error('dob_field', t(' '));
-          }
-        }
-      }
-
-      if (strlen($year) != 4) {
-        form_set_error('birthdate', t('Year has to be 4 digits.'));
-      }
-
-      if ($year > $year_limit) {
-        form_set_error('birthdate', t('Year cannot be greater than ' . $year_limit));
-      }
-
-      if (!preg_match("/^(0[1-9]|1[012])[\-\/.](0[1-9]|[12][0-9]|3[01])[\-\/.](19|20)\d\d$/", $birthdate)) {
-        form_set_error('birthdate', t('Date of birth accepts the format mm/dd/yyyy.'));
-        form_set_error('dob_field', t(' '));
-      }
-
-    } else {
-      form_set_error('birthdate', t('Date of birth is invalid, it accepts the format mm/dd/yyyy.'));
-      form_set_error('dob_field', t(' '));
-    }
-  } else {
-    form_set_error('birthdate', t('Date of birth is invalid, it accepts the format mm/dd/yyyy.'));
-    form_set_error('dob_field', t(' '));
-  }
-}
-
-/**
- * Validation - ZIP Codes
- * @param $country
- * @param $zip
- */
-function _asu_rfi_validate_zipcode($country, $zip) {
-  if ($country == "United States") {
-    if ((strlen($zip) < 5)) {
-      form_set_error('zipcode', t('Postal code cannot be less than 5 digits.'));
-    }
-    if (!preg_match('/^[0-9]{5}+$/', $zip)) {
-      form_set_error('zipcode', t('Postal code accepts 5 digits only.'));
-    }
-  } else {
-    if (!preg_match("/^[a-zA-Z0-9\s-]+$/", $zip)) {
-      form_set_error('zipcode', t('Postal code is not valid.'));
-    }
-    if ((strlen($zip) < 4)) {
-      form_set_error('zipcode', t('Postal code cannot be less than 4 characters.'));
-    }
-    if (strlen($zip) > 20) {
-      form_set_error('zipcode', t('Postal code cannot be longer than 20 characters.'));
-    }
-  }
+  return $programs;
 }
 
 /*****************************************
@@ -784,24 +700,17 @@ function _asu_rfi_validate_zipcode($country, $zip) {
 
 /**
  * Implements hook_cron().
- * @throws \Exception
+ * @throws Exception
  */
 function asu_rfi_cron() {
 
-  asu_rfi_check_cached_programs();
+  asu_rfi_check_online_programs_cache();
 
   // #1 - Set as system variables so we can adjust via devel/php if desired.
   $last_ran = variable_get('asu_rfi_cron_last_ran', 0);
 
   if (($last_ran + ASU_RFI_STALE_TIME_DEFAULT) < time()) { // If we last ran over $stale_time seconds ago.
-    module_load_include('inc', 'asu_rfi', 'data/asu_rfi.form_options');
-    drupal_flush_all_caches();
-    // Update countries DB table
-    asu_rfi_get_form_select_options('country');
-    // Update states DB table
-    asu_rfi_get_form_select_options('state_province');
-    // Update semester dates DB table
-    asu_rfi_get_form_select_options('rfi_dedupe_list_terms');
+    _asu_rfi_update_form_options();
   }
 
   // #2 - Cron + Queue API - Delete ASU RFI nodes that have either
@@ -810,32 +719,31 @@ function asu_rfi_cron() {
   // processed (stuck in SF_Failed)
   // A max of 50 nodes is deleted with each cron run...
   // IF expired flag is set to "all" in admin form. (on by default)
-  $expired = (ASU_RFI_EXPIRED_DELETE === 'all') ? TRUE : FALSE;
-  if ($expired) {
+  if (variable_get('asu_rfi_expired_delete') === 'all') {
     $queue_2 = DrupalQueue::get('asu_rfi_delete_submissions_queue');
 
-    $all_nids = _asu_rfi_get_submissions_to_delete(50, FALSE);
+    $all_nids = _asu_rfi_get_submissions_to_delete(50);
 
     $count_nids = (int) count($all_nids);
     if ($count_nids > 0) {
       foreach ($all_nids as $nid) {
         $queue_2->createItem($nid);
       }
-      flogger('asu_rfi', '@count ASU RFI submissions have'
+      flogger('cron', '@count ASU RFI submissions have'
         . ' been queued for deletion.', array('@count' => $count_nids), WATCHDOG_NOTICE);
     }
     variable_set('asu_rfi_cron_queue2_last_ran', time());
-  } else {
-    flogger('asu_rfi', 'Deletion of expired RFI submissions via cron is disabled.', array(),
-      WATCHDOG_NOTICE, FALSE, TRUE, TRUE);
+  } else { // Can only delete with the /admin/reports -> RFI leads VBO operation -- "form_only"
+    flogger('cron', 'Deletion of expired RFI submissions via cron is disabled. See the '
+      . 'RFI module settings page to enable cron-driven deletions.', array(),
+      WATCHDOG_INFO, FALSE, TRUE, TRUE);
   }
 
   // #3 - Cron + Queue API - Check for unposted leads (confirmation == -1)
   // and add them to the cron queue.
 
   // Include expired in next cron run (per admin form setting) or skip them?
-  $expired = (ASU_RFI_EXPIRED_SUBMIT === 'all') ? TRUE : FALSE;
-  if ($expired) {
+  if (variable_get('asu_rfi_expired_submit') === 'all') {
     $queue_3 = DrupalQueue::get('asu_rfi_failed_leads_queue');
     $queue_3->deleteQueue(); // @TODO - Why is this repeated??
     $queue_3 = DrupalQueue::get('asu_rfi_failed_leads_queue');
@@ -873,9 +781,10 @@ function asu_rfi_cron() {
       }
     }
     variable_set('asu_rfi_cron_queue3_last_ran', time());
-  } else {
-    flogger('asu_rfi', 'Submission of expired RFI submissions to middleware via cron is disabled.', array(),
-      WATCHDOG_NOTICE, FALSE, TRUE, TRUE);
+  } else { // Can only resubmit with the /admin/reports -> RFI leads VBO operation -- "form_only"
+    flogger('cron', 'Resubmission of expired RFI submissions to middleware via cron is disabled. See the '
+      . 'RFI module settings page to enable cron-driven resubmissions.', array(),
+      WATCHDOG_INFO, FALSE, TRUE, TRUE);
   }
 
   // Update asu_rfi_cron_last_ran time.
@@ -932,6 +841,22 @@ function _asu_rfi_cron_delete_submissions($data) {
   }
 }
 
+/**
+ * Update form select options (should've used the Queue API to ensure this ran (vs. the traditional cron runs)
+ */
+function _asu_rfi_update_form_options() {
+  module_load_include('inc', 'asu_rfi', 'data/asu_rfi.form_options');
+  drupal_flush_all_caches();
+  // Update asset access value (Enterprise access check)
+  asu_libs_set_asset_access_value('asu_rfi');
+  // Update countries DB table
+  asu_rfi_get_form_select_options('country');
+  // Update states DB table
+  asu_rfi_get_form_select_options('state_province');
+  // Update semester dates DB table
+  asu_rfi_get_form_select_options('rfi_dedupe_list_terms');
+}
+
 /*********************************************************************
  *  CALLBACKS - Actions for VBOs
  *********************************************************************/
@@ -968,8 +893,9 @@ function asu_rfi_action_info() {
  * Callback - hook_action_info()
  * @param $node
  * @param $context
+ * @throws /EntityMetadataWrapperException
  */
-function asu_rfi_bulk_submit_action(&$node, $context) {
+function asu_rfi_bulk_submit_action($node, $context) {
   $student_type = (isset($node->field_rfi_prospect_level[LANGUAGE_NONE][0]['value']))
     ? $node->field_rfi_prospect_level[LANGUAGE_NONE][0]['value']
     : '';
@@ -997,7 +923,7 @@ function asu_rfi_bulk_submit_action(&$node, $context) {
  * @param $node
  * @param $context
  */
-function asu_rfi_bulk_delete_submissions_action(&$node, $context) {
+function asu_rfi_bulk_delete_submissions_action($node, $context) {
   _asu_rfi_cron_delete_submissions($node->nid);
 }
 
@@ -1006,11 +932,12 @@ function asu_rfi_bulk_delete_submissions_action(&$node, $context) {
  *********************************************************************/
 
 /**
- * Prepares and submits data to Salesforce for all programs and forms
+ * Prepares and submits data to Salesforce middleware for all programs and forms
  * One submission sent per call
  * @param $node - ASU RFI node storing the data
  * @param array $post - data to submit
  * @param string $program - program type (ugrad, grad)
+ * @throws /EntityMetadataWrapperException
  */
 function _asu_rfi_process_middleware_data($node, $post = array(), $program = ASU_RFI_PROSPECT_LEVEL_UNDERGRAD) {
 
@@ -1063,7 +990,7 @@ function _asu_rfi_process_middleware_data($node, $post = array(), $program = ASU
       $post['type_of_form'] = 'MF';
     }
     $post['ip_address'] = isset($node->field_rfi_ip_address[LANGUAGE_NONE][0]['value']) ? $node->field_rfi_ip_address[LANGUAGE_NONE][0]['value'] : '';
-    $post['start_date'] = $node->field_rfi_start_term_code[LANGUAGE_NONE][0]['value'];
+    $post['start_date'] = $node->field_rfi_start_term_code[LANGUAGE_NONE][0]['value']; // @TODO 7208
     asu_rfi_post_to_middleware($post, ASU_RFI_PROSPECT_LEVEL_UNDERGRAD);
   }
   variable_set('asu_rfi_last_attempt_SF_posting', time());
@@ -1092,7 +1019,7 @@ function _asu_rfi_get_status_field_tables() {
  * @param bool $only_count - Only return the count of nodes to delete. If FALSE, return all nids.
  * @return array|int
  */
-function _asu_rfi_get_submissions_to_delete($submissions_returned = 0, $only_count = FALSE) {
+function _asu_rfi_get_submissions_to_delete($submissions_returned = 0, $only_count = FALSE, $complete_flush = FALSE) {
   // waste of time
   if ($only_count && $submissions_returned !== 0) {
     $message = 'INFO: You know the node count already: ' . $submissions_returned . '.';
@@ -1103,12 +1030,20 @@ function _asu_rfi_get_submissions_to_delete($submissions_returned = 0, $only_cou
   $tables = _asu_rfi_get_status_field_tables();
   $all_nids = array();
 
-  $and_sub1 = db_and()
-    ->condition('field_rfi_submission_status_value', 'SF_Failed', 'LIKE')
-    ->where('UNIX_TIMESTAMP(now()) - n.created > ' . ASU_RFI_SUBMISSION_EXP_PERIOD); // Custom SQL command
-  $or_one = db_or()
-    ->condition('field_rfi_submission_status_value', 'SF_Completed', 'LIKE')
-    ->condition($and_sub1);
+  if ($complete_flush === TRUE) { // Delete ALL RFI submissions older than X days
+    $or_one = db_and()
+      ->where('UNIX_TIMESTAMP(now()) - n.created > ' . ASU_RFI_SUBMISSION_EXP_PERIOD); // Custom SQL command
+  } else { // DEFAULT - only delete expired failed or completed submissions
+    $and_sub1 = db_and()
+      ->condition('field_rfi_submission_status_value', 'SF_Failed', 'LIKE')
+      ->where('UNIX_TIMESTAMP(now()) - n.created > ' . ASU_RFI_SUBMISSION_EXP_PERIOD); // Custom SQL command
+    $and_sub2 = db_and()
+      ->condition('field_rfi_submission_status_value', 'SF_Completed', 'LIKE')
+      ->where('UNIX_TIMESTAMP(now()) - n.created > ' . ASU_RFI_SUBMISSION_EXP_PERIOD); // hold them for X days, just in case there's an issue
+    $or_one = db_or()
+      ->condition($and_sub1)
+      ->condition($and_sub2);
+  }
 
   foreach ($tables as $table) {
     $query = Database::getConnection('default', 'default')
@@ -1143,7 +1078,7 @@ function _asu_rfi_get_submissions_to_delete($submissions_returned = 0, $only_cou
 /**
  * Get RFI leads (submission nodes) not already successfully POSTed to middleware
  * to (re)submit (again).
- * @param bool $include_rtp - If TRUE, include older, "Ready to SF POST"
+ * @param bool $include_rtp - If TRUE, include ALL "Ready for middleware POST"
  * submissions that haven't been submitted yet (for whatever reason).
  * @return mixed $results - List of nodes to delete.
  */
@@ -1162,16 +1097,13 @@ function _asu_rfi_get_unpassed_submissions($include_rtp = FALSE) {
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'asu_rfi', 'LIKE');
 
-  // Include the expired submissions?
-  if (ASU_RFI_EXPIRED_DELETE === 'all') {
-    $query->propertyCondition('created', array(1, REQUEST_TIME - 1800), // everything up to 30 mins ago... just in case the submitter continues on.
-      'between');
-  } else {
-    $query->propertyCondition('created', array(REQUEST_TIME - ASU_RFI_SUBMISSION_EXP_PERIOD,
-      REQUEST_TIME - 1800), 'between'); // everything between 14 days old and 30 minutes old.
-  }
-    $query->propertyOrderBy('created', 'DESC')
-    ->fieldCondition('field_rfi_submission_status', 'value', $statuses, 'IN')// Failed lead.
+  // Include the expired submissions through X days old ONLY
+  $query->propertyCondition('created', array(REQUEST_TIME - ASU_RFI_SUBMISSION_EXP_PERIOD,
+    REQUEST_TIME - 1800), 'between'); // everything between X days old and 30 minutes old.
+
+  $query->propertyOrderBy('created', 'ASC')
+    ->fieldCondition('field_rfi_submission_status', 'value', $statuses, 'IN')
+    ->range(0, 5) // only include the next five RFI submissions to keep the middleware from choking.
     ->addMetaData('account', user_load(1)); // Run the query as user 1.
   return $query->execute();
 }
@@ -1192,7 +1124,6 @@ function _asu_rfi_get_campus_location_options($pcodes) {
   $campus_location_options = array();
 
   foreach ($pcodes as $code => $prog) {
-    $onlineError = FALSE;
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', $degree_mappings['content_type'])
@@ -1210,7 +1141,7 @@ function _asu_rfi_get_campus_location_options($pcodes) {
       if ($locations) {
         foreach ($locations as $location) {
           $hasOnline = FALSE;
-          if ($location['value'] == "Online") {
+          if ($location['value'] === "Online") {
             $hasOnline = TRUE;
           }
           if ((($hasOnline == TRUE && $availableOnline == TRUE) || ($hasOnline == FALSE))
@@ -1218,22 +1149,23 @@ function _asu_rfi_get_campus_location_options($pcodes) {
             array_push($campus_location_options, $location['value']);
           } else {
             if ($hasOnline == TRUE && $availableOnline == FALSE) {
-              $onlineError = TRUE;
               for ($i = 0; $i < count($desiredProg['locations']); $i++) {
                 if ($desiredProg['locations'][$i]['value'] == 'Online') {
                   unset($desiredProg['locations'][$i]);
                 }
               }
-              // Alert user ONCE
-              if ($alerted === FALSE) {
+              // Alert for Administrators to help ASUOnline be aware of issues with their degrees
+              // @TODO - fix for AJAX calls related to form updates
+              if ($alerted === FALSE && (variable_get('asu_rfi_hide_online_alerts') !== 1)) {
                 global $user;
                 $desiredProgram = (isset($desiredProg) && isset($desiredProg['title']))
                   ? 'the ' . $desiredProg['title'] . ' program'
                   : 'this degree program';
                 if (in_array('administrator', $user->roles)) {
-                  drupal_set_message("The Online campus option for " . $desiredProgram
+                  drupal_set_message("RFI Form administrators: The Online campus option for " . $desiredProgram
                     . " is not yet fully online. We may need more details from you to complete"
-                    . " its launch. Please email EdPlus@asu.edu for more information.", 'error');
+                    . " its launch. Please email EdPlus@asu.edu with the name of this degree and URL"
+                    . " for more information.", 'error');
                 }
                 $alerted = TRUE;
               }
@@ -1252,53 +1184,11 @@ function _asu_rfi_get_campus_location_options($pcodes) {
 }
 
 /**
- * Returns correct campusID string for Salesforce compatibility
- *
- * @param $campus - Human-readable campus name (or PeopleSoft/Salesforce IDs if $reverse)
- * @return string - The campus code (or human name, if $reverse). Returns empty string if no match is found.
- * @TODO pull in from feed to stay up to date
- */
-function _asu_rfi_get_campus_info($campus, $reverse = FALSE) {
-  // Legacy code conversion
-  if ($campus === "TMPE") { $campus = 'TEMPE'; }
-  if ($campus === "DOWNTOWN") { $campus = 'DTPHX'; }
-
-  $campuses = array(
-    "Tempe" => 'TEMPE',
-    "Downtown" => "DTPHX",
-    "Online" => "ONLNE",
-    "Polytechnic" => "POLY",
-    "West" => "WEST",
-    'ASU@Cochise' => 'COCHS',
-    'ASU@Lake Havasu' => 'CALHC',
-    'ASU@MexicoCity' => 'MXCTY',
-    'ASU@Pima' => 'PIMA',
-    'ASU@Pinal' => 'CAC',
-    'ASU@The Gila Valley' => 'EAC',
-    'ASU@Tucson' => 'TUCSN',
-    'ASU@Washington, D.C.' => 'WASHD',
-    'ASU@Yavapai' => 'YAVAP',
-    'ASU@Yuma' => 'AWC',
-  );
-  // Flip campus keys + values if desired
-  if ($reverse === TRUE) {
-    $campuses = array_flip($campuses);
-  }
-  foreach ($campuses as $key => $value) {
-    if (stristr($key, $campus) !== FALSE) {
-      return $value;
-      break;
-    }
-  }
-  return '';
-}
-
-/**
  * Returns all active status program nodes, if they exist
  * @param string $type - undergrad or graduate
  * @return array $program_results - key => nid and value => program focus (program code +
  *   program plan code)
- * @throws \EntityFieldQueryException
+ * @throws EntityFieldQueryException
  * @TODO Probably will want to remove, or edit to use new program gathering logic.
 
  */
@@ -1450,14 +1340,14 @@ function asu_rfi_import_online_programs() {
     flogger('asu_rfi', __FUNCTION__ . ' -- Failed to pull online programs from ' . $url, array(),
       WATCHDOG_ERROR);
   }
-  return false;
+  return FALSE;
 }
 
 /**
  *  Re-pull programs from asuonline.asu.edu under certain circumstances
  * @return bool
  */
-function asu_rfi_check_cached_programs() {
+function asu_rfi_check_online_programs_cache() {
   $programs = variable_get('asu_rfi_cached_programs');
   $timestamp = variable_get('asu_rfi_cached_programs_timestamp');
   $now = time();
@@ -1468,14 +1358,15 @@ function asu_rfi_check_cached_programs() {
     if ($getPrograms == false) {
       flogger('asu_rfi', __FUNCTION__ . ' -- Failed to import set Online programs cache.',
         array(), WATCHDOG_ERROR);
-      return false;
+      return FALSE;
     }
     variable_set('asu_rfi_cached_programs', $getPrograms);
     variable_set('asu_rfi_cached_programs_timestamp', $now);
-    return true;
+    return TRUE;
   }
-  return false;
+  return FALSE;
 }
+
 
 /**
  * Parse previously pulled in and cached in list of programs (JSON, stored in asu_rfi_cached_programs)
@@ -1653,7 +1544,7 @@ function _asu_rfi_get_type_of_form(&$form_state) {
       $form_state['values']['prospect_level'] = ASU_RFI_PROSPECT_LEVEL_GRAD;
       break;
     case "ugrad_longform" :
-      $s_type = ASU_RFI_PROSPECT_LEVEL_UNDERGRAD;
+      $s_type = (isset($form_state['values']['student_type'])) ? $form_state['values']['student_type'] : '';
       $form_type = "Undergraduate long form";
       $form_state['values']['prospect_level'] = ASU_RFI_PROSPECT_LEVEL_UNDERGRAD;
   }
@@ -1661,122 +1552,6 @@ function _asu_rfi_get_type_of_form(&$form_state) {
     'form_type' => $form_type,
     'student_type' => $s_type,
   );
-}
-
-/**
- * Detect the user's OS. // WHY? UNUSED.
- * @return int|string
- */
-function _asu_rfi_detect_os() {
-  $current_os = "unknown";
-  $os_list = array(
-    'Windows 7' => '(Windows NT 6\.1)',
-    'Windows Vista' => '(Windows NT 6\.0)',
-    'Windows XP' => '(Windows NT 5\.1)|(Windows XP)',
-    'Mac OS' => '(Mac_PowerPC)|(Macintosh)',
-    'Linux' => '(Linux)|(X11)',
-    'Search Bot' => '(nuhk)|(Googlebot)|(Yammybot)|(Openbot)|(Slurp)|(MSNBot)|(Ask Jeeves\/Teoma)|(ia_archiver)',
-    'Windows 3.11' => 'Win16',
-    'Windows 95' => '(Windows 95)|(Win95)|(Windows_95)',
-    'Windows 98' => '(Windows 98)|(Win98)',
-    'Windows 2000' => '(Windows NT 5\.0)|(Windows 2000)',
-    'Windows Server 2003' => '(Windows NT 5\.2)',
-    'Windows NT 4.0' => '(Windows NT 4\.0)|(WinNT4\.0)|(WinNT)|(Windows NT)',
-    'Windows ME' => '(Windows 98)|(Win 9x 4\.90)|(Windows ME)',
-    'Open BSD' => 'OpenBSD',
-    'Sun OS' => 'SunOS',
-    'QNX' => 'QNX',
-    'BeOS' => 'BeOS',
-    'OS/2' => 'OS\/2'
-  );
-
-  if (isset($_SERVER['HTTP_USER_AGENT'])) {
-    foreach ($os_list as $current_os => $match) {
-      if (preg_match('#' . $match . '#i', $_SERVER['HTTP_USER_AGENT'])) {
-        break;
-      }
-    }
-  }
-  return $current_os;
-}
-
-/**
- * Detect the user's browser.
- * @return string
- */
-function _asu_rfi_detect_browser() {
-  $browser = 'unknown';
-  if (isset($_SERVER['HTTP_USER_AGENT'])) {
-    $u_agent = $_SERVER['HTTP_USER_AGENT'];
-    if (stripos($u_agent, 'MSIE') !== FALSE) {
-      $browser = "IE";
-    }
-    elseif (stripos($u_agent, 'Chrome') !== FALSE) {
-      $browser = "Chrome";
-    }
-    elseif (stripos($u_agent, 'Firefox') !== FALSE) {
-      $browser = "Firefox";
-    }
-    elseif (stripos($u_agent, 'Safari') !== FALSE) {
-      $browser = "Safari";
-    }
-    elseif (stripos($u_agent, 'Flock') !== FALSE) {
-      $browser = "Flock";
-    }
-    elseif (stripos($u_agent, 'Opera') !== FALSE) {
-      $browser = "Opera";
-    }
-  }
-  return $browser;
-}
-
-/**
- * Determine type of site environment (dev, test, or live)
- * NOTE: This will work for all Pantheon sites, but everywhere else it won't
- * catch everything. The "test mode" setting will have to catch the rest.
- * @return string $env - Name of the environment. dev, qa, or prod
- */
-function _asu_rfi_detect_environment() {
-  $env = &drupal_static(__FUNCTION__);
-  if (!isset($env)) {
-    $env = array(
-      'type' => '',
-      'endpoint_access' => true,
-    );
-    global $base_url;
-    // Pantheon ENVs
-    if (defined('PANTHEON_ENVIRONMENT')) {
-      if ($_ENV["PANTHEON_ENVIRONMENT"] === 'live') {
-        $env['type'] = 'prod_pantheon';
-      }
-      elseif ($_ENV["PANTHEON_ENVIRONMENT"] === 'test') {
-        $env['type'] = 'qa';
-      } else { // All remaining multidevs + Dev ENV
-        $env['type'] = 'dev';
-      }
-      $env['endpoint_access'] = false; // No access to Enterprise dev/QA web service endpoints
-    }
-    else {
-      // Local development - most local development URLs
-      if (strpos($base_url, '://localhost')
-        || strpos($base_url, '://192.168.')
-        || strpos($base_url, '://127.')
-        || strpos($base_url, '://10.')) {
-        $env['type'] = 'dev';
-      }
-      // Non-Pantheon ENVs checks for Enterprise Drupal.
-      elseif ((preg_match('#^http(s?)://dev-#', $base_url) === 1) && (strpos($base_url, '-dev.'))) {
-        $env['type'] = 'dev';
-      }
-      elseif ((preg_match('#^http(s?)://(test|qa)-#', $base_url) === 1)
-        || (strpos($base_url, '-qa.') || strpos($base_url, '-test.'))) {
-        $env['type'] = 'qa';
-      } else {
-        $env['type'] = 'prod_not-pantheon';
-      }
-    }
-  }
-  return $env;
 }
 
 /**
@@ -1800,11 +1575,12 @@ function _asu_rfi_add_program_data_js($desiredProg) {
 
 /**
  * CURL options for JSON feed pulls in data inc files
+ * @TODO different environments
  */
 function _asu_rfi_get_curl_auth() {
   return array(
     'Content-Type: text/json',
-    'Authorization: Basic 7755:e7acf2e698751f4cac11718d97df6ebf64b94372'
+    'Authorization: Basic 7755:e7acf2e698751f4cac11718d97df6ebf64b94372',
   );
 }
 
@@ -1812,7 +1588,7 @@ function _asu_rfi_get_curl_auth() {
  * Create and deliver email receipt to admins about failed SF submissions
  * @param $to_email
  * @param $nid
- * @throws \Exception
+ * @throws Exception
  */
 function _asu_rfi_create_failed_post_email($to_email, $nid = 0) {
   $host = $_SERVER['HTTP_HOST'];
@@ -1861,7 +1637,7 @@ function _asu_rfi_create_expired_message($created) {
   if ($expires > time() && (($expires - time()) <= $cron_interval)) {
     $message = 'IMMEDIATE ACTION NEEDED. Will be deleted ASAP by cron run unless fixed and resubmitted.';
   } elseif ($expires < time()) {
-    $message = 'EXPIRED - Will be deleted ASAP by cron.';
+    $message = 'EXPIRED - Will be deleted by the next cron.';
   } else {
     $expiration_date = date("M j, Y @ g:i A", $expires);
     $message = 'PENDING - Will be periodically resubmitted until ' . $expiration_date

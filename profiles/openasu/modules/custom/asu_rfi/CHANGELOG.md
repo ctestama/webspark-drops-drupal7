@@ -1,7 +1,39 @@
 # ASU Request for Information Changelog
 
-### ASU RFI 7.x-3.0, 2020-02-11
+### ASU RFI 7.x-3.3, 2020-06-09
+- The RFI module settings now correctly block the resubmissions of older, locally-saved RFI submissions as originally intended.
+- Locally-saved copies of RFI submissions are now deleted 45 days after their initial submission, up from 14 days.
+- Added option to manually set the RFI submission retention time.
+- Standalone RFI forms now auto-update the campus options based on the degree selected.
 
+### ASU RFI 7.x-3.2, 2020-05-28
+- Fixed issue that was blocking the processing of production RFI submissions on sites hosted outside the ASU network
+ (e.g., Pantheon hosted sites). All RFI form submissions once again submit to the RFI middleware when the module is set
+  to production mode. Those submissions that had their status incorrectly set to ‘CANCELLED’ will be resubmitted and sent
+  onto the middleware with the next cron run.
+
+### ASU RFI 7.x-3.1, 2020-05-15
+- Reverted changes to test mode in the previous release that broke the RFI module's ability to 1) source the term start
+  dates, campuses, countries, and states option lists, and 2) submit test submissions for non production websites hosted
+  outside the ASU network. Test mode works again as expected in those cases
+- Updated the RFI Submission Status field labels/values to better differentiate between Salesforce integration and middleware
+  integration
+- Updated documentation in both the README.md file and the RFI settings form to reflect these changes
+- The Online campus, "not yet online", error (visible only to administrators) now defaults to hidden -
+  and can be toggled on/off in the RFI. The error's purpose has also been clarified in its own messaging.
+- Updated, "This is in TEST MODE", messaging above forms when the site is in test mode
+- Added error logging for when the Online campus programs feed is not working
+
+- RFI configuration page improvements/fixes
+    * Added new categories and moved existing settings, moved and collapsed rarely-used options at the bottom of the
+      settings page to improve end-user experience
+    * Added separate middleware environment selection option to the RFI configuration page for use within the ASU enterprise
+      environment
+    * Added basic ASU Enterprise webhosting availability checking for determining what middleware is available
+    * Added new "None" option (on top of Test vs. Production) to allow no middleware delivery at all and to improve the
+      submission posting code for better performance and organization
+
+### ASU RFI 7.x-3.0, 2020-04-07
 #### Major overhaul of the entire module
 ##### Architecture & Development
 

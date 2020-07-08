@@ -53,7 +53,7 @@ function asu_brand_get_block_settings($reset = FALSE) {
       $settings->long_term_cache[$cache_id] = variable_get($cache_id, NULL);
     }
   }
-  
+
   return $settings;
 }
 
@@ -72,7 +72,6 @@ function asu_brand_get_cached_content($cache_id, $file_path, $reset = FALSE) {
   }
 
   if ($reset || $output==NULL || !isset($output)) {
-
     // set timeout to 1.5 seconds.  if it takes too long, fall back
     // to long term caching
     $options = array(
@@ -81,7 +80,6 @@ function asu_brand_get_cached_content($cache_id, $file_path, $reset = FALSE) {
 
     $output = drupal_http_request($file_path, $options);
 
-    //if ($output = drupal_http_request($file_path)) {//$output = file_get_contents($file_path)) {
     if ($output->code == 200) {
       $output = $output->data;
 
@@ -94,7 +92,7 @@ function asu_brand_get_cached_content($cache_id, $file_path, $reset = FALSE) {
       watchdog('asu_brand', 'Unable to load @path to the cache; using long term cache.', array('@path' => $file_path), WATCHDOG_ERROR);
     }
   }
-  
+
   return $output;
 }
 
@@ -104,10 +102,10 @@ function asu_brand_get_cached_content($cache_id, $file_path, $reset = FALSE) {
 function asu_brand_get_block_header() {
   $settings = asu_brand_get_block_settings();
   $cache_id = 'asu_brand:header';
-  
+
   // Set js settings, include js file, and inject head into <head>.
   asu_brand_head_inject();
-  
+
   return asu_brand_get_cached_content($cache_id, $settings->header_path);
 }
 
@@ -151,17 +149,17 @@ function asu_brand_head_inject() {
   $inline_script = <<<EOL
    <script type="text/javascript">
     <!--//--><![CDATA[//><!--
-    
+
     var overrides = $overrides;
     var hostname = window.location.hostname;
     var ASUHeader = ASUHeader || {};
-    
-    
-    if (overrides.indexOf(hostname) == -1) {  
+
+
+    if (overrides.indexOf(hostname) == -1) {
         ASUHeader.user_signedin = $asu_sso_signedin;
         ASUHeader.signout_url = "$asu_sso_signouturl";
     }
-       
+
     //--><!]]>
   </script>
 EOL;
