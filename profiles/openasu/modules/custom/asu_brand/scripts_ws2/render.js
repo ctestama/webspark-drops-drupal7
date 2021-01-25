@@ -5,18 +5,21 @@
     attach: function (context, settings) {
       // console.log(JSON.parse(Drupal.settings.asu_brand.navTree));
 
-      var loginInfo = AsuWebcore.checkSSOCookie();
-
-      AsuWebcore.RenderPreact(AsuWebcore.Header, {
+      var props = {
         navTree: JSON.parse(Drupal.settings.asu_brand.navTree),
         title: Drupal.settings.asu_brand.siteName,
         subtitle: Drupal.settings.asu_brand.siteSubtitle,
         loggedIn: Drupal.settings.asu_brand.isLoggedIn,
-        userName: Drupal.settings.asu_brand.isLoggedIn == true ? loginInfo.userName : "",
         loginLink: Drupal.settings.asu_brand.casLoginLink,
         logoutLink: Drupal.settings.asu_brand.casLogoutLink,
+        expandOnHover: Drupal.settings.asu_brand.expandOnHover,
         animateTitle: false
-      }, document.getElementById("headerContainer"));
+      };
+
+      console.log(props, 'PROPS PASSED');
+
+      componentsLibrary.initHeader(props);
+
     }
   };
 }(jQuery));

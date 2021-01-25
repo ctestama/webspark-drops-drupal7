@@ -93,6 +93,12 @@ function asu_brand_get_block_configure_form($delta) {
         ),
       );
 
+      $form['asu_brand']['site_menu']['asu_brand_expand_on_hover'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Render top-level mobile nav items as links, instead of dropdown toggles. Note that in the mobile nav. In order to expand 2nd-level items in mobile, the nav will require a touch/click on the chevron icon in order to expand.'),
+        '#default_value' => variable_get($delta . '_expand_on_hover', 1)
+      );
+
       // Add custom GTM code
       $form['asu_brand']['gtm'] = array(
         '#type' => 'fieldset',

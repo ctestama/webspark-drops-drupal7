@@ -120,11 +120,11 @@ function asu_brand_get_asset_content($cache_id, $file_path, $version, $reset = F
           'js' => array(
             array(
               'type' => 'file',
-              'data' => $module_path . '/scripts_ws2/vendor.production.js',
+              'data' => $module_path . '/scripts_ws2/vendor.js',
             ),
             array(
               'type' => 'file',
-              'data' => $module_path . '/scripts_ws2/core.production.js',
+              'data' => $module_path . '/scripts_ws2/components-library.js',
             ),
             array(
               'type' => 'file',
@@ -139,6 +139,7 @@ function asu_brand_get_asset_content($cache_id, $file_path, $version, $reset = F
                 'casLoginLink' => $base_url . '/cas',
                 'casLogoutLink' => $base_url . '/caslogout',
                 'navTree' => _asu_brand_create_json(),
+                'expandOnHover' => variable_get('asu_brand_header_ws2_expand_on_hover', 1)
               )),
             )
           )
